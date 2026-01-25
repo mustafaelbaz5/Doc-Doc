@@ -1,0 +1,31 @@
+# Fast lane File
+default_platform(:android)
+
+platform :android do
+  desc "Distribute production build to Firebase"
+  lane :release_to_firebase do
+    sh "flutter clean"
+    sh "flutter build apk --release --flavor production --target lib/main_production.dart --no-tree-shake-icons"
+
+    # List of testers
+    testers_list = [
+      "aelbaz0189@gmail.com",
+      "m9stafa05@gmail.com",
+      "mohmmedhosni34@gmail.com",
+      "Amrb3556@gmail.com",
+      "ahmedghanem442004@gmail.com",
+    ]
+
+    # Convert array to comma-separated string
+    testers_string = testers_list.join(", ")
+
+    firebase_app_distribution(
+      app: "1:1032756631378:android:10f1b07bb58ce0e44ecc8b",
+      firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"],
+      android_artifact_type: "APK",
+      android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
+      testers: testers_string,
+      release_notes: "ZRC Finish All Most Students Features UI  (v.1.0.4)",
+    )
+  end
+end
