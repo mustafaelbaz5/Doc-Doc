@@ -1,4 +1,4 @@
-name: flutter_structure
+name: doc_doc
 description: "A new Flutter project."
 
 # Prevent accidental publishing to pub.dev for private packages
@@ -71,9 +71,9 @@ flutter:
 
   # Assets included in the build
   assets:
-    - assets/images/ # Image assets
-    - assets/svgs/ # SVG assets
-    - assets/translations/ # Localization files
+    - assets/images/
+    - assets/svgs
+    - assets/translations
 
   # Fonts (example template, uncomment and edit if needed)
   fonts:

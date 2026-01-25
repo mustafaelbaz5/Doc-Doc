@@ -1,8 +1,8 @@
 // ignore_for_file: always_specify_types
 
+import 'package:doc_doc/core/router/routes.dart';
+import 'package:doc_doc/features/feature_ex/ui/app_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_structure/core/router/routes.dart';
-import 'package:flutter_structure/features/feature_ex/ui/app_screen.dart';
 
 class AppRouter {
   Route<dynamic>? generateRoute(final RouteSettings settings) {

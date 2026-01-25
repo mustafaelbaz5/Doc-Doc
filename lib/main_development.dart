@@ -7,7 +7,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'core/di/dependency_injection.dart';
 import 'core/router/app_router.dart';
-import 'k_app.dart';
+import 'doc_doc_app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +27,7 @@ void main() async {
       path: 'assets/translations',
       startLocale: const Locale('en'),
       fallbackLocale: const Locale('en'),
-      child: KApp(appRouter: AppRouter()),
+      child: DocDocApp(appRouter: AppRouter()),
     ),
   );
 }
