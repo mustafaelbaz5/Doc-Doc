@@ -90,7 +90,7 @@ extension ThemeExt on BuildContext {
   ColorScheme get colors => Theme.of(this).colorScheme;
 
   /// Access custom colors quickly
-  CustomColors get customColors => Theme.of(this).customColors;
+  CustomColors get customColors => Theme.of(this).extension<CustomColors>()!;
 }
 
 /// Locale Extensions
@@ -107,7 +107,7 @@ extension LocaleExt on BuildContext {
 
 extension AppFontsExtension on BuildContext {
   String get currentFont {
-    // If Arabic, use Tajawal; otherwise, Manrope
-    return isArabic ? AppFontFamily.tajawal : AppFontFamily.manrope;
+    // If Arabic, use Tajawal; otherwise, Inter
+    return isArabic ? AppFontFamily.tajawal : AppFontFamily.inter;
   }
 }
