@@ -22,7 +22,7 @@ dependencies:
   # Firebase & Backend
   cloud_firestore: ^6.1.0
   firebase_auth: ^6.1.2
-  firebase_core: ^4.2.1
+  firebase_core: ^4.4.0
   firebase_storage: ^13.0.4
   supabase_flutter: ^2.10.3
 
