@@ -42,12 +42,12 @@ android {
         create("development") {
             dimension = "default"
             resValue("string", "app_name", "DocDoc Development")
-            applicationIdSuffix = ".development"
+            applicationIdSuffix = ".dev"
         }
         create("production") {
             dimension = "default"
             resValue("string", "app_name", "DocDoc")
-            applicationIdSuffix = ".production"
+            applicationIdSuffix = ".pro"
         }
     }
 }
