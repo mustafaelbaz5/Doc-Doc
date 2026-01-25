@@ -5,12 +5,12 @@ plugins {
 }
 
 android {
-    namespace = "com.example.flutter_structure"
+    namespace = "com.example.doc_doc"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
     defaultConfig {
-        applicationId = "com.example.flutter_structure"
+        applicationId = "com.example.doc_doc"
         minSdk = flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
@@ -38,12 +38,12 @@ android {
     productFlavors {
         create("development") {
             dimension = "default"
-            resValue("string", "app_name", "K Development")
+            resValue("string", "app_name", "DocDoc Development")
             applicationIdSuffix = ".development"
         }
         create("production") {
             dimension = "default"
-            resValue("string", "app_name", "K Production")
+            resValue("string", "app_name", "DocDoc")
             applicationIdSuffix = ".production"
         }
     }

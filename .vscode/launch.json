@@ -2,14 +2,14 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "K Development",
+      "name": "DocDoc Development",
       "type": "dart",
       "request": "launch",
       "program": "lib/main_development.dart",
       "args": ["--flavor", "development", "--target", "lib/main_development.dart"]
     },
     {
-      "name": "K Production",
+      "name": "DocDoc",
       "type": "dart",
       "request": "launch",
       "program": "lib/main_production.dart",
