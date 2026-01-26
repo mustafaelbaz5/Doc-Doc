@@ -18,7 +18,7 @@ void main() async {
         ? HydratedStorageDirectory.web
         : HydratedStorageDirectory((await getTemporaryDirectory()).path),
   );
-  await setupGetIt();
+  await setUpDependencies();
   await ScreenUtil.ensureScreenSize();
 
   runApp(

@@ -1,17 +1,31 @@
+import 'package:doc_doc/core/storage/secure_storage.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt getIt = GetIt.instance;
-Future<void> setupGetIt() async {
-  /// Create a Dio instance using DioFactory
-  // Dio dio = DioFactory.getDio();
-  /// Register ApiService as a lazy singleton
-  // getIt.registerLazySingleton<ApiService>(() => ApiService(dio));
 
-  /// Login
-  // getIt.registerLazySingleton<LoginRepo>(() => LoginRepo(getIt()));
-  // getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt()));
+Future<void> setUpDependencies() async {
+  // Secure Storage
+  getIt.registerLazySingleton<SecureStorage>(() => SecureStorage());
 
-  /// SigUp
-  // getIt.registerLazySingleton<SignUpRepo>(() => SignUpRepo(getIt()));
-  // getIt.registerFactory<SignUpCubit>(() => SignUpCubit(getIt()));
+  // // Auth Dependencies Injection
+  // getIt.registerLazySingleton<AuthService>(() => AuthService());
+  // getIt.registerLazySingleton<AuthRepo>(
+  //   () => AuthRepoImpl(
+  //     authService: getIt<AuthService>(),
+  //     secureStorage: getIt<SecureStorage>(),
+  //   ),
+  // );
+  // getIt.registerFactory<AuthCubit>(() => AuthCubit(getIt<AuthRepo>()));
+
+  // // Courses Dependencies Injection
+  // getIt.registerLazySingleton<CourseService>(() => CourseService());
+  // getIt.registerLazySingleton<InstructorCoursesRepo>(
+  //   () => InstructorCoursesRepoImpl(
+  //     courseService: getIt<CourseService>(),
+  //     authRepo: getIt<AuthRepo>(),
+  //   ),
+  // );
+  // getIt.registerLazySingleton<InstructorCoursesCubit>(
+  //   () => InstructorCoursesCubit(repo: getIt<InstructorCoursesRepo>()),
+  // );
 }
