@@ -53,6 +53,7 @@ dependencies:
 dev_dependencies:
   # Lints & Code Quality
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: "^0.14.4"
 
   # Flutter testing framework
   flutter_test:
