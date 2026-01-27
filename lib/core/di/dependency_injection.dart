@@ -5,8 +5,9 @@ final GetIt getIt = GetIt.instance;
 
 Future<void> setUpDependencies() async {
   // Secure Storage
-  getIt.registerLazySingleton<SecureStorage>(() => SecureStorage());
-
+if (!getIt.isRegistered<SecureStorage>()) {
+    getIt.registerLazySingleton<SecureStorage>(() => SecureStorage());
+  }
   // // Auth Dependencies Injection
   // getIt.registerLazySingleton<AuthService>(() => AuthService());
   // getIt.registerLazySingleton<AuthRepo>(
