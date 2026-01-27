@@ -26,7 +26,7 @@ ThemeData getDarkTheme({required final BuildContext context}) {
         disabledBackgroundColor: AppColors.grey800,
         disabledForegroundColor: AppColors.grey400,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-        textStyle: AppTextStyles.font32Bold,
+        textStyle: AppTextStyles.font16SemiBold,
       ),
     ),
 

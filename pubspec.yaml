@@ -1,5 +1,5 @@
 name: doc_doc
-description: "A new Flutter project."
+description: "Doc Doc For Doctor Appointments"
 
 # Prevent accidental publishing to pub.dev for private packages
 publish_to: "none"
@@ -19,12 +19,9 @@ environment:
 # DEPENDENCIES
 # ----------------------------------------------------------------
 dependencies:
-  # Firebase & Backend
-  cloud_firestore: ^6.1.0
-  firebase_auth: ^6.1.2
-  firebase_core: ^4.2.1
-  firebase_storage: ^13.0.4
-  supabase_flutter: ^2.10.3
+  # Firebase
+  firebase_core: ^4.4.0
+
 
   # Networking
   dio: ^5.7.0
@@ -39,8 +36,7 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   get_it: ^9.2.0
   easy_localization: ^3.0.8
-  google_fonts: ^6.3.3
-  rename: ^3.1.0
+
 
   # UI & Design
   cupertino_icons: ^1.0.8
@@ -57,6 +53,17 @@ dependencies:
 dev_dependencies:
   # Lints & Code Quality
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: "^0.14.4"
+
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  min_sdk_android: 21 # ensures compatibility
+  web:
+    generate: true
+    image_path: "assets/images/app_icon.png"
 
   # Flutter testing framework
   flutter_test:
@@ -72,27 +79,33 @@ flutter:
   # Assets included in the build
   assets:
     - assets/images/
-    - assets/svgs
-    - assets/translations
+    - assets/svgs/
+    - assets/translations/
 
   # Fonts (example template, uncomment and edit if needed)
   fonts:
-    - family: Manrope
+    - family: Inter
       fonts:
-        - asset: assets/fonts/manrope/Manrope-ExtraBold.ttf
-          weight: 800
-        - asset: assets/fonts/manrope/Manrope-Bold.ttf
-          weight: 700
-        - asset: assets/fonts/manrope/Manrope-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/manrope/Manrope-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/manrope/Manrope-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/manrope/Manrope-Light.ttf
-          weight: 300
-        - asset: assets/fonts/manrope/Manrope-ExtraLight.ttf
+        - asset: assets/fonts/inter/Inter_18pt-ExtraLight.ttf
           weight: 200
+
+        - asset: assets/fonts/inter/Inter_18pt-Light.ttf
+          weight: 300
+
+        - asset: assets/fonts/inter/Inter_18pt-Regular.ttf
+          weight: 400
+
+        - asset: assets/fonts/inter/Inter_18pt-Medium.ttf
+          weight: 500
+
+        - asset: assets/fonts/inter/Inter_18pt-SemiBold.ttf
+          weight: 600
+
+        - asset: assets/fonts/inter/Inter_18pt-Bold.ttf
+          weight: 700
+
+        - asset: assets/fonts/inter/Inter_18pt-ExtraBold.ttf
+          weight: 800
 
     - family: Tajawal
       fonts:

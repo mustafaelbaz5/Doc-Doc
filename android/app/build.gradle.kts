@@ -1,5 +1,8 @@
 plugins {
     id("com.android.application")
+    // START: FlutterFire Configuration
+    id("com.google.gms.google-services")
+    // END: FlutterFire Configuration
     id("kotlin-android")
     id("dev.flutter.flutter-gradle-plugin")
 }
@@ -39,12 +42,12 @@ android {
         create("development") {
             dimension = "default"
             resValue("string", "app_name", "DocDoc Development")
-            applicationIdSuffix = ".development"
+            applicationIdSuffix = ".dev"
         }
         create("production") {
             dimension = "default"
             resValue("string", "app_name", "DocDoc")
-            applicationIdSuffix = ".production"
+            applicationIdSuffix = ".pro"
         }
     }
 }
