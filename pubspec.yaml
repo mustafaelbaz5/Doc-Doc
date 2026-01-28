@@ -36,6 +36,7 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   get_it: ^9.2.0
   easy_localization: ^3.0.8
+  flutter_svg: ^2.2.3
 
 
   # UI & Design
