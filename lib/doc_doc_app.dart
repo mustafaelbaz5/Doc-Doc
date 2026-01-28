@@ -32,7 +32,7 @@ class DocDocApp extends StatelessWidget {
                 supportedLocales: context.supportedLocales,
                 locale: context.locale,
                 debugShowCheckedModeBanner: false,
-                initialRoute: Routes.appScreen,
+                initialRoute: Routes.onBoardingScreen,
                 onGenerateRoute: appRouter.generateRoute,
                 title: 'DocDoc',
                 theme: getLightTheme(context: context),

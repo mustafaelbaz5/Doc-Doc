@@ -1,7 +1,7 @@
-// ignore_for_file: always_specify_types
-
+import 'package:doc_doc/core/auth/ui/login_screen.dart';
+import 'package:doc_doc/core/auth/ui/sign_up_screen.dart';
+import 'package:doc_doc/core/onboarding/ui/on_boarding_screen.dart';
 import 'package:doc_doc/core/router/routes.dart';
-import 'package:doc_doc/features/feature_ex/ui/app_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -10,8 +10,13 @@ class AppRouter {
     final Object? arguments = settings.arguments;
 
     switch (settings.name) {
-      case Routes.appScreen:
-        return MaterialPageRoute(builder: (_) => const AppScreen());
+      case Routes.onBoardingScreen:
+        return MaterialPageRoute(builder: (_) => const OnBoardingScreen());
+
+      case Routes.loginScreen:
+        return MaterialPageRoute(builder: (_) => const LoginScreen());
+      case Routes.signUpScreen:
+        return MaterialPageRoute(builder: (_) => const SignUpScreen());
 
       // case Routes.loginScreen:
       //   return MaterialPageRoute(
@@ -21,10 +26,6 @@ class AppRouter {
       //     ),
       //   );
 
-      // case Routes.homeScreen:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const HomeScreen(),
-      //   );
 
       default:
         return null;
