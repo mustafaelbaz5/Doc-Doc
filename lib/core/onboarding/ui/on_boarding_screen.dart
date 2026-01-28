@@ -1,11 +1,11 @@
-import 'package:doc_doc/core/extensions/context_extensions.dart';
-import 'package:doc_doc/core/onboarding/ui/widgets/on_boarding_image_and_text.dart';
-import 'package:doc_doc/core/onboarding/ui/widgets/on_boarding_top_bar.dart';
-import 'package:doc_doc/core/onboarding/ui/widgets/on_boarding_top_logo.dart';
-import 'package:doc_doc/core/router/routes.dart';
-import 'package:doc_doc/core/themes/app_text_styles.dart';
-import 'package:doc_doc/core/utils/spacing.dart';
-import 'package:doc_doc/core/widgets/custom_text_button.dart';
+import '../../extensions/context_extensions.dart';
+import 'widgets/on_boarding_image_and_text.dart';
+import 'widgets/on_boarding_top_bar.dart';
+import 'widgets/on_boarding_top_logo.dart';
+import '../../router/routes.dart';
+import '../../themes/app_text_styles.dart';
+import '../../utils/spacing.dart';
+import '../../widgets/custom_text_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 

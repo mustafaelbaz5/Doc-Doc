@@ -1,5 +1,5 @@
-import 'package:doc_doc/core/extensions/object_extension.dart';
-import 'package:doc_doc/core/themes/custom_colors.dart';
+import 'object_extension.dart';
+import '../themes/custom_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 

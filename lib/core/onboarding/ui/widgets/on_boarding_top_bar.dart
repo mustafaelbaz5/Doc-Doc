@@ -1,8 +1,9 @@
-import 'package:doc_doc/core/extensions/context_extensions.dart';
-import 'package:doc_doc/core/utils/functions/app_setting_method.dart';
-import 'package:doc_doc/core/widgets/icon_button.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import '../../../extensions/context_extensions.dart';
+import '../../../utils/functions/app_setting_method.dart';
+import '../../../widgets/icon_button.dart';
 
 class OnBoardingTopBar extends StatelessWidget {
   const OnBoardingTopBar({super.key});

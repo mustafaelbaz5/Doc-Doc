@@ -1,11 +1,12 @@
-import 'package:doc_doc/core/storage/secure_storage.dart';
 import 'package:get_it/get_it.dart';
+
+import '../storage/secure_storage.dart';
 
 final GetIt getIt = GetIt.instance;
 
 Future<void> setUpDependencies() async {
   // Secure Storage
-if (!getIt.isRegistered<SecureStorage>()) {
+  if (!getIt.isRegistered<SecureStorage>()) {
     getIt.registerLazySingleton<SecureStorage>(() => SecureStorage());
   }
   // // Auth Dependencies Injection

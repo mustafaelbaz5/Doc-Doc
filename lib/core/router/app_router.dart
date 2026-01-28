@@ -1,7 +1,7 @@
-import 'package:doc_doc/core/auth/ui/login_screen.dart';
-import 'package:doc_doc/core/auth/ui/sign_up_screen.dart';
-import 'package:doc_doc/core/onboarding/ui/on_boarding_screen.dart';
-import 'package:doc_doc/core/router/routes.dart';
+import '../auth/ui/login_screen.dart';
+import '../auth/ui/sign_up_screen.dart';
+import '../onboarding/ui/on_boarding_screen.dart';
+import 'routes.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {
@@ -25,7 +25,6 @@ class AppRouter {
       //       child: const LoginScreen(),
       //     ),
       //   );
-
 
       default:
         return null;
