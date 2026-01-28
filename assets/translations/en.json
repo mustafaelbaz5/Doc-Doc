@@ -27,5 +27,10 @@
     "file_too_large": "File is too large.",
     "user_disabled": "This account has been disabled.",
     "operation_not_allowed": "This operation is not allowed."
+  },
+  "onBoarding": {
+    "hero_title": "Best Doctor\nAppointment App",
+    "hero_desc": "Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.",
+    "get_started_button": "Get Started"
   }
 }
