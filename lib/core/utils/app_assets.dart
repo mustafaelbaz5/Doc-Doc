@@ -1,8 +1,8 @@
 class AppAssets {
   // svgs
   static const String logoSvg = 'assets/svgs/logo.svg';
-  static const String generalSpecialitySvg =
-      'assets/svgs/general_specialty.svg';
+  static const String logoLowOpacitySvg = 'assets/svgs/logo_low_opacity.svg';
+  static const String generalSpecialtySvg = 'assets/svgs/general_specialty.svg';
   static const String neurologicSpecialtySvg =
       'assets/svgs/neurologic_specialty.svg';
   static const String radiologySpecialtySvg =
