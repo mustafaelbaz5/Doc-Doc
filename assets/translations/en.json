@@ -32,5 +32,23 @@
     "hero_title": "Best Doctor\nAppointment App",
     "hero_desc": "Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.",
     "get_started_button": "Get Started"
+  },
+  "auth": {
+    "login_title": "Welcome Back",
+    "login_desc": "We're excited to have you back, can't wait to see what you've been up to since you last logged in.",
+    "sign_up_title": "Create Account",
+    "sign_up_desc": "Sign up now and start exploring all that our app has to offer. We're excited to welcome you to our community!",
+    "email": "Email",
+    "password": "Password",
+    "login": "Login",
+    "sign_up": "Sign Up",
+    "forgot_password": "Forgot Password?",
+    "remember_me": "Remember Me",
+    "terms_and_conditions_1": "By logging, you agree to our ",
+    "terms_and_conditions_2": " Terms & Conditions",
+    "terms_and_conditions_3": " and ",
+    "terms_and_conditions_4": "Privacy Policy.",
+    "dont_have_account": "Don't have an account?",
+    "already_have_account": "Already have an account?"
   }
 }
