@@ -3,10 +3,21 @@ import 'package:easy_localization/easy_localization.dart';
 import '../utils/regex.dart';
 
 class Validators {
+  static String? name(final String? value) {
+    if (value == null || value.isEmpty) {
+      return 'auth.validation.required'.tr();
+    } else if (!AppRegex.isValidName(value)) {
+      return 'auth.validation.name'.tr();
+    }
+    return null;
+  }
+
   /// Validate email format
   static String? email(final String? value) {
-    if (value == null || value.isEmpty || !AppRegex.isEmailValid(value)) {
-      return 'auth.invalid_email'.tr();
+    if (value == null || value.isEmpty) {
+      return 'auth.validation.required'.tr();
+    } else if (!AppRegex.isValidName(value)) {
+      return 'auth.validation.email'.tr();
     }
     return null;
   }
@@ -14,27 +25,27 @@ class Validators {
   /// Validate password with multiple rules
   static String? password(final String? value) {
     if (value == null || value.isEmpty) {
-      return 'Password is required';
+      return 'auth.validation.required'.tr();
     }
 
     if (!AppRegex.hasLowerCase(value)) {
-      return 'Password must contain at least one lowercase letter';
+      return 'auth.validation.password_validation_1'.tr();
     }
 
     if (!AppRegex.hasUpperCase(value)) {
-      return 'Password must contain at least one uppercase letter';
+      return 'auth.validation.password_validation_2'.tr();
     }
 
     if (!AppRegex.hasNumber(value)) {
-      return 'Password must contain at least one number';
+      return 'auth.validation.password_validation_3'.tr();
     }
 
     if (!AppRegex.hasSpecialCharacter(value)) {
-      return 'Password must contain at least one special character';
+      return 'auth.validation.password_validation_4'.tr();
     }
 
     if (!AppRegex.hasMinLength(value)) {
-      return 'Password must be at least 8 characters';
+      return 'auth.validation.password_validation_5'.tr();
     }
 
     return null; // Password is valid
@@ -42,6 +53,8 @@ class Validators {
 
   static String? phoneNumber(final String? value) {
     if (value == null || value.isEmpty || !AppRegex.isPhoneNumberValid(value)) {
+      return 'auth.validation.required'.tr();
+    } else if (!AppRegex.isPhoneNumberValid(value)) {
       return 'auth.invalid_phone_number'.tr();
     }
     return null;

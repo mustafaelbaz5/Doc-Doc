@@ -38,8 +38,14 @@
     "login_desc": "We're excited to have you back, can't wait to see what you've been up to since you last logged in.",
     "sign_up_title": "Create Account",
     "sign_up_desc": "Sign up now and start exploring all that our app has to offer. We're excited to welcome you to our community!",
+    "name": "Name",
+    "phone": "Phone Number",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
     "email": "Email",
     "password": "Password",
+    "confirm_password": "Confirm Password",
     "login": "Login",
     "sign_up": "Sign Up",
     "forgot_password": "Forgot Password?",
@@ -50,7 +56,16 @@
     "terms_and_conditions_4": "Privacy Policy.",
     "dont_have_account": "Don't have an account?",
     "already_have_account": "Already have an account?",
-    "invalid_email": "Invalid email address format.",
-    "invalid_password": "Password is invalid."
+    "validation": {
+      "required": "This field is required.",
+      "name": "Invalid name. Format",
+      "email": "Invalid email address.",
+      "password_mismatch": "Passwords do not match.",
+      "password_validation_1": " at least one lowercase letter",
+      "password_validation_2": "at least one uppercase letter",
+      "password_validation_3": " at least one number",
+      "password_validation_4": "at one special character",
+      "password_validation_5": "at least 8 characters long"
+    }
   }
 }

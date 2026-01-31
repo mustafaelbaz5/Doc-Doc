@@ -23,7 +23,6 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
-  final ScrollController _scrollController = ScrollController();
 
   // Controllers
   late final TextEditingController _nameController = TextEditingController();
@@ -69,7 +68,6 @@ class _SignUpFormState extends State<SignUpForm> {
     _emailController.dispose();
     _passwordController.dispose();
     _passwordConfirmationController.dispose();
-    _scrollController.dispose();
     super.dispose();
   }
 
@@ -121,83 +119,84 @@ class _SignUpFormState extends State<SignUpForm> {
       builder: (final context, final state) {
         final isLoading = state is AuthLoading;
 
-        return SingleChildScrollView(
-          controller: _scrollController,
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                _buildTextField(
-                  hint: 'Name',
-                  controller: _nameController,
-                  validator: (final value) => (value == null || value.isEmpty)
-                      ? 'Please enter a valid name'
+        return Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              _buildTextField(
+                hint: 'auth.name'.tr(),
+                controller: _nameController,
+                validator: Validators.name,
+              ),
+              _buildTextField(
+                hint: 'auth.phone'.tr(),
+                controller: _phoneController,
+                validator: Validators.phoneNumber,
+              ),
+              Padding(
+                padding: EdgeInsets.only(bottom: responsiveHeight(18)),
+                child: CustomDropdownFormField<String>(
+                  hintText: 'auth.gender'.tr(),
+                  value: _selectedGender,
+                  items: [
+                    DropdownMenuItem(
+                      value: 'male',
+                      child: Text('auth.male'.tr()),
+                    ),
+                    DropdownMenuItem(
+                      value: 'female',
+                      child: Text('auth.female'.tr()),
+                    ),
+                  ],
+                  onChanged: (final value) =>
+                      setState(() => _selectedGender = value),
+                  validator: (_) => _selectedGender == null
+                      ? 'auth.validation.required'.tr()
                       : null,
                 ),
-                _buildTextField(
-                  hint: 'Phone',
-                  controller: _phoneController,
-                  validator: Validators.phoneNumber,
-                ),
-                Padding(
-                  padding: EdgeInsets.only(bottom: responsiveHeight(18)),
-                  child: CustomDropdownFormField<String>(
-                    hintText: 'Gender',
-                    value: _selectedGender,
-                    items: const [
-                      DropdownMenuItem(value: 'male', child: Text('Male')),
-                      DropdownMenuItem(value: 'female', child: Text('Female')),
-                    ],
-                    onChanged: (final value) =>
-                        setState(() => _selectedGender = value),
-                    validator: (_) =>
-                        _selectedGender == null ? 'Please select gender' : null,
-                  ),
-                ),
-                _buildTextField(
-                  hint: 'Email',
-                  controller: _emailController,
-                  validator: Validators.email,
-                ),
-                _buildTextField(
-                  hint: 'Password',
-                  controller: _passwordController,
-                  validator: Validators.password,
-                  isPassword: true,
-                ),
-                _buildTextField(
-                  hint: 'Confirm Password',
-                  controller: _passwordConfirmationController,
-                  validator: (final value) {
-                    final passwordError = Validators.password(value);
-                    if (passwordError != null) return passwordError;
-                    if (value != _passwordController.text) {
-                      return 'Passwords do not match';
-                    }
-                    return null;
-                  },
-                  isPassword: true,
-                ),
-                PasswordValidation(
-                  hasLowerCase: hasLowerCase,
-                  hasUpperCase: hasUpperCase,
-                  hasNumber: hasNumber,
-                  hasSpecialCharacters: hasSpecialCharacters,
-                  hasMinLength: hasMinLength,
-                ),
-                verticalSpacing(40),
-                CustomTextButton(
-                  borderRadius: responsiveRadius(16),
-                  text: 'auth.sign_up'.tr(),
-                  textStyle: AppTextStyles.font18SemiBold,
-                  style: CustomButtonStyle.filled,
-                  size: CustomButtonSize.large,
-                  onPressed: isLoading ? null : _submitForm,
-                  isLoading: isLoading,
-                ),
-              ],
-            ),
+              ),
+              _buildTextField(
+                hint: 'auth.email'.tr(),
+                controller: _emailController,
+                validator: Validators.email,
+              ),
+              _buildTextField(
+                hint: 'auth.password'.tr(),
+                controller: _passwordController,
+                validator: Validators.password,
+                isPassword: true,
+              ),
+              _buildTextField(
+                hint: 'auth.confirm_password'.tr(),
+                controller: _passwordConfirmationController,
+                validator: (final value) {
+                  final passwordError = Validators.password(value);
+                  if (passwordError != null) return passwordError;
+                  if (value != _passwordController.text) {
+                    return 'auth.validation_password_mismatch'.tr();
+                  }
+                  return null;
+                },
+                isPassword: true,
+              ),
+              PasswordValidation(
+                hasLowerCase: hasLowerCase,
+                hasUpperCase: hasUpperCase,
+                hasNumber: hasNumber,
+                hasSpecialCharacters: hasSpecialCharacters,
+                hasMinLength: hasMinLength,
+              ),
+              verticalSpacing(40),
+              CustomTextButton(
+                borderRadius: responsiveRadius(16),
+                text: 'auth.sign_up'.tr(),
+                textStyle: AppTextStyles.font18SemiBold,
+                style: CustomButtonStyle.filled,
+                size: CustomButtonSize.large,
+                onPressed: isLoading ? null : _submitForm,
+                isLoading: isLoading,
+              ),
+            ],
           ),
         );
       },

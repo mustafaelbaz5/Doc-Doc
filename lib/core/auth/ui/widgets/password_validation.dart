@@ -1,6 +1,7 @@
 import 'package:doc_doc/core/extensions/context_extensions.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PasswordValidation extends StatelessWidget {
@@ -24,26 +25,34 @@ class PasswordValidation extends StatelessWidget {
     return Column(
       children: [
         buildValidationRow(
-          'At least 1 lowercase letter',
+          'auth.validation.password_validation_1'.tr(),
           hasLowerCase,
           context,
         ),
         verticalSpacing(2),
         buildValidationRow(
-          'At least 1 uppercase letter',
+          'auth.validation.password_validation_2'.tr(),
           hasUpperCase,
           context,
         ),
         verticalSpacing(2),
-        buildValidationRow('At least 1 number', hasNumber, context),
+        buildValidationRow(
+          'auth.validation.password_validation_3'.tr(),
+          hasNumber,
+          context,
+        ),
         verticalSpacing(2),
         buildValidationRow(
-          'At least 1 special character',
+          'auth.validation.password_validation_4'.tr(),
           hasSpecialCharacters,
           context,
         ),
         verticalSpacing(2),
-        buildValidationRow('Minimum 8 characters', hasMinLength, context),
+        buildValidationRow(
+          'auth.validation.password_validation_5'.tr(),
+          hasMinLength,
+          context,
+        ),
       ],
     );
   }

@@ -78,7 +78,7 @@ class _LoginFormState extends State<LoginForm> {
                 isPassword: true,
                 validator: (final value) {
                   if (value == null || value.isEmpty) {
-                    return "auth.invalid_password".tr();
+                    return "auth.validation.required".tr();
                   }
                   return null;
                 },
