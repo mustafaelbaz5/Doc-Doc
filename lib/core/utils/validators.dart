@@ -16,7 +16,7 @@ class Validators {
   static String? email(final String? value) {
     if (value == null || value.isEmpty) {
       return 'auth.validation.required'.tr();
-    } else if (!AppRegex.isValidName(value)) {
+    } else if (!AppRegex.isEmailValid(value)) {
       return 'auth.validation.email'.tr();
     }
     return null;
