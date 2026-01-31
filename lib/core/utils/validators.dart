@@ -39,4 +39,11 @@ class Validators {
 
     return null; // Password is valid
   }
+
+  static String? phoneNumber(final String? value) {
+    if (value == null || value.isEmpty || !AppRegex.isPhoneNumberValid(value)) {
+      return 'auth.invalid_phone_number'.tr();
+    }
+    return null;
+  }
 }
