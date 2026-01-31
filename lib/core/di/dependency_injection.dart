@@ -1,33 +1,40 @@
+import 'package:dio/dio.dart';
+import 'package:doc_doc/core/auth/data/apis/auth_service.dart';
+import 'package:doc_doc/core/auth/data/repo/auth_repo.dart';
+import 'package:doc_doc/core/auth/data/repo/auth_repo_impl.dart';
+import 'package:doc_doc/core/auth/logic/cubit/auth_cubit.dart';
+import 'package:doc_doc/core/networking/dio_factory.dart';
+import 'package:doc_doc/core/service/secure_storage.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
-
-import '../storage/secure_storage.dart';
 
 final GetIt getIt = GetIt.instance;
 
 Future<void> setUpDependencies() async {
-  // Secure Storage
-  if (!getIt.isRegistered<SecureStorage>()) {
-    getIt.registerLazySingleton<SecureStorage>(() => SecureStorage());
-  }
-  // // Auth Dependencies Injection
-  // getIt.registerLazySingleton<AuthService>(() => AuthService());
-  // getIt.registerLazySingleton<AuthRepo>(
-  //   () => AuthRepoImpl(
-  //     authService: getIt<AuthService>(),
-  //     secureStorage: getIt<SecureStorage>(),
-  //   ),
-  // );
-  // getIt.registerFactory<AuthCubit>(() => AuthCubit(getIt<AuthRepo>()));
+  final FlutterSecureStorage flutterSecureStorage =
+      const FlutterSecureStorage();
 
-  // // Courses Dependencies Injection
-  // getIt.registerLazySingleton<CourseService>(() => CourseService());
-  // getIt.registerLazySingleton<InstructorCoursesRepo>(
-  //   () => InstructorCoursesRepoImpl(
-  //     courseService: getIt<CourseService>(),
-  //     authRepo: getIt<AuthRepo>(),
-  //   ),
-  // );
-  // getIt.registerLazySingleton<InstructorCoursesCubit>(
-  //   () => InstructorCoursesCubit(repo: getIt<InstructorCoursesRepo>()),
-  // );
+  if (!getIt.isRegistered<SecureStorage>()) {
+    getIt.registerLazySingleton<SecureStorage>(
+      () => SecureStorage(flutterSecureStorage),
+    );
+  }
+
+  final Dio dio = await DioFactory.getDio();
+
+  if (!getIt.isRegistered<AuthService>()) {
+    getIt.registerLazySingleton<AuthService>(() => AuthService(dio: dio));
+  }
+
+  if (!getIt.isRegistered<AuthRepo>()) {
+    getIt.registerLazySingleton<AuthRepo>(
+      () => AuthRepoImpl(authService: getIt<AuthService>()),
+    );
+  }
+
+if (!getIt.isRegistered<AuthCubit>()) {
+    getIt.registerFactory<AuthCubit>(
+      () => AuthCubit(authRepo: getIt<AuthRepo>()),
+    );
+  }
 }
