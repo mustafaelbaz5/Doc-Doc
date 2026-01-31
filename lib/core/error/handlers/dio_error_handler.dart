@@ -1,6 +1,5 @@
-// ignore_for_file: always_specify_types, avoid_dynamic_calls
-
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 import '../models/app_error.dart';
 import '../models/error_details.dart';
@@ -20,7 +19,7 @@ class DioErrorHandler {
       case DioExceptionType.sendTimeout:
       case DioExceptionType.receiveTimeout:
         return AppError(
-          message: 'errors.timeout',
+          message: 'errors.timeout'.tr(),
           type: ErrorType.timeout,
           code: ErrorCode.timeout,
           technicalMessage: error.message,
@@ -30,7 +29,7 @@ class DioErrorHandler {
       case DioExceptionType.connectionError:
       case DioExceptionType.badCertificate:
         return AppError(
-          message: 'errors.connection_error',
+          message: 'errors.connection_error'.tr(),
           type: ErrorType.noInternet,
           code: ErrorCode.noInternet,
           technicalMessage: error.message,
@@ -39,7 +38,7 @@ class DioErrorHandler {
 
       case DioExceptionType.cancel:
         return AppError(
-          message: 'errors.cancelled',
+          message: 'errors.cancelled'.tr(),
           type: ErrorType.cancel,
           code: ErrorCode.cancel,
           technicalMessage: error.message,
@@ -66,7 +65,7 @@ class DioErrorHandler {
     switch (statusCode) {
       case 400:
         return AppError(
-          message: message.isEmpty ? 'errors.bad_request' : message,
+          message: message.isEmpty ? 'errors.bad_request'.tr() : message,
           type: ErrorType.badRequest,
           code: ErrorCode.badRequest,
           technicalMessage: error.message,
@@ -76,7 +75,7 @@ class DioErrorHandler {
 
       case 401:
         return AppError(
-          message: message.isEmpty ? 'errors.unauthorized' : message,
+          message: message.isEmpty ? 'errors.unauthorized'.tr() : message,
           type: ErrorType.unauthorized,
           code: ErrorCode.unauthorized,
           technicalMessage: error.message,
@@ -86,7 +85,7 @@ class DioErrorHandler {
 
       case 403:
         return AppError(
-          message: message.isEmpty ? 'errors.forbidden' : message,
+          message: message.isEmpty ? 'errors.forbidden'.tr() : message,
           type: ErrorType.forbidden,
           code: ErrorCode.forbidden,
           technicalMessage: error.message,
@@ -96,7 +95,7 @@ class DioErrorHandler {
 
       case 404:
         return AppError(
-          message: message.isEmpty ? 'errors.not_found' : message,
+          message: message.isEmpty ? 'errors.not_found'.tr() : message,
           type: ErrorType.notFound,
           code: ErrorCode.notFound,
           technicalMessage: error.message,
@@ -106,7 +105,7 @@ class DioErrorHandler {
 
       case 409:
         return AppError(
-          message: message.isEmpty ? 'errors.conflict' : message,
+          message: message.isEmpty ? 'errors.conflict'.tr() : message,
           type: ErrorType.conflict,
           code: ErrorCode.conflict,
           technicalMessage: error.message,
@@ -116,7 +115,7 @@ class DioErrorHandler {
 
       case 422:
         return AppError(
-          message: message.isEmpty ? 'errors.validation' : message,
+          message: message.isEmpty ? 'errors.validation'.tr() : message,
           type: ErrorType.validation,
           code: ErrorCode.unprocessableEntity,
           technicalMessage: error.message,
@@ -128,7 +127,7 @@ class DioErrorHandler {
       case 502:
       case 503:
         return AppError(
-          message: 'errors.server_error',
+          message: 'errors.server_error'.tr(),
           type: ErrorType.internalServer,
           code: ErrorCode.internalServer,
           technicalMessage: error.message,
@@ -138,7 +137,7 @@ class DioErrorHandler {
 
       default:
         return AppError(
-          message: message.isEmpty ? 'errors.unknown' : message,
+          message: message.isEmpty ? 'errors.unknown'.tr() : message,
           type: ErrorType.unknown,
           code: statusCode ?? ErrorCode.unknown,
           technicalMessage: error.message,
