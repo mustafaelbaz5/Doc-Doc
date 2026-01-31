@@ -1,3 +1,4 @@
+import 'package:doc_doc/core/constants/storage_constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,7 +33,9 @@ class DocDocApp extends StatelessWidget {
                 supportedLocales: context.supportedLocales,
                 locale: context.locale,
                 debugShowCheckedModeBanner: false,
-                initialRoute: Routes.onBoardingScreen,
+                initialRoute: isLoggedIn
+                    ? Routes.homeScreen
+                    : Routes.onBoardingScreen,
                 onGenerateRoute: appRouter.generateRoute,
                 title: 'DocDoc',
                 theme: getLightTheme(context: context),

@@ -6,6 +6,7 @@ class StorageConstants {
   static const String userTokenKey = 'user_token';
 }
 
+bool isLoggedIn = false;
 Future<void> setupHydratedStorage() async {
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
