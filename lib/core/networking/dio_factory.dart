@@ -58,7 +58,7 @@ class DioFactory {
   }
 
   /// Update token after login
-  static void setTokenAfterLogin(final String token) {
+  static void setTokenAfterAuth(final String token) {
     _dio?.options.headers["Authorization"] = "Bearer $token";
   }
 

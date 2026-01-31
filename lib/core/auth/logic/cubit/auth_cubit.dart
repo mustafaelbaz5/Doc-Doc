@@ -18,6 +18,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     try {
       final response = await authRepo.login(body);
+      await authRepo.saveUserToken(token: response.data?.token ?? '');
       emit(LoginSuccess(response: response));
     } catch (e) {
       emit(AuthFailure(errorMessage: e.toString()));
@@ -29,6 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
 
     try {
       final response = await authRepo.signUp(body);
+      await authRepo.saveUserToken(token: response.userData?.token ?? '');
       emit(SignUpSuccess(response: response));
     } catch (e) {
       emit(AuthFailure(errorMessage: e.toString()));

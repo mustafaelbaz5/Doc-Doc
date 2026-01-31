@@ -28,11 +28,14 @@ Future<void> setUpDependencies() async {
 
   if (!getIt.isRegistered<AuthRepo>()) {
     getIt.registerLazySingleton<AuthRepo>(
-      () => AuthRepoImpl(authService: getIt<AuthService>()),
+      () => AuthRepoImpl(
+        authService: getIt<AuthService>(),
+        secureStorage: getIt<SecureStorage>(),
+      ),
     );
   }
 
-if (!getIt.isRegistered<AuthCubit>()) {
+  if (!getIt.isRegistered<AuthCubit>()) {
     getIt.registerFactory<AuthCubit>(
       () => AuthCubit(authRepo: getIt<AuthRepo>()),
     );
