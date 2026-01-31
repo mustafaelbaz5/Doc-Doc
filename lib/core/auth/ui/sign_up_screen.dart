@@ -16,6 +16,7 @@ class SignUpScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: responsiveWidth(32)),
           child: SingleChildScrollView(
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
