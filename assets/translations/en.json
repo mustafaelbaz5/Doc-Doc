@@ -49,6 +49,8 @@
     "terms_and_conditions_3": " and ",
     "terms_and_conditions_4": "Privacy Policy.",
     "dont_have_account": "Don't have an account?",
-    "already_have_account": "Already have an account?"
+    "already_have_account": "Already have an account?",
+    "invalid_email": "Invalid email address format.",
+    "invalid_password": "Password is invalid."
   }
 }

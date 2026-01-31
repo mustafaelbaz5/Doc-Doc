@@ -49,6 +49,8 @@
     "terms_and_conditions_3": " و",
     "terms_and_conditions_4": "سياسة الخصوصية.",
     "dont_have_account": "ليس لديك حساب؟",
-    "already_have_account": "هل لديك حساب بالفعل؟"
+    "already_have_account": "هل لديك حساب بالفعل؟",
+    "invalid_email": "تنسيق البريد الإلكتروني غير صالح.",
+    "invalid_password": "كلمة المرور غير صالحة."
   }
 }
