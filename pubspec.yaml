@@ -37,6 +37,7 @@ dependencies:
   get_it: ^9.2.0
   easy_localization: ^3.0.8
   flutter_svg: ^2.2.3
+  pretty_dio_logger: ^1.4.0
 
 
   # UI & Design
@@ -47,6 +48,7 @@ dependencies:
   # Flutter SDK
   flutter:
     sdk: flutter
+  shared_preferences: ^2.5.4
 
 # ----------------------------------------------------------------
 # DEV DEPENDENCIES
