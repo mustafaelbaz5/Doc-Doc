@@ -3,6 +3,8 @@ import 'package:doc_doc/core/auth/logic/cubit/auth_cubit.dart';
 import 'package:doc_doc/core/extensions/context_extensions.dart';
 import 'package:doc_doc/core/router/routes.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
+import 'package:doc_doc/core/ui/dialogs/app_dialogs.dart';
+import 'package:doc_doc/core/ui/loaders/overlay_loader.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:doc_doc/core/utils/validators.dart';
 import 'package:doc_doc/core/widgets/custom_text_button.dart';
@@ -54,46 +56,44 @@ class _LoginFormState extends State<LoginForm> {
         if (state is LoginSuccess) {
           context.pushNamedAndRemoveAll(Routes.homeScreen);
         } else if (state is AuthFailure) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
+          AppDialogs.showError(context, message: state.errorMessage);
         }
       },
       builder: (final context, final state) {
-        final isLoading = state is AuthLoading;
-
-        return Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              CustomTextFormField(
-                controller: _emailController,
-                hintText: "auth.email".tr(),
-                validator: Validators.email,
-              ),
-              verticalSpacing(16),
-              CustomTextFormField(
-                controller: _passwordController,
-                hintText: "auth.password".tr(),
-                isPassword: true,
-                validator: (final value) {
-                  if (value == null || value.isEmpty) {
-                    return "auth.validation.required".tr();
-                  }
-                  return null;
-                },
-              ),
-              verticalSpacing(32),
-              CustomTextButton(
-                borderRadius: responsiveRadius(16),
-                text: "auth.login".tr(),
-                textStyle: AppTextStyles.font18SemiBold,
-                style: CustomButtonStyle.filled,
-                size: CustomButtonSize.large,
-                onPressed: isLoading ? null : _submitForm,
-                isLoading: isLoading,
-              ),
-            ],
+        return OverlayLoader(
+          isLoading: state is AuthLoading,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                CustomTextFormField(
+                  controller: _emailController,
+                  hintText: "auth.email".tr(),
+                  validator: Validators.email,
+                ),
+                verticalSpacing(16),
+                CustomTextFormField(
+                  controller: _passwordController,
+                  hintText: "auth.password".tr(),
+                  isPassword: true,
+                  validator: (final value) {
+                    if (value == null || value.isEmpty) {
+                      return "auth.validation.required".tr();
+                    }
+                    return null;
+                  },
+                ),
+                verticalSpacing(32),
+                CustomTextButton(
+                  borderRadius: responsiveRadius(16),
+                  text: "auth.login".tr(),
+                  textStyle: AppTextStyles.font18SemiBold,
+                  style: CustomButtonStyle.filled,
+                  size: CustomButtonSize.large,
+                  onPressed: _submitForm,
+                ),
+              ],
+            ),
           ),
         );
       },

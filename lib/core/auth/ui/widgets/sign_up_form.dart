@@ -4,6 +4,8 @@ import 'package:doc_doc/core/auth/ui/widgets/password_validation.dart';
 import 'package:doc_doc/core/extensions/context_extensions.dart';
 import 'package:doc_doc/core/router/routes.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
+import 'package:doc_doc/core/ui/dialogs/app_dialogs.dart';
+import 'package:doc_doc/core/ui/loaders/overlay_loader.dart';
 import 'package:doc_doc/core/utils/regex.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:doc_doc/core/utils/validators.dart';
@@ -86,7 +88,6 @@ class _SignUpFormState extends State<SignUpForm> {
     context.read<AuthCubit>().signUp(body);
   }
 
-  // Reusable field builder
   Widget _buildTextField({
     required final String hint,
     required final TextEditingController controller,
@@ -111,92 +112,90 @@ class _SignUpFormState extends State<SignUpForm> {
         if (state is SignUpSuccess) {
           context.pushNamedAndRemoveAll(Routes.homeScreen);
         } else if (state is AuthFailure) {
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text(state.errorMessage)));
+          AppDialogs.showError(context, message: state.errorMessage);
         }
       },
       builder: (final context, final state) {
-        final isLoading = state is AuthLoading;
-
-        return Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              _buildTextField(
-                hint: 'auth.name'.tr(),
-                controller: _nameController,
-                validator: Validators.name,
-              ),
-              _buildTextField(
-                hint: 'auth.phone'.tr(),
-                controller: _phoneController,
-                validator: Validators.phoneNumber,
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: responsiveHeight(18)),
-                child: CustomDropdownFormField<String>(
-                  hintText: 'auth.gender'.tr(),
-                  value: _selectedGender,
-                  items: [
-                    DropdownMenuItem(
-                      value: 'male',
-                      child: Text('auth.male'.tr()),
-                    ),
-                    DropdownMenuItem(
-                      value: 'female',
-                      child: Text('auth.female'.tr()),
-                    ),
-                  ],
-                  onChanged: (final value) =>
-                      setState(() => _selectedGender = value),
-                  validator: (_) => _selectedGender == null
-                      ? 'auth.validation.required'.tr()
-                      : null,
+        return OverlayLoader(
+          isLoading: state is AuthLoading,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                _buildTextField(
+                  hint: 'auth.name'.tr(),
+                  controller: _nameController,
+                  validator: Validators.name,
                 ),
-              ),
-              _buildTextField(
-                hint: 'auth.email'.tr(),
-                controller: _emailController,
-                validator: Validators.email,
-              ),
-              _buildTextField(
-                hint: 'auth.password'.tr(),
-                controller: _passwordController,
-                validator: Validators.password,
-                isPassword: true,
-              ),
-              _buildTextField(
-                hint: 'auth.confirm_password'.tr(),
-                controller: _passwordConfirmationController,
-                validator: (final value) {
-                  final passwordError = Validators.password(value);
-                  if (passwordError != null) return passwordError;
-                  if (value != _passwordController.text) {
-                    return 'auth.validation_password_mismatch'.tr();
-                  }
-                  return null;
-                },
-                isPassword: true,
-              ),
-              PasswordValidation(
-                hasLowerCase: hasLowerCase,
-                hasUpperCase: hasUpperCase,
-                hasNumber: hasNumber,
-                hasSpecialCharacters: hasSpecialCharacters,
-                hasMinLength: hasMinLength,
-              ),
-              verticalSpacing(40),
-              CustomTextButton(
-                borderRadius: responsiveRadius(16),
-                text: 'auth.sign_up'.tr(),
-                textStyle: AppTextStyles.font18SemiBold,
-                style: CustomButtonStyle.filled,
-                size: CustomButtonSize.large,
-                onPressed: isLoading ? null : _submitForm,
-                isLoading: isLoading,
-              ),
-            ],
+                _buildTextField(
+                  hint: 'auth.phone'.tr(),
+                  controller: _phoneController,
+                  validator: Validators.phoneNumber,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: responsiveHeight(18)),
+                  child: CustomDropdownFormField<String>(
+                    hintText: 'auth.gender'.tr(),
+                    value: _selectedGender,
+                    items: [
+                      DropdownMenuItem(
+                        value: 'male',
+                        child: Text('auth.male'.tr()),
+                      ),
+                      DropdownMenuItem(
+                        value: 'female',
+                        child: Text('auth.female'.tr()),
+                      ),
+                    ],
+                    onChanged: (final value) =>
+                        setState(() => _selectedGender = value),
+                    validator: (_) => _selectedGender == null
+                        ? 'auth.validation.required'.tr()
+                        : null,
+                  ),
+                ),
+                _buildTextField(
+                  hint: 'auth.email'.tr(),
+                  controller: _emailController,
+                  validator: Validators.email,
+                ),
+                _buildTextField(
+                  hint: 'auth.password'.tr(),
+                  controller: _passwordController,
+                  validator: Validators.password,
+                  isPassword: true,
+                ),
+                _buildTextField(
+                  hint: 'auth.confirm_password'.tr(),
+                  controller: _passwordConfirmationController,
+                  validator: (final value) {
+                    final passwordError = Validators.password(value);
+                    if (passwordError != null) return passwordError;
+                    if (value != _passwordController.text) {
+                      return 'auth.validation_password_mismatch'.tr();
+                    }
+                    return null;
+                  },
+                  isPassword: true,
+                ),
+                PasswordValidation(
+                  hasLowerCase: hasLowerCase,
+                  hasUpperCase: hasUpperCase,
+                  hasNumber: hasNumber,
+                  hasSpecialCharacters: hasSpecialCharacters,
+                  hasMinLength: hasMinLength,
+                ),
+                verticalSpacing(40),
+                CustomTextButton(
+                  borderRadius: responsiveRadius(16),
+                  text: 'auth.sign_up'.tr(),
+                  textStyle: AppTextStyles.font18SemiBold,
+                  style: CustomButtonStyle.filled,
+                  size: CustomButtonSize.large,
+                  onPressed: _submitForm,
+                ),
+              ],
+            ),
           ),
         );
       },
