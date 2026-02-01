@@ -58,7 +58,7 @@
     "already_have_account": "Already have an account?",
     "validation": {
       "required": "This field is required.",
-      "name": "Invalid name. Format",
+      "name": "Invalid name Format",
       "email": "Invalid email address.",
       "password_mismatch": "Passwords do not match.",
       "password_validation_1": " at least one lowercase letter",
