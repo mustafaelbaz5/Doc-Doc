@@ -28,6 +28,18 @@
     "user_disabled": "This account has been disabled.",
     "operation_not_allowed": "This operation is not allowed."
   },
+  "app_dialogs": {
+    "error": "Error",
+    "confirm": "Confirm",
+    "success": "Success",
+    "warning": "Warning",
+    "info": "Info",
+    "cancel": "Cancel",
+    "ok": "OK",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No"
+  },
   "onBoarding": {
     "hero_title": "Best Doctor\nAppointment App",
     "hero_desc": "Manage and schedule all of your medical appointments easily with Docdoc to get a new experience.",
