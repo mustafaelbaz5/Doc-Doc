@@ -12,6 +12,7 @@ final class LoginSuccess extends AuthState {
 
   LoginSuccess({required this.response});
 }
+
 final class SignUpSuccess extends AuthState {
   final SignUpResponseBody response;
 
@@ -19,7 +20,7 @@ final class SignUpSuccess extends AuthState {
 }
 
 final class AuthFailure extends AuthState {
-  final String errorMessage;
+  final AppError error;
 
-  AuthFailure({required this.errorMessage});
+  AuthFailure({required this.error});
 }

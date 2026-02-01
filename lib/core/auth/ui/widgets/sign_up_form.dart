@@ -112,7 +112,7 @@ class _SignUpFormState extends State<SignUpForm> {
         if (state is SignUpSuccess) {
           context.pushNamedAndRemoveAll(Routes.homeScreen);
         } else if (state is AuthFailure) {
-          AppDialogs.showError(context, message: state.errorMessage);
+          AppDialogs.showError(context, message: state.error.message);
         }
       },
       builder: (final context, final state) {
