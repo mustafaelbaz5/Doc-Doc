@@ -16,7 +16,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> login(final LoginRequestBody body) async {
     emit(AuthLoading());
-
     try {
       final response = await authRepo.login(body);
       await authRepo.saveUserToken(token: response.data?.token ?? '');
@@ -29,7 +28,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   Future<void> signUp(final SignUpRequestBody body) async {
     emit(AuthLoading());
-
     try {
       final response = await authRepo.signUp(body);
       await authRepo.saveUserToken(token: response.userData?.token ?? '');
@@ -41,15 +39,10 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> logout() async {
-    emit(AuthLoading());
-
     try {
       await authRepo.logout();
       emit(AuthInitial());
     } catch (error) {
-      debugPrint('Logout error: $error');
-
-      // Even if logout fails, clear local state
       emit(AuthInitial());
     }
   }

@@ -6,11 +6,11 @@ import 'package:doc_doc/core/constants/api_constants.dart';
 import '../models/login_request_body.dart';
 import '../models/login_response_body.dart';
 
-class AuthService {
+class AuthRemoteApi {
   final Dio dio;
   final String _baseUrl = ApiConstants.apiBaseUrl;
 
-  AuthService({required this.dio});
+  AuthRemoteApi({required this.dio});
 
   Future<LoginResponseBody> login(
     final LoginRequestBody loginRequestBody,

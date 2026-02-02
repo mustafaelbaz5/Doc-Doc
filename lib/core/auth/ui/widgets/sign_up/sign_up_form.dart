@@ -1,6 +1,6 @@
 import 'package:doc_doc/core/auth/data/models/sign_up_request_body.dart';
 import 'package:doc_doc/core/auth/logic/cubit/auth_cubit.dart';
-import 'package:doc_doc/core/auth/ui/widgets/password_validation.dart';
+import 'package:doc_doc/core/auth/ui/widgets/sign_up/password_validation.dart';
 import 'package:doc_doc/core/extensions/context_extensions.dart';
 import 'package:doc_doc/core/router/routes.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';

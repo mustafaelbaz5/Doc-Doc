@@ -1,6 +1,6 @@
-import 'package:doc_doc/core/auth/ui/widgets/already_have_account_text.dart';
+import 'package:doc_doc/core/auth/ui/widgets/sign_up/already_have_account_text.dart';
 import 'package:doc_doc/core/auth/ui/widgets/auth_screens_header.dart';
-import 'package:doc_doc/core/auth/ui/widgets/sign_up_form.dart';
+import 'package:doc_doc/core/auth/ui/widgets/sign_up/sign_up_form.dart';
 import 'package:doc_doc/core/auth/ui/widgets/terms_and_conditions.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:easy_localization/easy_localization.dart';
