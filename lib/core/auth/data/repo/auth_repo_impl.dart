@@ -34,6 +34,17 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
+  Future<void> logout() async {
+    try {
+      await authService.logout();
+      DioFactory.clearToken();
+      await secureStorage.delete(key: StorageConstants.userTokenKey);
+    } catch (e) {
+      ErrorHandler.handle(e);
+    }
+  }
+
+  @override
   Future<void> saveUserToken({required final String token}) async {
     await secureStorage.write(key: StorageConstants.userTokenKey, value: token);
     DioFactory.setTokenAfterAuth(token);

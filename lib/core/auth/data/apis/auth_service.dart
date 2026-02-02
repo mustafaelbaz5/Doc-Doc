@@ -31,4 +31,8 @@ class AuthService {
     );
     return SignUpResponseBody.fromJson(response.data);
   }
+
+  Future<void> logout() async {
+    await dio.post('$_baseUrl${ApiConstants.logoutEndpoint}');
+  }
 }

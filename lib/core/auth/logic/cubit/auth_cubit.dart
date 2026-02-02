@@ -39,4 +39,18 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthFailure(error: error is AppError ? error : AppError.unknown()));
     }
   }
+
+  Future<void> logout() async {
+    emit(AuthLoading());
+
+    try {
+      await authRepo.logout();
+      emit(AuthInitial());
+    } catch (error) {
+      debugPrint('Logout error: $error');
+
+      // Even if logout fails, clear local state
+      emit(AuthInitial());
+    }
+  }
 }

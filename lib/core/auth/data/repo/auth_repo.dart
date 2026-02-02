@@ -8,5 +8,7 @@ abstract class AuthRepo {
 
   Future<SignUpResponseBody> signUp(final SignUpRequestBody body);
 
+  Future<void> logout();
+
   Future<void> saveUserToken({required final String token});
 }
