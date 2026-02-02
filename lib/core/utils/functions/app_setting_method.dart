@@ -1,6 +1,7 @@
-import 'package:doc_doc/core/constants/storage_constants.dart';
-import 'package:doc_doc/core/di/dependency_injection.dart';
-import 'package:doc_doc/core/service/secure_storage.dart';
+import '../../constants/storage_constants.dart';
+import '../../di/dependency_injection.dart';
+import '../../networking/dio_factory.dart';
+import '../../service/secure_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,4 +43,13 @@ Future<bool> checkLoggedInUser() async {
     isLoggedIn = true;
   }
   return isLoggedIn;
+}
+
+/// logout
+/// Clear token on logout
+void logout() {
+  getIt<SecureStorage>().delete(key: StorageConstants.userTokenKey);
+  ();
+  DioFactory.clearToken();
+  isLoggedIn = false;
 }

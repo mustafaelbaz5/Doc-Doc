@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import 'package:doc_doc/core/auth/data/apis/auth_service.dart';
-import 'package:doc_doc/core/auth/data/repo/auth_repo.dart';
-import 'package:doc_doc/core/auth/data/repo/auth_repo_impl.dart';
-import 'package:doc_doc/core/auth/logic/cubit/auth_cubit.dart';
-import 'package:doc_doc/core/networking/dio_factory.dart';
-import 'package:doc_doc/core/service/secure_storage.dart';
+import '../auth/data/remote/auth_remote_api.dart';
+import '../auth/data/repo/auth_repo.dart';
+import '../auth/data/repo/auth_repo_impl.dart';
+import '../auth/logic/cubit/auth_cubit.dart';
+import '../networking/dio_factory.dart';
+import '../service/secure_storage.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 
@@ -22,14 +22,14 @@ Future<void> setUpDependencies() async {
 
   final Dio dio = await DioFactory.getDio();
 
-  if (!getIt.isRegistered<AuthService>()) {
-    getIt.registerLazySingleton<AuthService>(() => AuthService(dio: dio));
+  if (!getIt.isRegistered<AuthRemoteApi>()) {
+    getIt.registerLazySingleton<AuthRemoteApi>(() => AuthRemoteApi(dio: dio));
   }
 
   if (!getIt.isRegistered<AuthRepo>()) {
     getIt.registerLazySingleton<AuthRepo>(
       () => AuthRepoImpl(
-        authService: getIt<AuthService>(),
+        authRemoteApi: getIt<AuthRemoteApi>(),
         secureStorage: getIt<SecureStorage>(),
       ),
     );

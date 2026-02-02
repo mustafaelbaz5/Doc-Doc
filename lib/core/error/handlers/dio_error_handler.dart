@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 import '../models/app_error.dart';
 import '../models/error_details.dart';
@@ -13,37 +12,20 @@ class DioErrorHandler {
     return AppError.unknown(error.toString());
   }
 
+  /// Handle Dio Exceptions
   static AppError _handleDioException(final DioException error) {
     switch (error.type) {
       case DioExceptionType.connectionTimeout:
       case DioExceptionType.sendTimeout:
       case DioExceptionType.receiveTimeout:
-        return AppError(
-          message: 'errors.timeout'.tr(),
-          type: ErrorType.timeout,
-          code: ErrorCode.timeout,
-          technicalMessage: error.message,
-          originalError: error,
-        );
+        return _handleTimeout(error);
 
       case DioExceptionType.connectionError:
       case DioExceptionType.badCertificate:
-        return AppError(
-          message: 'errors.connection_error'.tr(),
-          type: ErrorType.noInternet,
-          code: ErrorCode.noInternet,
-          technicalMessage: error.message,
-          originalError: error,
-        );
+        return _handleConnectionError(error);
 
       case DioExceptionType.cancel:
-        return AppError(
-          message: 'errors.cancelled'.tr(),
-          type: ErrorType.cancel,
-          code: ErrorCode.cancel,
-          technicalMessage: error.message,
-          originalError: error,
-        );
+        return _handleCancel(error);
 
       case DioExceptionType.badResponse:
         return _handleBadResponse(error);
@@ -53,72 +35,121 @@ class DioErrorHandler {
     }
   }
 
+  //  Specific Error Handlers
+  static AppError _handleTimeout(final DioException error) {
+    return AppError(
+      messageKey: 'errors.timeout',
+      type: ErrorType.timeout,
+      code: ErrorCode.timeout,
+      technicalMessage: error.message,
+      originalError: error,
+    );
+  }
+
+  static AppError _handleConnectionError(final DioException error) {
+    return AppError(
+      messageKey: 'errors.connection_error',
+      type: ErrorType.noInternet,
+      code: ErrorCode.noInternet,
+      technicalMessage: error.message,
+      originalError: error,
+    );
+  }
+
+  static AppError _handleCancel(final DioException error) {
+    return AppError(
+      messageKey: 'errors.cancelled',
+      type: ErrorType.cancel,
+      code: ErrorCode.cancel,
+      technicalMessage: error.message,
+      originalError: error,
+    );
+  }
+
   static AppError _handleBadResponse(final DioException error) {
-    final Response? response = error.response;
-    final int? statusCode = response?.statusCode;
+    final response = error.response;
+    final statusCode = response?.statusCode;
     final data = response?.data;
 
-    // Try to extract error message from response
-    final String message = _extractErrorMessage(data);
-    final ErrorDetails? details = _extractErrorDetails(data);
+    // Extract error information from response
+    final serverMessage = _extractErrorMessage(data);
+    final details = _extractErrorDetails(data);
+    final technicalMessage = error.message ?? error.toString();
 
     switch (statusCode) {
       case 400:
         return AppError(
-          message: message.isEmpty ? 'errors.bad_request'.tr() : message,
+          messageKey: 'errors.bad_request',
+          serverMessage: serverMessage,
           type: ErrorType.badRequest,
           code: ErrorCode.badRequest,
-          technicalMessage: error.message,
+          technicalMessage: technicalMessage,
           details: details,
           originalError: error,
         );
 
       case 401:
         return AppError(
-          message: message.isEmpty ? 'errors.unauthorized'.tr() : message,
+          messageKey: 'errors.invalid_credentials',
+          serverMessage: serverMessage,
           type: ErrorType.unauthorized,
           code: ErrorCode.unauthorized,
-          technicalMessage: error.message,
+          technicalMessage: technicalMessage,
           details: details,
           originalError: error,
         );
 
       case 403:
         return AppError(
-          message: message.isEmpty ? 'errors.forbidden'.tr() : message,
+          messageKey: 'errors.forbidden',
+          serverMessage: serverMessage,
           type: ErrorType.forbidden,
           code: ErrorCode.forbidden,
-          technicalMessage: error.message,
+          technicalMessage: technicalMessage,
           details: details,
           originalError: error,
         );
 
       case 404:
         return AppError(
-          message: message.isEmpty ? 'errors.not_found'.tr() : message,
+          messageKey: 'errors.not_found',
+          serverMessage: serverMessage,
           type: ErrorType.notFound,
           code: ErrorCode.notFound,
-          technicalMessage: error.message,
+          technicalMessage: technicalMessage,
           details: details,
           originalError: error,
         );
 
       case 409:
         return AppError(
-          message: message.isEmpty ? 'errors.conflict'.tr() : message,
+          messageKey: 'errors.conflict',
+          serverMessage: serverMessage,
           type: ErrorType.conflict,
           code: ErrorCode.conflict,
-          technicalMessage: error.message,
+          technicalMessage: technicalMessage,
           details: details,
           originalError: error,
         );
 
       case 422:
         return AppError(
-          message: message.isEmpty ? 'errors.validation'.tr() : message,
+          messageKey: 'errors.validation',
+          serverMessage: serverMessage,
           type: ErrorType.validation,
           code: ErrorCode.unprocessableEntity,
-          technicalMessage: error.message,
+          technicalMessage: technicalMessage,
+          details: details,
+          originalError: error,
+        );
+
+      case 429:
+        return AppError(
+          messageKey: 'errors.too_many_requests',
+          serverMessage: serverMessage,
+          type: ErrorType.tooManyRequests,
+          code: ErrorCode.tooManyRequests,
+          technicalMessage: technicalMessage,
           details: details,
           originalError: error,
         );
@@ -126,21 +157,24 @@ class DioErrorHandler {
       case 500:
       case 502:
       case 503:
+      case 504:
         return AppError(
-          message: 'errors.server_error'.tr(),
+          messageKey: 'errors.server_error',
+          serverMessage: serverMessage,
           type: ErrorType.internalServer,
-          code: ErrorCode.internalServer,
-          technicalMessage: error.message,
+          code: statusCode ?? ErrorCode.internalServer,
+          technicalMessage: technicalMessage,
           details: details,
           originalError: error,
         );
 
       default:
         return AppError(
-          message: message.isEmpty ? 'errors.unknown'.tr() : message,
+          messageKey: 'errors.unknown',
+          serverMessage: serverMessage,
           type: ErrorType.unknown,
           code: statusCode ?? ErrorCode.unknown,
-          technicalMessage: error.message,
+          technicalMessage: technicalMessage,
           details: details,
           originalError: error,
         );
@@ -148,73 +182,113 @@ class DioErrorHandler {
   }
 
   static AppError _handleUnknownError(final DioException error) {
+    final errorString = error.error?.toString().toLowerCase() ?? '';
+
     // Check if it's a network error
-    if (error.error.toString().toLowerCase().contains('socket') ||
-        error.error.toString().toLowerCase().contains('network')) {
+    if (errorString.contains('socket') ||
+        errorString.contains('network') ||
+        errorString.contains('host') ||
+        errorString.contains('connection')) {
       return AppError.noInternet();
     }
 
     return AppError(
-      message: 'errors.unknown',
+      messageKey: 'errors.unknown',
       type: ErrorType.unknown,
       code: ErrorCode.unknown,
-      technicalMessage: error.message ?? error.error.toString(),
+      technicalMessage: error.message ?? error.error?.toString(),
       originalError: error,
     );
   }
 
-  static String _extractErrorMessage(final dynamic data) {
-    if (data == null) return '';
+  // Message Extraction Utilities
+  /// Extracts user-friendly error message from API response
+  /// Tries multiple common fields in order of priority
+  static String? _extractErrorMessage(final dynamic data) {
+    if (data == null) return null;
 
     try {
       if (data is Map<String, dynamic>) {
-        // Try common message fields
-        if (data['message'] != null) {
-          return data['message'].toString();
-        }
-        if (data['error'] != null) {
-          if (data['error'] is String) {
-            return data['error'];
+        // Try common message fields in order of priority
+        final messageCandidates = [
+          'message',
+          'error_description',
+          'error',
+          'msg',
+          'detail',
+          'details',
+          'description',
+        ];
+
+        for (final field in messageCandidates) {
+          if (data[field] != null) {
+            final value = data[field];
+
+            // Handle string messages
+            if (value is String && value.isNotEmpty) {
+              return value;
+            }
+
+            // Handle nested object with message
+            if (value is Map<String, dynamic> && value['message'] != null) {
+              return value['message'].toString();
+            }
           }
-          if (data['error'] is Map && data['error']['message'] != null) {
-            return data['error']['message'].toString();
+        }
+
+        // Check for validation errors array
+        if (data['errors'] is List && (data['errors'] as List).isNotEmpty) {
+          final firstError = (data['errors'] as List).first;
+          if (firstError is String) return firstError;
+          if (firstError is Map && firstError['message'] != null) {
+            return firstError['message'].toString();
           }
-        }
-        if (data['msg'] != null) {
-          return data['msg'].toString();
-        }
-        if (data['detail'] != null) {
-          return data['detail'].toString();
         }
       }
 
-      if (data is String) {
+      // If data is a string, return it
+      if (data is String && data.isNotEmpty) {
         return data;
       }
     } catch (e) {
-      // If extraction fails, return empty string
+      // If extraction fails, return null to use fallback
     }
 
-    return '';
+    return null;
   }
 
+  /// Extracts structured error details from API response
   static ErrorDetails? _extractErrorDetails(final dynamic data) {
     if (data == null || data is! Map<String, dynamic>) return null;
 
     try {
-      // Try to extract validation errors or additional details
-      if (data['errors'] != null) {
-        return ErrorDetails(
-          metadata: <String, dynamic>{'errors': data['errors']},
-        );
-      }
-      if (data['data'] != null && data['data'] is Map) {
-        return ErrorDetails.fromJson(data['data']);
-      }
-    } catch (e) {
-      // If extraction fails, return null
-    }
+      final Map<String, dynamic> metadata = {};
 
-    return null;
+      // Extract validation errors
+      if (data['errors'] != null) {
+        metadata['errors'] = data['errors'];
+      }
+
+      // Extract field errors
+      if (data['field_errors'] != null) {
+        metadata['field_errors'] = data['field_errors'];
+      }
+
+      // Extract any additional data
+      if (data['data'] != null) {
+        metadata['data'] = data['data'];
+      }
+
+      // Extract trace_id for debugging
+      if (data['trace_id'] != null) {
+        metadata['trace_id'] = data['trace_id'];
+      }
+
+      if (metadata.isEmpty) return null;
+
+      return ErrorDetails(metadata: metadata);
+    } catch (e) {
+      return null;
+    }
   }
 }

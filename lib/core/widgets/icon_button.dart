@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../extensions/context_extensions.dart';
 import '../themes/app_text_styles.dart';
 import '../utils/spacing.dart';
-import 'package:flutter/material.dart';
 
 class CustomIconBottom extends StatelessWidget {
   final IconData icon;
