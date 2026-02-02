@@ -1,7 +1,7 @@
-import 'package:doc_doc/core/extensions/context_extensions.dart';
-import 'package:doc_doc/core/themes/app_text_styles.dart';
-import 'package:doc_doc/core/utils/spacing.dart';
-import 'package:doc_doc/core/widgets/custom_text_button.dart';
+import '../../extensions/context_extensions.dart';
+import '../../themes/app_text_styles.dart';
+import '../../utils/spacing.dart';
+import '../../widgets/custom_text_button.dart';
 import 'package:flutter/material.dart';
 
 class CustomDialog extends StatelessWidget {

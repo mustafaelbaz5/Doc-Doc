@@ -6,7 +6,7 @@ class Validators {
   static String? name(final String? value) {
     if (value == null || value.isEmpty) {
       return 'auth.validation.required'.tr();
-    } 
+    }
     return null;
   }
 

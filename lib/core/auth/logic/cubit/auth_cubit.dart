@@ -1,9 +1,9 @@
-import 'package:doc_doc/core/auth/data/models/login_request_body.dart';
-import 'package:doc_doc/core/auth/data/models/login_response_body.dart';
-import 'package:doc_doc/core/auth/data/models/sign_up_request_body.dart';
-import 'package:doc_doc/core/auth/data/models/sign_up_response_body.dart';
-import 'package:doc_doc/core/auth/data/repo/auth_repo.dart';
-import 'package:doc_doc/core/error/models/app_error.dart';
+import '../../data/models/login_request_body.dart';
+import '../../data/models/login_response_body.dart';
+import '../../data/models/sign_up_request_body.dart';
+import '../../data/models/sign_up_response_body.dart';
+import '../../data/repo/auth_repo.dart';
+import '../../../error/models/app_error.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

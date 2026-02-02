@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:doc_doc/core/constants/storage_constants.dart';
-import 'package:doc_doc/core/di/dependency_injection.dart';
-import 'package:doc_doc/core/service/secure_storage.dart';
+import '../constants/storage_constants.dart';
+import '../di/dependency_injection.dart';
+import '../service/secure_storage.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {

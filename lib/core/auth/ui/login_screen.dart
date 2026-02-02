@@ -1,8 +1,8 @@
-import 'package:doc_doc/core/auth/ui/widgets/auth_screens_header.dart';
-import 'package:doc_doc/core/auth/ui/widgets/login/dont_have_account.dart';
-import 'package:doc_doc/core/auth/ui/widgets/login/login_form.dart';
-import 'package:doc_doc/core/auth/ui/widgets/terms_and_conditions.dart';
-import 'package:doc_doc/core/utils/spacing.dart';
+import 'widgets/auth_screens_header.dart';
+import 'widgets/login/dont_have_account.dart';
+import 'widgets/login/login_form.dart';
+import 'widgets/terms_and_conditions.dart';
+import '../../utils/spacing.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 

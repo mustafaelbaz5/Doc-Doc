@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:doc_doc/core/auth/data/models/sign_up_request_body.dart';
-import 'package:doc_doc/core/auth/data/models/sign_up_response_body.dart';
-import 'package:doc_doc/core/constants/api_constants.dart';
+import '../models/sign_up_request_body.dart';
+import '../models/sign_up_response_body.dart';
+import '../../../constants/api_constants.dart';
 
 import '../models/login_request_body.dart';
 import '../models/login_response_body.dart';

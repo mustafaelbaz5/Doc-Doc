@@ -1,8 +1,8 @@
-import 'package:doc_doc/core/auth/ui/widgets/sign_up/already_have_account_text.dart';
-import 'package:doc_doc/core/auth/ui/widgets/auth_screens_header.dart';
-import 'package:doc_doc/core/auth/ui/widgets/sign_up/sign_up_form.dart';
-import 'package:doc_doc/core/auth/ui/widgets/terms_and_conditions.dart';
-import 'package:doc_doc/core/utils/spacing.dart';
+import 'widgets/sign_up/already_have_account_text.dart';
+import 'widgets/auth_screens_header.dart';
+import 'widgets/sign_up/sign_up_form.dart';
+import 'widgets/terms_and_conditions.dart';
+import '../../utils/spacing.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class SignUpScreen extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: responsiveWidth(32)),
           child: SingleChildScrollView(
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [

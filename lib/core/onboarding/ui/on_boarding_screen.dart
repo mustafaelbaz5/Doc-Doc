@@ -1,13 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+
 import '../../extensions/context_extensions.dart';
-import 'widgets/on_boarding_image_and_text.dart';
-import 'widgets/on_boarding_top_bar.dart';
-import 'widgets/on_boarding_top_logo.dart';
 import '../../router/routes.dart';
 import '../../themes/app_text_styles.dart';
 import '../../utils/spacing.dart';
 import '../../widgets/custom_text_button.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
+import 'widgets/on_boarding_image_and_text.dart';
+import 'widgets/on_boarding_top_bar.dart';
+import 'widgets/on_boarding_top_logo.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   const OnBoardingScreen({super.key});

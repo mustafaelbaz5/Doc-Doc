@@ -201,7 +201,7 @@ class DioErrorHandler {
     );
   }
 
-// Message Extraction Utilities
+  // Message Extraction Utilities
   /// Extracts user-friendly error message from API response
   /// Tries multiple common fields in order of priority
   static String? _extractErrorMessage(final dynamic data) {

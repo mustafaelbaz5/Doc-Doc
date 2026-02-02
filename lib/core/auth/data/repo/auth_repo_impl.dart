@@ -1,13 +1,13 @@
-import 'package:doc_doc/core/auth/data/models/login_request_body.dart';
-import 'package:doc_doc/core/auth/data/models/login_response_body.dart';
-import 'package:doc_doc/core/auth/data/models/sign_up_request_body.dart';
-import 'package:doc_doc/core/auth/data/models/sign_up_response_body.dart';
-import 'package:doc_doc/core/auth/data/remote/auth_remote_api.dart';
-import 'package:doc_doc/core/auth/data/repo/auth_repo.dart';
-import 'package:doc_doc/core/constants/storage_constants.dart';
-import 'package:doc_doc/core/error/types/error_handler.dart';
-import 'package:doc_doc/core/networking/dio_factory.dart';
-import 'package:doc_doc/core/service/secure_storage.dart';
+import '../models/login_request_body.dart';
+import '../models/login_response_body.dart';
+import '../models/sign_up_request_body.dart';
+import '../models/sign_up_response_body.dart';
+import '../remote/auth_remote_api.dart';
+import 'auth_repo.dart';
+import '../../../constants/storage_constants.dart';
+import '../../../error/types/error_handler.dart';
+import '../../../networking/dio_factory.dart';
+import '../../../service/secure_storage.dart';
 
 class AuthRepoImpl implements AuthRepo {
   AuthRemoteApi authRemoteApi;
@@ -25,7 +25,7 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<SignUpResponseBody> signUp(final SignUpRequestBody body) async{
+  Future<SignUpResponseBody> signUp(final SignUpRequestBody body) async {
     try {
       return await authRemoteApi.signUp(body);
     } catch (e) {
