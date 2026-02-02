@@ -1,22 +1,50 @@
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
+
 import '../handlers/dio_error_handler.dart';
 import '../models/app_error.dart';
 
+/// Central error handler for the application
 class ErrorHandler {
-  /// Handle any error and throw an AppError
-  /// Returns Never because it always throws
+  /// Handle any error and convert it to AppError
+  ///
+  /// This method ALWAYS throws an AppError, never returns
   static Never handle(final dynamic error) {
-    // If it's already an AppError, throw it
-    if (error is AppError) throw error;
+    // Already an AppError? Throw it as-is
+    if (error is AppError) {
+      throw error;
+    }
 
-    // Handle Dio exceptions
-    if (error is DioException) throw DioErrorHandler.handle(error);
+    // Dio exception? Convert it
+    if (error is DioException) {
+      throw DioErrorHandler.handle(error);
+    }
 
-    // Handle generic Exceptions
-    if (error is Exception) throw AppError.unknown(error.toString());
+    // // Firebase exceptions?
+    // if (error is FirebaseAuthException || error is FirebaseException) {
+    //   throw FirebaseErrorHandler.handle(error);
+    // }
 
-    // Handle any other error type
-    throw AppError.unknown(error?.toString() ?? 'errors.unknown'.tr());
+    // // Supabase exceptions?
+    // if (error is AuthException ||
+    //     error is PostgrestException ||
+    //     error is StorageException) {
+    //   throw SupabaseErrorHandler.handle(error);
+    // }
+
+    // Generic exception? Wrap it
+    if (error is Exception) {
+      throw AppError.unknown(error.toString());
+    }
+
+    // Unknown error type? Wrap it
+    throw AppError.unknown(error?.toString() ?? 'Unknown error occurred');
+  }
+
+  /// Handle error without throwing (for logging or silent failures)
+  static AppError handleSilent(final dynamic error) {
+    if (error is AppError) return error;
+    if (error is DioException) return DioErrorHandler.handle(error);
+    if (error is Exception) return AppError.unknown(error.toString());
+    return AppError.unknown(error?.toString() ?? 'Unknown error occurred');
   }
 }

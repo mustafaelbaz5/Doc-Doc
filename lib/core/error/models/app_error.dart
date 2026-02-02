@@ -1,16 +1,33 @@
+import 'package:easy_localization/easy_localization.dart';
+
 import '../types/error_type.dart';
 import 'error_details.dart';
 
 class AppError implements Exception {
-  final String message;
+  /// User-friendly error message key (for translation)
+  final String messageKey;
+
+  /// Optional: Raw message from server (already in user's language)
+  final String? serverMessage;
+
+  /// Error type for handling logic
   final ErrorType type;
+
+  /// HTTP status code or custom error code
   final int? code;
+
+  /// Technical details for logging/debugging
   final String? technicalMessage;
+
+  /// Additional structured error information
   final ErrorDetails? details;
+
+  /// Original error for debugging
   final dynamic originalError;
 
   const AppError({
-    required this.message,
+    required this.messageKey,
+    this.serverMessage,
     required this.type,
     this.code,
     this.technicalMessage,
@@ -18,10 +35,10 @@ class AppError implements Exception {
     this.originalError,
   });
 
-  // Factory constructors for common errors
+  // Factory Constructors for Common Errors
   factory AppError.noInternet() {
     return const AppError(
-      message: 'errors.no_internet',
+      messageKey: 'errors.no_internet',
       type: ErrorType.noInternet,
       code: ErrorCode.noInternet,
     );
@@ -29,15 +46,16 @@ class AppError implements Exception {
 
   factory AppError.timeout() {
     return const AppError(
-      message: 'errors.timeout',
+      messageKey: 'errors.timeout',
       type: ErrorType.timeout,
       code: ErrorCode.timeout,
     );
   }
 
-  factory AppError.unauthorized() {
-    return const AppError(
-      message: 'errors.unauthorized',
+  factory AppError.unauthorized([final String? serverMessage]) {
+    return AppError(
+      messageKey: 'errors.unauthorized',
+      serverMessage: serverMessage,
       type: ErrorType.unauthorized,
       code: ErrorCode.unauthorized,
     );
@@ -45,23 +63,57 @@ class AppError implements Exception {
 
   factory AppError.serverError() {
     return const AppError(
-      message: 'errors.server_error',
+      messageKey: 'errors.server_error',
       type: ErrorType.internalServer,
       code: ErrorCode.internalServer,
     );
   }
 
-  factory AppError.unknown([final String? message]) {
+  factory AppError.unknown([final String? technicalMessage]) {
     return AppError(
-      message: message ?? 'errors.unknown',
+      messageKey: 'errors.unknown',
       type: ErrorType.unknown,
       code: ErrorCode.unknown,
+      technicalMessage: technicalMessage,
     );
   }
 
-  // Copy with method for modifications
+  // Get User-Facing Message
+  /// Returns the message to show to the user
+  /// Priority: serverMessage > translated messageKey
+  String getUserMessage() {
+    // If server provided a message, use it (it's already user-friendly)
+    if (serverMessage != null && serverMessage!.isNotEmpty) {
+      return serverMessage!;
+    }
+
+    // Otherwise use the translated message key
+    return messageKey.tr();
+  }
+
+  /// Get technical message for logging
+  String getTechnicalMessage() {
+    return technicalMessage ?? serverMessage ?? messageKey.tr();
+  }
+
+  // Utility Methods
+  /// Check if this is a network-related error
+  bool get isNetworkError =>
+      type == ErrorType.noInternet ||
+      type == ErrorType.timeout ||
+      type == ErrorType.connectionError;
+
+  /// Check if this is an authentication error
+  bool get isAuthError =>
+      type == ErrorType.unauthorized || type == ErrorType.forbidden;
+
+  /// Check if user should retry
+  bool get shouldRetry =>
+      isNetworkError || type == ErrorType.timeout || code == 503;
+
   AppError copyWith({
-    final String? message,
+    final String? messageKey,
+    final String? serverMessage,
     final ErrorType? type,
     final int? code,
     final String? technicalMessage,
@@ -69,7 +121,8 @@ class AppError implements Exception {
     final dynamic originalError,
   }) {
     return AppError(
-      message: message ?? this.message,
+      messageKey: messageKey ?? this.messageKey,
+      serverMessage: serverMessage ?? this.serverMessage,
       type: type ?? this.type,
       code: code ?? this.code,
       technicalMessage: technicalMessage ?? this.technicalMessage,
@@ -80,6 +133,18 @@ class AppError implements Exception {
 
   @override
   String toString() {
-    return 'AppError(message: $message, type: $type, code: $code)';
+    return 'AppError(type: $type, code: $code, message: ${getUserMessage()})';
+  }
+
+  /// For logging purposes
+  Map<String, dynamic> toJson() {
+    return {
+      'messageKey': messageKey,
+      'serverMessage': serverMessage,
+      'type': type.toString(),
+      'code': code,
+      'technicalMessage': technicalMessage,
+      'details': details?.toJson(),
+    };
   }
 }
