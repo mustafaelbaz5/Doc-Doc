@@ -1,6 +1,8 @@
+import 'core/constants/storage_constants.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/router/app_router.dart';
@@ -12,6 +14,7 @@ import 'core/themes/theme_data/theme_data_light.dart';
 class DocDocApp extends StatelessWidget {
   const DocDocApp({super.key, required this.appRouter});
   final AppRouter appRouter;
+
   @override
   Widget build(final BuildContext context) {
     return ScreenUtilInit(
@@ -21,16 +24,18 @@ class DocDocApp extends StatelessWidget {
       builder: (final BuildContext context, final Widget? child) {
         return BlocProvider(
           create: (final BuildContext context) => ThemeCubit(),
-
           child: BlocBuilder<ThemeCubit, ThemeMode>(
             builder: (final BuildContext context, final ThemeMode mode) {
+              FlutterNativeSplash.remove();
               return MaterialApp(
                 key: ValueKey(context.locale),
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,
                 locale: context.locale,
                 debugShowCheckedModeBanner: false,
-                initialRoute: Routes.appScreen,
+                initialRoute: isLoggedIn
+                    ? Routes.homeScreen
+                    : Routes.onBoardingScreen,
                 onGenerateRoute: appRouter.generateRoute,
                 title: 'DocDoc',
                 theme: getLightTheme(context: context),

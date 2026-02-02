@@ -1,26 +1,28 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:path_provider/path_provider.dart';
 
+import 'core/constants/storage_constants.dart';
 import 'core/di/dependency_injection.dart';
 import 'core/router/app_router.dart';
+import 'core/utils/functions/app_setting_method.dart';
 import 'doc_doc_app.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
+  final WidgetsBinding widgetsBinding =
+      WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
 
-  HydratedBloc.storage = await HydratedStorage.build(
-    storageDirectory: kIsWeb
-        ? HydratedStorageDirectory.web
-        : HydratedStorageDirectory((await getTemporaryDirectory()).path),
-  );
+  await Future.wait([
+    EasyLocalization.ensureInitialized(),
+    setupHydratedStorage(),
+    setUpDependencies(),
+  ]);
+
   await setUpDependencies();
   await ScreenUtil.ensureScreenSize();
-
+  await checkLoggedInUser();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('en'), Locale('ar')],

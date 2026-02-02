@@ -10,6 +10,7 @@
 analyzer:
   errors:
     always_specify_types: ignore
+    avoid_dynamic_calls: ignore
 include: package:flutter_lints/flutter.yaml
 
 linter:

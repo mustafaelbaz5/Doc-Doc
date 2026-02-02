@@ -1,3 +1,7 @@
+import '../../constants/storage_constants.dart';
+import '../../di/dependency_injection.dart';
+import '../../networking/dio_factory.dart';
+import '../../service/secure_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,4 +30,26 @@ void switchTheme(final BuildContext context) {
   } else {
     context.read<ThemeCubit>().updateTheme(ThemeMode.dark);
   }
+}
+
+// Check Logger
+Future<bool> checkLoggedInUser() async {
+  final String? token = await getIt<SecureStorage>().read(
+    key: StorageConstants.userTokenKey,
+  );
+  if (token == null || token.isEmpty || token == '') {
+    return isLoggedIn = false;
+  } else {
+    isLoggedIn = true;
+  }
+  return isLoggedIn;
+}
+
+/// logout
+/// Clear token on logout
+void logout() {
+  getIt<SecureStorage>().delete(key: StorageConstants.userTokenKey);
+  ();
+  DioFactory.clearToken();
+  isLoggedIn = false;
 }

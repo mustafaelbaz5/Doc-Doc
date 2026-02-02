@@ -9,7 +9,7 @@ publish_to: "none"
 # - Android: versionName (build-name), versionCode (build-number)
 # - iOS: CFBundleShortVersionString (build-name), CFBundleVersion (build-number)
 # - Windows: major.minor.patch (build-name), build-number as suffix
-version: 1.0.0+1
+version: 1.0.1+1
 
 # Dart SDK environment
 environment:
@@ -36,6 +36,8 @@ dependencies:
   flutter_secure_storage: ^9.2.4
   get_it: ^9.2.0
   easy_localization: ^3.0.8
+  flutter_svg: ^2.2.3
+  pretty_dio_logger: ^1.4.0
 
 
   # UI & Design
@@ -46,6 +48,7 @@ dependencies:
   # Flutter SDK
   flutter:
     sdk: flutter
+  shared_preferences: ^2.5.4
 
 # ----------------------------------------------------------------
 # DEV DEPENDENCIES
@@ -53,6 +56,17 @@ dependencies:
 dev_dependencies:
   # Lints & Code Quality
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: "^0.14.4"
+
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/app_icon.png"
+  min_sdk_android: 21 # ensures compatibility
+  web:
+    generate: true
+    image_path: "assets/images/app_icon.png"
 
   # Flutter testing framework
   flutter_test:
