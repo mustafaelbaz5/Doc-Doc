@@ -15,11 +15,11 @@ class AuthRepoImpl implements AuthRepo {
 
   AuthRepoImpl({required this.authService, required this.secureStorage});
   @override
-  Future<LoginResponseBody> login(final LoginRequestBody body) {
+  Future<LoginResponseBody> login(final LoginRequestBody body) async {
     try {
-      final response = authService.login(body);
-      return response;
+      return await authService.login(body);
     } catch (e) {
+      // Convert to AppError
       ErrorHandler.handle(e);
     }
   }
@@ -27,8 +27,7 @@ class AuthRepoImpl implements AuthRepo {
   @override
   Future<SignUpResponseBody> signUp(final SignUpRequestBody body) {
     try {
-      final response = authService.signUp(body);
-      return response;
+      return authService.signUp(body);
     } catch (e) {
       ErrorHandler.handle(e);
     }
