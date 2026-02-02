@@ -56,7 +56,7 @@ class _LoginFormState extends State<LoginForm> {
         if (state is LoginSuccess) {
           context.pushNamedAndRemoveAll(Routes.homeScreen);
         } else if (state is AuthFailure) {
-          AppDialogs.showError(context, message: state.error.message);
+          AppDialogs.showError(context, message: state.error.messageKey.tr());
         }
       },
       builder: (final context, final state) {
