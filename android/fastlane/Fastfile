@@ -21,7 +21,7 @@ platform :android do
       android_artifact_type: "APK",
       android_artifact_path: "../build/app/outputs/flutter-apk/app-production-release.apk",
       testers: testers_string,
-      release_notes: "DocDoc App test version",
+      release_notes: "DocDoc App version(0.0.1) Auth Testing",
     )
   end
 end

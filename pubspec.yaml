@@ -9,7 +9,7 @@ publish_to: "none"
 # - Android: versionName (build-name), versionCode (build-number)
 # - iOS: CFBundleShortVersionString (build-name), CFBundleVersion (build-number)
 # - Windows: major.minor.patch (build-name), build-number as suffix
-version: 1.0.0+1
+version: 1.0.1+1
 
 # Dart SDK environment
 environment:
