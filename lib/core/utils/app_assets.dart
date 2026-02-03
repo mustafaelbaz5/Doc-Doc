@@ -15,4 +15,7 @@ class AppAssets {
   static const String logoPng = 'assets/images/doc_log.png';
   static const String onboardingDoctorPng =
       'assets/images/onboarding_doctor.png';
+  static const String homeFemaleDoctorPng = 'assets/images/female_doctor.png';
+  static const String homeBlueContainerPng =
+      'assets/images/home_background.png';
 }
