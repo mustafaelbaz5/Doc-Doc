@@ -1,5 +1,5 @@
 import 'package:doc_doc/core/utils/spacing.dart';
-import 'package:doc_doc/modules/users/features/home/ui/home_screen.dart';
+import 'package:doc_doc/modules/users/features/home/data/models/specializations_response_body.dart';
 import 'package:doc_doc/modules/users/features/home/ui/widgets/specialty_list_view_item.dart';
 import 'package:flutter/material.dart';
 
@@ -40,3 +40,11 @@ class _SpecialtyListViewState extends State<SpecialtyListView> {
     );
   }
 }
+
+final List<SpecializationDataModel> dummySpecializationsShort = [
+  SpecializationDataModel(id: 1, name: "Cardiology", doctors: []),
+  SpecializationDataModel(id: 2, name: "Dermatology", doctors: []),
+  SpecializationDataModel(id: 3, name: "Neurology", doctors: []),
+  SpecializationDataModel(id: 5, name: "Pediatrics", doctors: []),
+  SpecializationDataModel(id: 6, name: "Gynecology", doctors: []),
+];
