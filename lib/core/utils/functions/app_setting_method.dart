@@ -1,12 +1,12 @@
-import '../../constants/storage_constants.dart';
-import '../../di/dependency_injection.dart';
-import '../../networking/dio_factory.dart';
-import '../../service/secure_storage.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:translator/translator.dart';
 
+import '../../constants/storage_constants.dart';
+import '../../di/dependency_injection.dart';
 import '../../extensions/context_extensions.dart';
+import '../../service/secure_storage.dart';
 import '../../themes/cubit/theme_cubit.dart';
 
 /// Switch Language between Arabic and English
@@ -44,12 +44,8 @@ Future<bool> checkLoggedInUser() async {
   }
   return isLoggedIn;
 }
-
-/// logout
-/// Clear token on logout
-void logout() {
-  getIt<SecureStorage>().delete(key: StorageConstants.userTokenKey);
-  ();
-  DioFactory.clearToken();
-  isLoggedIn = false;
+Future<String> translateToArabic(final String text) async {
+  final GoogleTranslator translator = GoogleTranslator();
+  final Translation translation = await translator.translate(text, to: 'ar');
+  return translation.text;
 }

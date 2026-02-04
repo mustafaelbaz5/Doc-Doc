@@ -22,7 +22,6 @@ dependencies:
   # Firebase
   firebase_core: ^4.4.0
 
-
   # Networking
   dio: ^5.7.0
 
@@ -38,7 +37,7 @@ dependencies:
   easy_localization: ^3.0.8
   flutter_svg: ^2.2.3
   pretty_dio_logger: ^1.4.0
-
+  translator: ^1.0.4+1
 
   # UI & Design
   cupertino_icons: ^1.0.8
@@ -58,7 +57,6 @@ dev_dependencies:
   # Lints & Code Quality
   flutter_lints: ^6.0.0
   flutter_launcher_icons: "^0.14.4"
-
 
 flutter_launcher_icons:
   android: "launcher_icon"
