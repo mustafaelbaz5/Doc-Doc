@@ -1,7 +1,9 @@
+import 'package:doc_doc/core/extensions/context_extensions.dart';
 import 'package:doc_doc/core/themes/app_colors.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/app_assets.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class DoctorsBlueContainer extends StatelessWidget {
@@ -32,7 +34,7 @@ class DoctorsBlueContainer extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Book and\nschedule with\nnearest doctor',
+                  'home.blue_header'.tr(),
                   style: AppTextStyles.font18Bold.copyWith(
                     height: 1.5,
                     color: AppColors.grey0,
@@ -55,7 +57,7 @@ class DoctorsBlueContainer extends StatelessWidget {
                     ),
                     onPressed: () {},
                     child: Text(
-                      'Find Nearby',
+                      'home.blue_header_button'.tr(),
                       style: AppTextStyles.font12Regular.copyWith(
                         color: AppColors.primary300,
                       ),
@@ -66,7 +68,8 @@ class DoctorsBlueContainer extends StatelessWidget {
             ),
           ),
           Positioned(
-            right: responsiveRadius(16),
+            left: context.isArabic ? responsiveRadius(16) : null,
+            right: context.isArabic ? null : responsiveRadius(16),
             bottom: 0,
             child: Image.asset(
               AppAssets.homeFemaleDoctorPng,

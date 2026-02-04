@@ -2,8 +2,8 @@ import 'package:doc_doc/core/extensions/context_extensions.dart';
 import 'package:doc_doc/core/themes/app_colors.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/app_assets.dart';
-import 'package:doc_doc/core/utils/functions/app_setting_method.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -14,17 +14,21 @@ class HomeAppBar extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Row(
       children: [
-        const Column(
+        Column(
           children: [
-            Text('Hi, Mustafa', style: AppTextStyles.font18Bold),
-            Text('How are you?', style: AppTextStyles.font12Regular),
+            Text(
+              "${'home.top_bar_title'.tr()} Mustafa",
+              style: AppTextStyles.font18Bold,
+            ),
+            Text(
+              'home.top_bar_subtitle'.tr(),
+              style: AppTextStyles.font12Regular,
+            ),
           ],
         ),
         const Spacer(),
         GestureDetector(
-          onTap: () {
-            switchTheme(context);
-          },
+          onTap: () {},
           child: CircleAvatar(
             radius: responsiveRadius(20),
             backgroundColor: context.customColors.divider.withValues(

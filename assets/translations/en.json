@@ -81,12 +81,12 @@
     }
   },
   "home": {
-    "top_bar_welcome": "How Are You? ",
-    "blue_header": "Book And schedule with\nNearest Doctor",
+    "top_bar_title": "Hi, ",
+    "top_bar_subtitle": "How Are You? ",
+    "blue_header": "Book and\nschedule with\nnearest doctor",
     "blue_header_button": "Find Nearby",
     "see_all": "See All",
     "Doctor_specialty": "Doctor Specialty",
-    "recommended_doctors": "Recommended Doctors",
-    "top_doctors": "Top Doctors"
+    "recommended_doctors": "Recommended Doctors"
   }
 }

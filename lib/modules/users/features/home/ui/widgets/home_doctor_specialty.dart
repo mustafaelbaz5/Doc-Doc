@@ -2,6 +2,7 @@ import 'package:doc_doc/core/themes/app_colors.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:doc_doc/modules/users/features/home/ui/widgets/specialty_list_view.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class HomeDoctorSpecialty extends StatelessWidget {
@@ -14,12 +15,15 @@ class HomeDoctorSpecialty extends StatelessWidget {
       children: [
         Row(
           children: [
-            const Text("Doctor Specialty", style: AppTextStyles.font18SemiBold),
+            Text(
+              "home.Doctor_specialty".tr(),
+              style: AppTextStyles.font18SemiBold,
+            ),
             const Spacer(),
             GestureDetector(
               onTap: () {},
               child: Text(
-                "See All",
+                "home.see_all".tr(),
                 style: AppTextStyles.font12Regular.copyWith(
                   color: AppColors.primary300,
                 ),
