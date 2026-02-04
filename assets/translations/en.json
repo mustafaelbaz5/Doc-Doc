@@ -79,5 +79,14 @@
       "password_validation_4": "at one special character",
       "password_validation_5": "at least 8 characters long"
     }
+  },
+  "home": {
+    "top_bar_title": "Hi, ",
+    "top_bar_subtitle": "How Are You? ",
+    "blue_header": "Book and\nschedule with\nnearest doctor",
+    "blue_header_button": "Find Nearby",
+    "see_all": "See All",
+    "Doctor_specialty": "Doctor Specialty",
+    "recommended_doctors": "Recommended Doctors"
   }
 }

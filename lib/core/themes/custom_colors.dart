@@ -48,8 +48,8 @@ class CustomColors {
   factory CustomColors.light() {
     return const CustomColors._(
       // Backgrounds
-      background: AppColors.grey25,
-      surface: AppColors.grey0,
+      background: AppColors.grey0,
+      surface: AppColors.grey25,
       surfaceVariant: AppColors.grey50,
       surfaceVariant2: AppColors.primary25,
 

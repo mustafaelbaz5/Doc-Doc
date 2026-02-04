@@ -54,7 +54,7 @@ class _LoginFormState extends State<LoginForm> {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (final context, final state) {
         if (state is LoginSuccess) {
-          context.pushNamedAndRemoveAll(Routes.homeScreen);
+          context.pushNamedAndRemoveAll(Routes.mainScaffold);
         } else if (state is AuthFailure) {
           AppDialogs.showError(context, message: state.error.messageKey.tr());
         }

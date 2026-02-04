@@ -34,7 +34,7 @@ class DocDocApp extends StatelessWidget {
                 locale: context.locale,
                 debugShowCheckedModeBanner: false,
                 initialRoute: isLoggedIn
-                    ? Routes.homeScreen
+                    ? Routes.mainScaffold
                     : Routes.onBoardingScreen,
                 onGenerateRoute: appRouter.generateRoute,
                 title: 'DocDoc',

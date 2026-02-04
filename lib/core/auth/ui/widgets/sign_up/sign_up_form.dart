@@ -1,6 +1,7 @@
-import '../../../data/models/sign_up_request_body.dart';
-import '../../../logic/cubit/auth_cubit.dart';
-import 'password_validation.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../extensions/context_extensions.dart';
 import '../../../../router/routes.dart';
 import '../../../../themes/app_text_styles.dart';
@@ -12,9 +13,9 @@ import '../../../../utils/validators.dart';
 import '../../../../widgets/custom_dropdown_form_field.dart';
 import '../../../../widgets/custom_text_button.dart';
 import '../../../../widgets/custom_text_form_.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../data/models/sign_up_request_body.dart';
+import '../../../logic/cubit/auth_cubit.dart';
+import 'password_validation.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -110,7 +111,7 @@ class _SignUpFormState extends State<SignUpForm> {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (final context, final state) {
         if (state is SignUpSuccess) {
-          context.pushNamedAndRemoveAll(Routes.homeScreen);
+          context.pushNamedAndRemoveAll(Routes.mainScaffold);
         } else if (state is AuthFailure) {
           AppDialogs.showError(context, message: state.error.messageKey.tr());
         }
