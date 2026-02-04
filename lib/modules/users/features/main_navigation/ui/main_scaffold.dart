@@ -1,6 +1,7 @@
 import 'package:doc_doc/core/extensions/context_extensions.dart';
-import 'package:doc_doc/core/themes/app_text_styles.dart';
+import 'package:doc_doc/core/themes/app_colors.dart';
 import 'package:doc_doc/core/utils/app_assets.dart';
+import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:doc_doc/modules/users/features/home/ui/home_screen.dart';
 import 'package:doc_doc/modules/users/features/inbox/ui/messages_screen.dart';
 import 'package:doc_doc/modules/users/features/profile/ui/profile_screen.dart';
@@ -44,66 +45,74 @@ class _MainScaffoldState extends State<MainScaffold> {
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(
           AppAssets.homeIconSvg,
-          width: 24,
-          height: 24,
+          width: responsiveWidth(24),
+          height: responsiveHeight(24),
           colorFilter: ColorFilter.mode(activeColor, BlendMode.srcIn),
         ),
         inactiveIcon: SvgPicture.asset(
           AppAssets.homeIconSvg,
-          width: 24,
-          height: 24,
-          colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+          width: responsiveWidth(24),
+          height: responsiveHeight(24),
+          colorFilter: ColorFilter.mode(
+            context.customColors.textSecondary,
+            BlendMode.srcIn,
+          ),
         ),
-
-        activeColorPrimary: activeColor,
-        inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(
           AppAssets.calendarIconSvg,
-          width: 24,
-          height: 24,
+          width: responsiveWidth(24),
+          height: responsiveHeight(24),
           colorFilter: ColorFilter.mode(activeColor, BlendMode.srcIn),
         ),
         inactiveIcon: SvgPicture.asset(
           AppAssets.calendarIconSvg,
-          width: 24,
-          height: 24,
-          colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+          width: responsiveWidth(24),
+          height: responsiveHeight(24),
+          colorFilter: ColorFilter.mode(
+            context.customColors.textSecondary,
+            BlendMode.srcIn,
+          ),
         ),
-
-        textStyle: AppTextStyles.font12Regular,
-        activeColorPrimary: activeColor,
-        inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: const Icon(Icons.search, size: 28, color: Colors.white),
+        icon: Icon(
+          Icons.search,
+          size: responsiveRadius(28),
+          color: AppColors.grey0,
+        ),
         activeColorPrimary: activeColor,
         activeColorSecondary: Colors.white,
       ),
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(
           AppAssets.messageIconSvg,
-          width: 24,
-          height: 24,
+          width: responsiveWidth(24),
+          height: responsiveHeight(24),
           colorFilter: ColorFilter.mode(activeColor, BlendMode.srcIn),
         ),
         inactiveIcon: SvgPicture.asset(
           AppAssets.messageIconSvg,
-          width: 24,
-          height: 24,
-          colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+          width: responsiveWidth(24),
+          height: responsiveHeight(24),
+          colorFilter: ColorFilter.mode(
+            context.customColors.textSecondary,
+            BlendMode.srcIn,
+          ),
         ),
-
-        activeColorPrimary: activeColor,
-        inactiveColorPrimary: Colors.grey,
       ),
       PersistentBottomNavBarItem(
-        icon: Icon(Icons.person, color: activeColor, size: 24),
-        inactiveIcon: const Icon(Icons.person, color: Colors.grey, size: 24),
-
-        activeColorPrimary: activeColor,
-        inactiveColorPrimary: Colors.grey,
+        icon: Icon(
+          Icons.person,
+          color: activeColor,
+          size: responsiveRadius(24),
+        ),
+        inactiveIcon: Icon(
+          Icons.person,
+          color: context.customColors.textSecondary,
+          size: responsiveRadius(24),
+        ),
       ),
     ];
   }
@@ -117,10 +126,10 @@ class _MainScaffoldState extends State<MainScaffold> {
       items: _navBarItems(context),
       navBarStyle: NavBarStyle.style16,
       backgroundColor: context.customColors.background,
-      navBarHeight: 70, // Reduce height
-      padding: const EdgeInsets.only(top: 12, bottom: 4), // Reduce padding
+      navBarHeight: responsiveHeight(58),
+      padding: const EdgeInsets.only(top: 2, bottom: 8),
       decoration: NavBarDecoration(
-        colorBehindNavBar: Colors.white,
+        colorBehindNavBar: context.customColors.background,
         boxShadow: [
           BoxShadow(
             color: context.customColors.border.withValues(alpha: 0.3),
