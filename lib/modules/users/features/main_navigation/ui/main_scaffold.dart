@@ -39,7 +39,7 @@ class _MainScaffoldState extends State<MainScaffold> {
   }
 
   List<PersistentBottomNavBarItem> _navBarItems(final BuildContext context) {
-    final activeColor = context.customColors.accentBlue;
+    final activeColor = AppColors.primary300;
 
     return [
       PersistentBottomNavBarItem(

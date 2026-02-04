@@ -1,6 +1,8 @@
 import 'package:doc_doc/core/extensions/context_extensions.dart';
+import 'package:doc_doc/core/themes/app_colors.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/app_assets.dart';
+import 'package:doc_doc/core/utils/functions/app_setting_method.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -19,10 +21,23 @@ class HomeAppBar extends StatelessWidget {
           ],
         ),
         const Spacer(),
-        CircleAvatar(
-          radius: responsiveRadius(20),
-          backgroundColor: context.customColors.divider.withValues(alpha: 0.5),
-          child: SvgPicture.asset(AppAssets.notificationIconSvg),
+        GestureDetector(
+          onTap: () {
+            switchTheme(context);
+          },
+          child: CircleAvatar(
+            radius: responsiveRadius(20),
+            backgroundColor: context.customColors.divider.withValues(
+              alpha: 0.5,
+            ),
+            child: SvgPicture.asset(
+              AppAssets.notificationIconSvg,
+              colorFilter: const ColorFilter.mode(
+                AppColors.primary300,
+                BlendMode.srcIn,
+              ),
+            ),
+          ),
         ),
       ],
     );

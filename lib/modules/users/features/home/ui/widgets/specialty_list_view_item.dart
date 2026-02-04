@@ -1,4 +1,5 @@
 import 'package:doc_doc/core/extensions/context_extensions.dart';
+import 'package:doc_doc/core/themes/app_colors.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/app_assets.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
@@ -28,7 +29,7 @@ class SpecialtyListViewItem extends StatelessWidget {
               ? Container(
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: context.customColors.accentBlue,
+                      color: AppColors.primary300,
                       width: responsiveWidth(1.5),
                     ),
                     shape: BoxShape.circle,

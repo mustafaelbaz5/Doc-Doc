@@ -1,4 +1,4 @@
-import 'package:doc_doc/core/extensions/context_extensions.dart';
+import 'package:doc_doc/core/themes/app_colors.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:doc_doc/modules/users/features/home/ui/widgets/specialty_list_view.dart';
@@ -21,7 +21,7 @@ class HomeDoctorSpecialty extends StatelessWidget {
               child: Text(
                 "See All",
                 style: AppTextStyles.font12Regular.copyWith(
-                  color: context.customColors.accentBlue,
+                  color: AppColors.primary300,
                 ),
               ),
             ),

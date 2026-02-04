@@ -12,7 +12,7 @@ class AppColors {
   static const Color primary300 = Color(0xff247cff);
 
   // Black & White scale
-  static const Color grey900 = Color(0xff0d0d12);
+  static const Color grey900 = Color(0xFF000000);
   static const Color grey800 = Color(0xff1a1b25);
   static const Color grey700 = Color(0xff272835);
   static const Color grey600 = Color(0xff36394a);
@@ -23,7 +23,7 @@ class AppColors {
   static const Color grey100 = Color(0xffdfe1e7);
   static const Color grey50 = Color(0xffeceff3);
   static const Color grey25 = Color(0xfff6f8fa);
-  static const Color grey0 = Color(0xffffffff);
+  static const Color grey0 = Color(0xFFFFFFFF);
 
   //error
   static const Color red300 = Color(0xff710e21);
