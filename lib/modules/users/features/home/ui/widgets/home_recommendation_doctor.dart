@@ -32,10 +32,7 @@ class HomeRecommendationDoctor extends StatelessWidget {
           ],
         ),
         verticalSpacing(16),
-        SizedBox(
-          height: responsiveHeight(270),
-          child: DoctorListView(doctors: dummyRecommendedDoctors),
-        ),
+        Expanded(child: DoctorListView(doctors: dummyRecommendedDoctors)),
       ],
     );
   }
