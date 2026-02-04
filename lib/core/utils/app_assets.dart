@@ -10,6 +10,10 @@ class AppAssets {
   static const String pediatricSpecialtySvg =
       'assets/svgs/pediatric_specialty.svg';
   static const String notificationIconSvg = 'assets/svgs/notification_icon.svg';
+  static const String calendarIconSvg = 'assets/svgs/calendar_icon.svg';
+  static const String searchIconSvg = 'assets/svgs/search_icon.svg';
+  static const String homeIconSvg = 'assets/svgs/home_icon.svg';
+  static const String messageIconSvg = 'assets/svgs/message_icon.svg';
 
   // png
   static const String logoPng = 'assets/images/doc_log.png';
