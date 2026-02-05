@@ -2,14 +2,14 @@ import 'package:doc_doc/core/themes/app_colors.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_list_view.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/doctors_shimmer_loading.dart';
+import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/specialty_list_view.dart';
+import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/specialty_shimmer_loading.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeRecommendationDoctor extends StatelessWidget {
-  const HomeRecommendationDoctor({super.key});
+class HomeDoctorSpecialty extends StatelessWidget {
+  const HomeDoctorSpecialty({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -19,7 +19,7 @@ class HomeRecommendationDoctor extends StatelessWidget {
         Row(
           children: [
             Text(
-              "home.recommended_doctors".tr(),
+              "home.Doctor_specialty".tr(),
               style: AppTextStyles.font18SemiBold,
             ),
             const Spacer(),
@@ -35,20 +35,20 @@ class HomeRecommendationDoctor extends StatelessWidget {
           ],
         ),
         verticalSpacing(16),
-        Expanded(
-          child: BlocBuilder<HomeCubit, HomeState>(
-            builder: (final context, final state) {
-              if (state is SpecializationsLoading) {
-                return const DoctorsShimmerLoading();
-              } else if (state is SpecializationsSuccess &&
-                  state.doctorsList != null) {
-                return DoctorListView(doctors: state.doctorsList!);
-              } else if (state is SpecializationsFailure) {
-                return Center(child: Text("${state.error}"));
-              }
+        BlocBuilder<HomeCubit, HomeState>(
+          builder: (final context, final state) {
+            if (state is SpecializationsLoading) {
+              return const SpecialtyShimmerLoading();
+            } else if (state is SpecializationsSuccess) {
+              return SpecialtyListView(
+                specializationList: state.specializations,
+              );
+            } else if (state is SpecializationsFailure) {
+              return Center(child: Text("${state.error}"));
+            } else {
               return const SizedBox.shrink();
-            },
-          ),
+            }
+          },
         ),
       ],
     );

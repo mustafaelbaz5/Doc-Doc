@@ -5,7 +5,7 @@ import 'package:doc_doc/core/utils/app_assets.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:flutter/material.dart';
 
-import '../../data/models/specializations_response_body.dart';
+import '../../../data/models/specializations_response_body.dart';
 
 class DoctorRecommendationCard extends StatelessWidget {
   const DoctorRecommendationCard({super.key, required this.doctor, this.onTap});
