@@ -1,9 +1,12 @@
 import 'package:doc_doc/core/themes/app_colors.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
+import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
 import 'package:doc_doc/modules/users/features/home/ui/widgets/specialty_list_view.dart';
+import 'package:doc_doc/modules/users/features/home/ui/widgets/specialty_shimmer_loading.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeDoctorSpecialty extends StatelessWidget {
   const HomeDoctorSpecialty({super.key});
@@ -32,7 +35,21 @@ class HomeDoctorSpecialty extends StatelessWidget {
           ],
         ),
         verticalSpacing(16),
-        const SpecialtyListView(),
+        BlocBuilder<HomeCubit, HomeState>(
+          builder: (final context, final state) {
+            if (state is SpecializationsLoading) {
+              return const SpecialtyShimmerLoading();
+            } else if (state is SpecializationsSuccess) {
+              return SpecialtyListView(
+                specializationList: state.specializations,
+              );
+            } else if (state is SpecializationsFailure) {
+              return Center(child: Text("${state.error}"));
+            } else {
+              return const SizedBox.shrink();
+            }
+          },
+        ),
       ],
     );
   }

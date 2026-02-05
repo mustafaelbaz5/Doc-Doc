@@ -1,10 +1,12 @@
 import 'package:doc_doc/core/themes/app_colors.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
-import 'package:doc_doc/modules/users/features/home/ui/home_screen.dart';
+import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
 import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_list_view.dart';
+import 'package:doc_doc/modules/users/features/home/ui/widgets/doctors_shimmer_loading.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeRecommendationDoctor extends StatelessWidget {
   const HomeRecommendationDoctor({super.key});
@@ -33,7 +35,21 @@ class HomeRecommendationDoctor extends StatelessWidget {
           ],
         ),
         verticalSpacing(16),
-        Expanded(child: DoctorListView(doctors: dummyRecommendedDoctors)),
+        Expanded(
+          child: BlocBuilder<HomeCubit, HomeState>(
+            builder: (final context, final state) {
+              if (state is SpecializationsLoading) {
+                return const DoctorsShimmerLoading();
+              } else if (state is SpecializationsSuccess &&
+                  state.doctorsList != null) {
+                return DoctorListView(doctors: state.doctorsList!);
+              } else if (state is SpecializationsFailure) {
+                return Center(child: Text("${state.error}"));
+              }
+              return const SizedBox.shrink();
+            },
+          ),
+        ),
       ],
     );
   }
