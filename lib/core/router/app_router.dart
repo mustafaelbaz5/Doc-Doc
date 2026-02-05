@@ -1,3 +1,4 @@
+import 'package:doc_doc/modules/users/features/home/ui/doctor_specialty_screen.dart';
 import 'package:doc_doc/modules/users/features/main_navigation/cubit/bottom_nav_cubit.dart';
 import 'package:doc_doc/modules/users/features/main_navigation/ui/main_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,9 @@ class AppRouter {
             child: const MainScaffold(),
           ),
         );
+
+      case Routes.doctorSpecialtyScreen:
+        return MaterialPageRoute(builder: (_) => const DoctorSpecialtyScreen());
       default:
         return null;
     }
