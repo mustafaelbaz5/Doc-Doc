@@ -44,7 +44,7 @@ class HomeDoctorSpecialty extends StatelessWidget {
                 specializationList: state.specializations,
               );
             } else if (state is SpecializationsFailure) {
-              return Center(child: Text("${state.error}"));
+              return Center(child: Text(state.error.messageKey.tr()));
             } else {
               return const SizedBox.shrink();
             }

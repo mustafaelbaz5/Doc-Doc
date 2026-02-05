@@ -46,7 +46,7 @@ class HomeRecommendationDoctor extends StatelessWidget {
                   doctors: state.doctorsList!,
                 );
               } else if (state is SpecializationsFailure) {
-                return Center(child: Text("${state.error}"));
+                return Center(child: Text(state.error.messageKey.tr()));
               }
               return const SizedBox.shrink();
             },
