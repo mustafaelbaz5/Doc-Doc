@@ -1,4 +1,6 @@
+import 'package:doc_doc/core/extensions/context_extensions.dart';
 import 'package:doc_doc/core/models/specialization_data_model.dart';
+import 'package:doc_doc/core/router/routes.dart';
 import 'package:doc_doc/modules/users/features/doctor_specialty/logic/cubit/specialty_cubit.dart';
 import 'package:doc_doc/modules/users/features/doctor_specialty/ui/widgets/specialty_grid_view_item.dart';
 import 'package:doc_doc/modules/users/features/doctor_specialty/ui/widgets/specialty_shimmer_loading.dart';
@@ -23,7 +25,7 @@ class SpecialtiesGridView extends StatelessWidget {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 30),
             child: GridView.builder(
-              shrinkWrap: true, // important for vertical scroll
+              shrinkWrap: true,
               physics: const AlwaysScrollableScrollPhysics(),
               itemCount: specializations.length,
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -35,8 +37,13 @@ class SpecialtiesGridView extends StatelessWidget {
               itemBuilder: (final context, final index) {
                 return GestureDetector(
                   onTap: () {
-                    context.read<SpecialtyCubit>().getSpecialtyById(
-                      specialtyId: specializations[index].id,
+                    final selectedSpecialty = specializations[index];
+                    context.pushNamed(
+                      Routes.specialtyDoctorsScreen,
+                      arguments: {
+                        'specialtyId': selectedSpecialty.id,
+                        'specialtyName': selectedSpecialty.name,
+                      },
                     );
                   },
                   child: SpecialtyGridViewItem(

@@ -13,7 +13,7 @@ import 'routes.dart';
 
 class AppRouter {
   Route<dynamic>? generateRoute(final RouteSettings settings) {
-    // final Object? arguments = settings.arguments;
+    final args = settings.arguments as Map<String, dynamic>?;
 
     switch (settings.name) {
       case Routes.onBoardingScreen:
@@ -39,8 +39,13 @@ class AppRouter {
       case Routes.specialtyDoctorsScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (final context) => getIt<SpecialtyCubit>(),
-            child: const SpecialtyDoctorsScreen(),
+            create: (final context) =>
+                getIt<SpecialtyCubit>()
+                  ..getSpecialtyById(specialtyId: args?['specialtyId'] as int),
+            child: SpecialtyDoctorsScreen(
+              specialtyId: args?['specialtyId'] as int,
+              specialtyName: args?['specialtyName'] as String,
+            ),
           ),
         );
 
