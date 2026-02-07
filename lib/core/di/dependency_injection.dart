@@ -3,6 +3,7 @@ import 'package:doc_doc/modules/users/features/home/data/remote/home_remote_api.
 import 'package:doc_doc/modules/users/features/home/data/repo/home_repo.dart';
 import 'package:doc_doc/modules/users/features/home/data/repo/home_repo_impl.dart';
 import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
+import '../../modules/users/features/main_navigation/cubit/bottom_nav_cubit.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 
@@ -41,7 +42,7 @@ Future<void> setUpDependencies() async {
   }
 
   if (!getIt.isRegistered<AuthCubit>()) {
-    getIt.registerFactory<AuthCubit>(
+    getIt.registerLazySingleton<AuthCubit>(
       () => AuthCubit(authRepo: getIt<AuthRepo>()),
     );
   }
@@ -61,5 +62,9 @@ Future<void> setUpDependencies() async {
     getIt.registerFactory<HomeCubit>(
       () => HomeCubit(homeRepo: getIt<HomeRepo>()),
     );
+  }
+
+  if (!getIt.isRegistered<BottomNavCubit>()) {
+    getIt.registerFactory<BottomNavCubit>(() => BottomNavCubit());
   }
 }
