@@ -1,4 +1,4 @@
-import 'package:doc_doc/core/utils/spacing.dart';
+import '../utils/spacing.dart';
 import 'package:flutter/material.dart';
 
 import 'app_font_weight.dart';

@@ -1,4 +1,4 @@
-import 'package:doc_doc/core/models/specialization_data_model.dart';
+import 'specialization_data_model.dart';
 
 class SpecializationsResponseBody {
   final bool status;

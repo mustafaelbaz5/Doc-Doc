@@ -1,9 +1,9 @@
-import 'package:doc_doc/core/themes/app_colors.dart';
-import 'package:doc_doc/core/themes/app_text_styles.dart';
-import 'package:doc_doc/core/utils/spacing.dart';
-import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_recommendation/doctor_recommendation_list_view.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_recommendation/doctors_shimmer_loading.dart';
+import '../../../../../../../core/themes/app_colors.dart';
+import '../../../../../../../core/themes/app_text_styles.dart';
+import '../../../../../../../core/utils/spacing.dart';
+import '../../../logic/cubit/home_cubit.dart';
+import 'doctor_recommendation_list_view.dart';
+import 'doctors_shimmer_loading.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

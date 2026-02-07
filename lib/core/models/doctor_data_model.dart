@@ -1,6 +1,5 @@
-import 'package:doc_doc/core/models/city_data_model.dart';
-import 'package:doc_doc/core/models/nested_specialization_model.dart';
-
+import 'city_data_model.dart';
+import 'nested_specialization_model.dart';
 
 class DoctorDataModel {
   final int id;

@@ -1,9 +1,9 @@
-import 'package:doc_doc/core/extensions/context_extensions.dart';
-import 'package:doc_doc/core/models/specialization_data_model.dart';
-import 'package:doc_doc/core/router/routes.dart';
-import 'package:doc_doc/modules/users/features/doctor_specialty/logic/cubit/specialty_cubit.dart';
-import 'package:doc_doc/modules/users/features/doctor_specialty/ui/widgets/specialty_grid_view_item.dart';
-import 'package:doc_doc/modules/users/features/doctor_specialty/ui/widgets/specialty_shimmer_loading.dart';
+import '../../../../../../core/extensions/context_extensions.dart';
+import '../../../../../../core/models/specialization_data_model.dart';
+import '../../../../../../core/router/routes.dart';
+import '../../logic/cubit/specialty_cubit.dart';
+import 'specialty_grid_view_item.dart';
+import 'specialty_shimmer_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

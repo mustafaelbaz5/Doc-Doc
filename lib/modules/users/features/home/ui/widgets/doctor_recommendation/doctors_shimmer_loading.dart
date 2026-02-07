@@ -1,7 +1,8 @@
-import 'package:doc_doc/core/extensions/context_extensions.dart';
-import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../../../../../../core/extensions/context_extensions.dart';
+import '../../../../../../../core/utils/spacing.dart';
 
 class DoctorsShimmerLoading extends StatelessWidget {
   const DoctorsShimmerLoading({super.key});

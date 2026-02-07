@@ -1,8 +1,8 @@
-import 'package:doc_doc/core/models/doctor_data_model.dart';
-import 'package:doc_doc/core/utils/spacing.dart';
-import 'package:doc_doc/modules/users/features/doctor_specialty/logic/cubit/specialty_cubit.dart';
-import 'package:doc_doc/modules/users/features/doctor_specialty/ui/widgets/specialty_doctors_list_view_card.dart';
-import 'package:doc_doc/modules/users/features/doctor_specialty/ui/widgets/specialty_doctors_shimmer.dart';
+import '../../../../../../core/models/doctor_data_model.dart';
+import '../../../../../../core/utils/spacing.dart';
+import '../../logic/cubit/specialty_cubit.dart';
+import 'specialty_doctors_list_view_card.dart';
+import 'specialty_doctors_shimmer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

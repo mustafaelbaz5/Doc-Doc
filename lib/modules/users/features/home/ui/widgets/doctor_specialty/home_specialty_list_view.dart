@@ -1,7 +1,7 @@
-import 'package:doc_doc/core/models/specialization_data_model.dart';
-import 'package:doc_doc/core/utils/spacing.dart';
-import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/home_specialty_list_view_item.dart';
+import '../../../../../../../core/models/specialization_data_model.dart';
+import '../../../../../../../core/utils/spacing.dart';
+import '../../../logic/cubit/home_cubit.dart';
+import 'home_specialty_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

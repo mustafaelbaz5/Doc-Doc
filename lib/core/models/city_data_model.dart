@@ -1,4 +1,4 @@
-import 'package:doc_doc/core/models/governrate_data_model.dart';
+import 'governrate_data_model.dart';
 
 class CityDataModel {
   final int id;

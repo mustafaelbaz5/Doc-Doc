@@ -1,12 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:doc_doc/modules/users/features/doctor_specialty/data/remote/specialty_remote_api.dart';
-import 'package:doc_doc/modules/users/features/doctor_specialty/data/repo/specialty_repo.dart';
-import 'package:doc_doc/modules/users/features/doctor_specialty/data/repo/specialty_repo_impl.dart';
-import 'package:doc_doc/modules/users/features/doctor_specialty/logic/cubit/specialty_cubit.dart';
-import 'package:doc_doc/modules/users/features/home/data/remote/home_remote_api.dart';
-import 'package:doc_doc/modules/users/features/home/data/repo/home_repo.dart';
-import 'package:doc_doc/modules/users/features/home/data/repo/home_repo_impl.dart';
-import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
+import '../../modules/users/features/doctor_specialty/data/remote/specialty_remote_api.dart';
+import '../../modules/users/features/doctor_specialty/data/repo/specialty_repo.dart';
+import '../../modules/users/features/doctor_specialty/data/repo/specialty_repo_impl.dart';
+import '../../modules/users/features/doctor_specialty/logic/cubit/specialty_cubit.dart';
+import '../../modules/users/features/home/data/remote/home_remote_api.dart';
+import '../../modules/users/features/home/data/repo/home_repo.dart';
+import '../../modules/users/features/home/data/repo/home_repo_impl.dart';
+import '../../modules/users/features/home/logic/cubit/home_cubit.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 

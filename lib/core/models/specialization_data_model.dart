@@ -1,4 +1,4 @@
-import 'package:doc_doc/core/models/doctor_data_model.dart';
+import 'doctor_data_model.dart';
 
 class SpecializationDataModel {
   final int id;

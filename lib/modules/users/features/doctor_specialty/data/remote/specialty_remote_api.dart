@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:doc_doc/core/constants/api_constants.dart';
-import 'package:doc_doc/core/models/specialization_data_model.dart';
-import 'package:doc_doc/core/models/specializations_response_body.dart';
+import '../../../../../../core/constants/api_constants.dart';
+import '../../../../../../core/models/specialization_data_model.dart';
+import '../../../../../../core/models/specializations_response_body.dart';
 
 class SpecialtyRemoteApi {
   final Dio dio;

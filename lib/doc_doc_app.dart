@@ -1,7 +1,7 @@
-import 'package:doc_doc/core/auth/logic/cubit/auth_cubit.dart';
-import 'package:doc_doc/core/auth/ui/user_authenticated_check.dart';
-import 'package:doc_doc/core/di/dependency_injection.dart';
-import 'package:doc_doc/core/ui/dialogs/app_dialogs.dart';
+import 'core/auth/logic/cubit/auth_cubit.dart';
+import 'core/auth/ui/user_authenticated_check.dart';
+import 'core/di/dependency_injection.dart';
+import 'core/ui/dialogs/app_dialogs.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

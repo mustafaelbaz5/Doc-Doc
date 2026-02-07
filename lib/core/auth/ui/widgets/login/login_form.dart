@@ -1,5 +1,7 @@
-import '../../../data/models/login_request_body.dart';
-import '../../../logic/cubit/auth_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../extensions/context_extensions.dart';
 import '../../../../router/routes.dart';
 import '../../../../themes/app_text_styles.dart';
@@ -9,9 +11,8 @@ import '../../../../utils/spacing.dart';
 import '../../../../utils/validators.dart';
 import '../../../../widgets/custom_text_button.dart';
 import '../../../../widgets/custom_text_form_.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../data/models/login_request_body.dart';
+import '../../../logic/cubit/auth_cubit.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});

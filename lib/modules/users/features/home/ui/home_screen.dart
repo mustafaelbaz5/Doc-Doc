@@ -1,9 +1,10 @@
-import 'package:doc_doc/core/utils/spacing.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/doctors_blue_container.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/home_app_bar.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/home_doctor_specialty.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_recommendation/home_recommendation_doctor.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../../core/utils/spacing.dart';
+import 'widgets/doctor_recommendation/home_recommendation_doctor.dart';
+import 'widgets/doctor_specialty/home_doctor_specialty.dart';
+import 'widgets/doctors_blue_container.dart';
+import 'widgets/home_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
