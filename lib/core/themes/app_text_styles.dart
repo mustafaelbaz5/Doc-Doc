@@ -1,3 +1,4 @@
+import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:flutter/material.dart';
 
 import 'app_font_weight.dart';
@@ -14,50 +15,54 @@ class AppTextStyles {
   );
 
   // Font Size 18
-  static const TextStyle font18Bold = TextStyle(
-    fontSize: 18,
+  static TextStyle font18Bold = TextStyle(
+    fontSize: responsiveFontSize(18),
     fontWeight: AppFontWeight.bold,
   );
-  static const TextStyle font18SemiBold = TextStyle(
-    fontSize: 18,
+  static TextStyle font18SemiBold = TextStyle(
+    fontSize: responsiveFontSize(18),
     fontWeight: AppFontWeight.semiBold,
   );
-  static const TextStyle font18Medium = TextStyle(
-    fontSize: 18,
+  static TextStyle font18Medium = TextStyle(
+    fontSize: responsiveFontSize(18),
     fontWeight: AppFontWeight.medium,
   );
 
   // Font Size 16
-  static const TextStyle font16Bold = TextStyle(
-    fontSize: 16,
+  static TextStyle font16Bold = TextStyle(
+    fontSize: responsiveFontSize(16),
     fontWeight: AppFontWeight.bold,
   );
-  static const TextStyle font16SemiBold = TextStyle(
-    fontSize: 16,
+  static TextStyle font16SemiBold = TextStyle(
+    fontSize: responsiveFontSize(16),
     fontWeight: AppFontWeight.semiBold,
   );
-  static const TextStyle font16Regular = TextStyle(
-    fontSize: 16,
+  static TextStyle font16Regular = TextStyle(
+    fontSize: responsiveFontSize(16),
     fontWeight: AppFontWeight.regular,
   );
 
   // Font Size 14
-  static const TextStyle font14Bold = TextStyle(
-    fontSize: 14,
+  static TextStyle font14Bold = TextStyle(
+    fontSize: responsiveFontSize(14),
     fontWeight: AppFontWeight.bold,
   );
-  static const TextStyle font14SemiBold = TextStyle(
-    fontSize: 14,
+  static TextStyle font14SemiBold = TextStyle(
+    fontSize: responsiveFontSize(14),
     fontWeight: AppFontWeight.semiBold,
   );
-  static const TextStyle font14Regular = TextStyle(
-    fontSize: 14,
+  static TextStyle font14Regular = TextStyle(
+    fontSize: responsiveFontSize(14),
     fontWeight: AppFontWeight.regular,
   );
 
   // Font Size 12
-  static const TextStyle font12Regular = TextStyle(
-    fontSize: 12,
+  static TextStyle font12Regular = TextStyle(
+    fontSize: responsiveFontSize(12),
     fontWeight: AppFontWeight.regular,
+  );
+  static TextStyle font12SemiBold = TextStyle(
+    fontSize: responsiveFontSize(12),
+    fontWeight: AppFontWeight.semiBold,
   );
 }
