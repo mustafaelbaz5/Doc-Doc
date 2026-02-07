@@ -1,4 +1,8 @@
+import 'package:doc_doc/core/di/dependency_injection.dart';
+import 'package:doc_doc/modules/users/features/doctor_specialty/logic/cubit/specialty_cubit.dart';
+import 'package:doc_doc/modules/users/features/doctor_specialty/ui/specialty_doctors_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../modules/users/features/doctor_specialty/ui/doctor_specialty_screen.dart';
 import '../../modules/users/features/main_navigation/ui/main_scaffold.dart';
@@ -25,7 +29,20 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const MainScaffold());
 
       case Routes.doctorSpecialtyScreen:
-        return MaterialPageRoute(builder: (_) => const DoctorSpecialtyScreen());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (final context) =>
+                getIt<SpecialtyCubit>()..getAllSpecializations(),
+            child: const DoctorSpecialtyScreen(),
+          ),
+        );
+      case Routes.specialtyDoctorsScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (final context) => getIt<SpecialtyCubit>(),
+            child: const SpecialtyDoctorsScreen(),
+          ),
+        );
 
       default:
         return null;
