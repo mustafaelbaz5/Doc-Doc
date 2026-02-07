@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../modules/users/features/home/ui/doctor_specialty_screen.dart';
+import '../../modules/users/features/doctor_specialty/ui/doctor_specialty_screen.dart';
 import '../../modules/users/features/main_navigation/ui/main_scaffold.dart';
 import '../auth/ui/login_screen.dart';
 import '../auth/ui/sign_up_screen.dart';
