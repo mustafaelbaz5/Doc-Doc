@@ -1,19 +1,19 @@
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:doc_doc/modules/users/features/home/data/models/specializations_response_body.dart';
 import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/specialty_list_view_item.dart';
+import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/home_specialty_list_view_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SpecialtyListView extends StatefulWidget {
-  const SpecialtyListView({super.key, required this.specializationList});
+class HomeSpecialtyListView extends StatefulWidget {
+  const HomeSpecialtyListView({super.key, required this.specializationList});
   final List<SpecializationDataModel> specializationList;
 
   @override
-  State<SpecialtyListView> createState() => _SpecialtyListViewState();
+  State<HomeSpecialtyListView> createState() => _HomeSpecialtyListViewState();
 }
 
-class _SpecialtyListViewState extends State<SpecialtyListView> {
+class _HomeSpecialtyListViewState extends State<HomeSpecialtyListView> {
   int selectedIndex = 0;
   @override
   Widget build(final BuildContext context) {
@@ -32,7 +32,7 @@ class _SpecialtyListViewState extends State<SpecialtyListView> {
                 specializationId: widget.specializationList[index].id,
               );
             },
-            child: SpecialtyListViewItem(
+            child: HomeSpecialtyListViewItem(
               itemIndex: index,
               selectedIndex: selectedIndex,
               specializationsData: widget.specializationList[index],

@@ -7,8 +7,8 @@ import 'package:doc_doc/modules/users/features/home/data/models/specializations_
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-class SpecialtyListViewItem extends StatelessWidget {
-  const SpecialtyListViewItem({
+class HomeSpecialtyListViewItem extends StatelessWidget {
+  const HomeSpecialtyListViewItem({
     super.key,
     required this.itemIndex,
     required this.selectedIndex,

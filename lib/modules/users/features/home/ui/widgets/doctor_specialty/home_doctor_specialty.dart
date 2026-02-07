@@ -4,7 +4,7 @@ import 'package:doc_doc/core/themes/app_colors.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/specialty_list_view.dart';
+import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/home_specialty_list_view.dart';
 import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/specialty_shimmer_loading.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +44,7 @@ class HomeDoctorSpecialty extends StatelessWidget {
             if (state is SpecializationsLoading) {
               return const SpecialtyShimmerLoading();
             } else if (state is SpecializationsSuccess) {
-              return SpecialtyListView(
+              return HomeSpecialtyListView(
                 specializationList: state.specializations,
               );
             } else if (state is SpecializationsFailure) {
