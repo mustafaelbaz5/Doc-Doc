@@ -35,7 +35,7 @@ class _MainScaffoldState extends State<MainScaffold> {
     return [
       BlocProvider(
         create: (final context) => getIt<HomeCubit>()
-          ..getAllSpecializations()
+          ..getHomeSpecializations()
           ..getDoctorsBySpecialization(specializationId: 0),
         child: const HomeScreen(),
       ),

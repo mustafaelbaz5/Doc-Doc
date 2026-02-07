@@ -14,7 +14,7 @@ class HomeCubit extends Cubit<HomeState> {
   final HomeRepo homeRepo;
 
   /// Load all specializations
-  Future<void> getAllSpecializations() async {
+  Future<void> getHomeSpecializations() async {
     if (isClosed) return;
     emit(SpecializationsLoading());
 
