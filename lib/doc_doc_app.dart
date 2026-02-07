@@ -1,4 +1,7 @@
-import 'core/constants/storage_constants.dart';
+import 'package:doc_doc/core/auth/logic/cubit/auth_cubit.dart';
+import 'package:doc_doc/core/di/dependency_injection.dart';
+import 'package:doc_doc/core/extensions/context_extensions.dart';
+import 'package:doc_doc/core/ui/dialogs/app_dialogs.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,35 +20,64 @@ class DocDocApp extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (final BuildContext context, final Widget? child) {
-        return BlocProvider(
-          create: (final BuildContext context) => ThemeCubit(),
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (final context) => ThemeCubit()),
+            BlocProvider.value(value: getIt<AuthCubit>()),
+          ],
           child: BlocBuilder<ThemeCubit, ThemeMode>(
             builder: (final BuildContext context, final ThemeMode mode) {
               FlutterNativeSplash.remove();
-              return MaterialApp(
-                key: ValueKey(context.locale),
-                localizationsDelegates: context.localizationDelegates,
-                supportedLocales: context.supportedLocales,
-                locale: context.locale,
-                debugShowCheckedModeBanner: false,
-                initialRoute: isLoggedIn
-                    ? Routes.mainScaffold
-                    : Routes.onBoardingScreen,
-                onGenerateRoute: appRouter.generateRoute,
-                title: 'DocDoc',
-                theme: getLightTheme(context: context),
-                darkTheme: getDarkTheme(context: context),
-                themeMode: mode,
+              return BlocListener<AuthCubit, AuthState>(
+                listener: (final context, final state) {
+                  // Handle session expiry globally
+                  if (state is AuthSessionExpired) {
+                    AppDialogs.showCustomDialog(
+                      context,
+                      title: 'Session Expired',
+                      message: 'Your session has expired. Please login again.',
+                      buttonText: 'ok',
+                      onPressed: () =>
+                          context.pushNamedAndRemoveAll(Routes.loginScreen),
+                    );
+                  }
+                },
+                child: MaterialApp(
+                  key: ValueKey(context.locale),
+                  localizationsDelegates: context.localizationDelegates,
+                  supportedLocales: context.supportedLocales,
+                  locale: context.locale,
+                  debugShowCheckedModeBanner: false,
+                  initialRoute: _getInitialRoute(),
+                  onGenerateRoute: appRouter.generateRoute,
+                  title: 'DocDoc',
+                  theme: getLightTheme(context: context),
+                  darkTheme: getDarkTheme(context: context),
+                  themeMode: mode,
+                ),
               );
             },
           ),
         );
       },
     );
+  }
+
+  String _getInitialRoute() {
+    final authState = getIt<AuthCubit>().state;
+
+    if (authState is AuthAuthenticated) {
+      return Routes.mainScaffold;
+    } else if (authState is AuthUnauthenticated) {
+      return Routes.onBoardingScreen;
+    }
+
+    return Routes.onBoardingScreen;
   }
 }
