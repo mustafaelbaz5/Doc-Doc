@@ -1,8 +1,11 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+
+import '../auth/logic/cubit/auth_cubit.dart';
 import '../constants/storage_constants.dart';
 import '../di/dependency_injection.dart';
 import '../service/secure_storage.dart';
-import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 class DioFactory {
   DioFactory._();
@@ -35,7 +38,6 @@ class DioFactory {
     _dio!.interceptors.addAll([
       InterceptorsWrapper(
         onRequest: (final options, final handler) async {
-          // Always get fresh token from storage
           final freshToken = await secureStorage.read(
             key: StorageConstants.userTokenKey,
           );
@@ -45,6 +47,24 @@ class DioFactory {
             clearToken();
           }
           handler.next(options);
+        },
+        onError: (final error, final handler) async {
+          if (error.response?.statusCode == 401) {
+            // Notify AuthCubit safely
+            try {
+              if (getIt.isRegistered<AuthCubit>()) {
+                final authCubit = getIt<AuthCubit>();
+                if (!authCubit.isClosed) {
+                  authCubit.handleUnauthorized();
+                }
+              }
+              await secureStorage.delete(key: StorageConstants.userTokenKey);
+              clearToken();
+            } catch (e) {
+              debugPrint('Could not notify AuthCubit: $e');
+            }
+          }
+          handler.next(error);
         },
       ),
       PrettyDioLogger(

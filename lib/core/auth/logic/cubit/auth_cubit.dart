@@ -1,18 +1,36 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../error/models/app_error.dart';
 import '../../data/models/login_request_body.dart';
 import '../../data/models/login_response_body.dart';
 import '../../data/models/sign_up_request_body.dart';
 import '../../data/models/sign_up_response_body.dart';
 import '../../data/repo/auth_repo.dart';
-import '../../../error/models/app_error.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit({required this.authRepo}) : super(AuthInitial());
-
   final AuthRepo authRepo;
+
+  /// Check if user session is valid on app start
+  Future<void> checkAuthStatus() async {
+    emit(AuthLoading());
+    try {
+      final token = await authRepo.getToken();
+
+      if (token == null || token.isEmpty || token == '') {
+        emit(AuthUnauthenticated());
+        return;
+      }
+      emit(AuthAuthenticated());
+    } catch (error) {
+      // Token expired or invalid
+      await authRepo.clearToken();
+      emit(AuthUnauthenticated());
+    }
+  }
 
   Future<void> login(final LoginRequestBody body) async {
     emit(AuthLoading());
@@ -41,9 +59,15 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> logout() async {
     try {
       await authRepo.logout();
-      emit(AuthInitial());
+      await authRepo.clearToken();
+      emit(AuthUnauthenticated());
     } catch (error) {
-      emit(AuthInitial());
+      emit(AuthUnauthenticated());
     }
+  }
+
+  /// Handle unauthorized access (token expired)
+  void handleUnauthorized() {
+    emit(AuthSessionExpired());
   }
 }
