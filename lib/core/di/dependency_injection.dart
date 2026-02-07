@@ -1,12 +1,16 @@
 import 'package:dio/dio.dart';
+import 'package:doc_doc/modules/users/features/doctor_specialty/data/remote/specialty_remote_api.dart';
+import 'package:doc_doc/modules/users/features/doctor_specialty/data/repo/specialty_repo.dart';
+import 'package:doc_doc/modules/users/features/doctor_specialty/data/repo/specialty_repo_impl.dart';
+import 'package:doc_doc/modules/users/features/doctor_specialty/logic/cubit/specialty_cubit.dart';
 import 'package:doc_doc/modules/users/features/home/data/remote/home_remote_api.dart';
 import 'package:doc_doc/modules/users/features/home/data/repo/home_repo.dart';
 import 'package:doc_doc/modules/users/features/home/data/repo/home_repo_impl.dart';
 import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
-import '../../modules/users/features/main_navigation/cubit/bottom_nav_cubit.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../modules/users/features/main_navigation/cubit/bottom_nav_cubit.dart';
 import '../auth/data/remote/auth_remote_api.dart';
 import '../auth/data/repo/auth_repo.dart';
 import '../auth/data/repo/auth_repo_impl.dart';
@@ -66,5 +70,24 @@ Future<void> setUpDependencies() async {
 
   if (!getIt.isRegistered<BottomNavCubit>()) {
     getIt.registerFactory<BottomNavCubit>(() => BottomNavCubit());
+  }
+
+  // Specialty
+  if (!getIt.isRegistered<SpecialtyRemoteApi>()) {
+    getIt.registerLazySingleton<SpecialtyRemoteApi>(
+      () => SpecialtyRemoteApi(dio: dio),
+    );
+  }
+
+  if (!getIt.isRegistered<SpecialtyRepo>()) {
+    getIt.registerLazySingleton<SpecialtyRepo>(
+      () => SpecialtyRepoImpl(specialtyRemoteApi: getIt<SpecialtyRemoteApi>()),
+    );
+  }
+
+  if (!getIt.isRegistered<SpecialtyCubit>()) {
+    getIt.registerFactory<SpecialtyCubit>(
+      () => SpecialtyCubit(specialtyRepo: getIt<SpecialtyRepo>()),
+    );
   }
 }
