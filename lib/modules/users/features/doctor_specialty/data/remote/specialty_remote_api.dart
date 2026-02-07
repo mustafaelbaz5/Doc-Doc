@@ -22,6 +22,6 @@ class SpecialtyRemoteApi {
     final response = await dio.get(
       '$_baseUrl${ApiConstants.showSpecialtyEndpoint}$id',
     );
-    return SpecializationDataModel.fromJson(response.data);
+    return SpecializationDataModel.fromJson(response.data['data']);
   }
 }
