@@ -24,7 +24,13 @@ class SpecialtyGridViewItem extends StatelessWidget {
           ),
         ),
         verticalSpacing(8),
-        Text(specializationsData.name, style: AppTextStyles.font14Regular),
+        Text(
+          specializationsData.name,
+          textAlign: TextAlign.center,
+          style: AppTextStyles.font12Regular.copyWith(
+            color: context.customColors.textPrimary.withValues(alpha: 0.7),
+          ),
+        ),
       ],
     );
   }
