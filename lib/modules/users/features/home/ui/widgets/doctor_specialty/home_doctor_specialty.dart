@@ -5,7 +5,7 @@ import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
 import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/home_specialty_list_view.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/specialty_shimmer_loading.dart';
+import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/home_specialty_shimmer_loading.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +42,7 @@ class HomeDoctorSpecialty extends StatelessWidget {
         BlocBuilder<HomeCubit, HomeState>(
           builder: (final context, final state) {
             if (state is SpecializationsLoading) {
-              return const SpecialtyShimmerLoading();
+              return const HomeSpecialtyShimmerLoading();
             } else if (state is SpecializationsSuccess) {
               return HomeSpecialtyListView(
                 specializationList: state.specializations,
