@@ -9,13 +9,13 @@ final class SpecializationsLoading extends HomeState {}
 
 final class SpecializationsSuccess extends HomeState {
   final List<SpecializationDataModel> specializations;
-  final List<Doctor>? doctorsList;
+  final List<DoctorDataModel>? doctorsList;
 
   SpecializationsSuccess({required this.specializations, this.doctorsList});
 
   SpecializationsSuccess copyWith({
     final List<SpecializationDataModel>? specializations,
-    final List<Doctor>? doctorsList,
+    final List<DoctorDataModel>? doctorsList,
   }) {
     return SpecializationsSuccess(
       specializations: specializations ?? this.specializations,

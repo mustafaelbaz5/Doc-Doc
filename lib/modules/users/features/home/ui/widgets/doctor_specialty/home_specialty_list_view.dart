@@ -1,5 +1,5 @@
+import 'package:doc_doc/core/models/specialization_data_model.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
-import 'package:doc_doc/modules/users/features/home/data/models/specializations_response_body.dart';
 import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
 import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_specialty/home_specialty_list_view_item.dart';
 import 'package:flutter/material.dart';

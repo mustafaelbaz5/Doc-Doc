@@ -1,5 +1,5 @@
 import 'package:doc_doc/core/error/types/error_handler.dart';
-import 'package:doc_doc/modules/users/features/home/data/models/specializations_response_body.dart';
+import 'package:doc_doc/core/models/specializations_response_body.dart';
 import 'package:doc_doc/modules/users/features/home/data/remote/home_remote_api.dart';
 import 'package:doc_doc/modules/users/features/home/data/repo/home_repo.dart';
 

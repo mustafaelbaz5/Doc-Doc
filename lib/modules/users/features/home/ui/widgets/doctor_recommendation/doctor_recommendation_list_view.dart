@@ -1,11 +1,11 @@
-import 'package:doc_doc/modules/users/features/home/data/models/specializations_response_body.dart';
+import 'package:doc_doc/core/models/doctor_data_model.dart';
 import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_recommendation/doctor_recommendation_card.dart';
 import 'package:flutter/material.dart';
 
 class DoctorRecommendationListView extends StatelessWidget {
   const DoctorRecommendationListView({super.key, required this.doctors});
 
-  final List<Doctor> doctors;
+  final List<DoctorDataModel> doctors;
 
   @override
   Widget build(final BuildContext context) {

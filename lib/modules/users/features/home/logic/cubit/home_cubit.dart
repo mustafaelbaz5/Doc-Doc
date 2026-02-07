@@ -1,8 +1,9 @@
 import 'package:doc_doc/core/error/models/app_error.dart';
+import 'package:doc_doc/core/models/doctor_data_model.dart';
+import 'package:doc_doc/core/models/specialization_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/models/specializations_response_body.dart';
 import '../../data/repo/home_repo.dart';
 
 part 'home_state.dart';
