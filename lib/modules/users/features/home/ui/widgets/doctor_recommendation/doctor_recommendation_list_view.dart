@@ -1,9 +1,9 @@
 import 'package:doc_doc/modules/users/features/home/data/models/specializations_response_body.dart';
-import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_recommendation_card.dart';
+import 'package:doc_doc/modules/users/features/home/ui/widgets/doctor_recommendation/doctor_recommendation_card.dart';
 import 'package:flutter/material.dart';
 
-class DoctorListView extends StatelessWidget {
-  const DoctorListView({super.key, required this.doctors});
+class DoctorRecommendationListView extends StatelessWidget {
+  const DoctorRecommendationListView({super.key, required this.doctors});
 
   final List<Doctor> doctors;
 

@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:translator/translator.dart';
 
-import '../../constants/storage_constants.dart';
-import '../../di/dependency_injection.dart';
 import '../../extensions/context_extensions.dart';
-import '../../service/secure_storage.dart';
 import '../../themes/cubit/theme_cubit.dart';
 
 /// Switch Language between Arabic and English
@@ -32,18 +29,6 @@ void switchTheme(final BuildContext context) {
   }
 }
 
-// Check Logger
-Future<bool> checkLoggedInUser() async {
-  final String? token = await getIt<SecureStorage>().read(
-    key: StorageConstants.userTokenKey,
-  );
-  if (token == null || token.isEmpty || token == '') {
-    return isLoggedIn = false;
-  } else {
-    isLoggedIn = true;
-  }
-  return isLoggedIn;
-}
 Future<String> translateToArabic(final String text) async {
   final GoogleTranslator translator = GoogleTranslator();
   final Translation translation = await translator.translate(text, to: 'ar');

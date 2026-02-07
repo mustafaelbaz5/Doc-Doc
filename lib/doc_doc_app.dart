@@ -1,4 +1,7 @@
-import 'core/constants/storage_constants.dart';
+import 'package:doc_doc/core/auth/logic/cubit/auth_cubit.dart';
+import 'package:doc_doc/core/auth/ui/user_authenticated_check.dart';
+import 'package:doc_doc/core/di/dependency_injection.dart';
+import 'package:doc_doc/core/ui/dialogs/app_dialogs.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +9,6 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/router/app_router.dart';
-import 'core/router/routes.dart';
 import 'core/themes/cubit/theme_cubit.dart';
 import 'core/themes/theme_data/theme_data_dark.dart';
 import 'core/themes/theme_data/theme_data_light.dart';
@@ -21,26 +23,45 @@ class DocDocApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (final BuildContext context, final Widget? child) {
-        return BlocProvider(
-          create: (final BuildContext context) => ThemeCubit(),
+      builder: (_, final _) {
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => ThemeCubit()),
+            BlocProvider.value(value: getIt<AuthCubit>()),
+          ],
           child: BlocBuilder<ThemeCubit, ThemeMode>(
-            builder: (final BuildContext context, final ThemeMode mode) {
+            builder: (final context, final mode) {
               FlutterNativeSplash.remove();
-              return MaterialApp(
-                key: ValueKey(context.locale),
-                localizationsDelegates: context.localizationDelegates,
-                supportedLocales: context.supportedLocales,
-                locale: context.locale,
-                debugShowCheckedModeBanner: false,
-                initialRoute: isLoggedIn
-                    ? Routes.mainScaffold
-                    : Routes.onBoardingScreen,
-                onGenerateRoute: appRouter.generateRoute,
-                title: 'DocDoc',
-                theme: getLightTheme(context: context),
-                darkTheme: getDarkTheme(context: context),
-                themeMode: mode,
+              return BlocListener<AuthCubit, AuthState>(
+                listenWhen: (final prev, final curr) =>
+                    curr is AuthSessionExpired,
+                listener: (final context, final state) {
+                  if (state is AuthSessionExpired) {
+                    AppDialogs.showCustomDialog(
+                      context,
+                      title: 'session_expired'.tr(),
+                      message: 'errors.session_expired'.tr(),
+                      buttonText: 'ok'.tr(),
+                      onPressed: () {
+                        // Just logout → UI reacts automatically
+                        context.read<AuthCubit>().logout();
+                      },
+                    );
+                  }
+                },
+                child: MaterialApp(
+                  key: ValueKey(context.locale),
+                  debugShowCheckedModeBanner: false,
+                  title: 'DocDoc',
+                  home: const UserAuthenticatedCheck(),
+                  onGenerateRoute: appRouter.generateRoute,
+                  localizationsDelegates: context.localizationDelegates,
+                  supportedLocales: context.supportedLocales,
+                  locale: context.locale,
+                  theme: getLightTheme(context: context),
+                  darkTheme: getDarkTheme(context: context),
+                  themeMode: mode,
+                ),
               );
             },
           ),

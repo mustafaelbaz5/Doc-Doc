@@ -1,9 +1,9 @@
-import 'object_extension.dart';
-import '../themes/custom_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../themes/app_font_family.dart';
+import '../themes/custom_colors.dart';
+import 'object_extension.dart';
 
 /// Navigation Extensions
 extension NavigationExt on BuildContext {
@@ -45,7 +45,10 @@ extension NavigationExt on BuildContext {
     final String routeName, {
     final Object? arguments,
   }) {
-    return Navigator.pushNamed(this, routeName, arguments: arguments);
+    return Navigator.of(
+      this,
+      rootNavigator: true,
+    ).pushNamed(routeName, arguments: arguments);
   }
 
   /// Replace by route name
@@ -54,12 +57,10 @@ extension NavigationExt on BuildContext {
     final Object? arguments,
     final TO? result,
   }) {
-    return Navigator.pushReplacementNamed(
+    return Navigator.of(
       this,
-      routeName,
-      arguments: arguments,
-      result: result,
-    );
+      rootNavigator: true,
+    ).pushReplacementNamed(routeName, arguments: arguments, result: result);
   }
 
   /// Push named route and clear previous navigation stack
