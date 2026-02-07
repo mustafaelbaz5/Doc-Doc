@@ -13,11 +13,14 @@ class HomeCubit extends Cubit<HomeState> {
   final HomeRepo homeRepo;
 
   /// Load all specializations
-Future<void> getAllSpecializations() async {
+  Future<void> getAllSpecializations() async {
+    if (isClosed) return;
     emit(SpecializationsLoading());
 
     try {
       final response = await homeRepo.getSpecialization();
+
+      if (isClosed) return;
       emit(
         SpecializationsSuccess(
           specializations: response.data,
@@ -25,6 +28,7 @@ Future<void> getAllSpecializations() async {
         ),
       );
     } catch (error) {
+      if (isClosed) return;
       emit(
         SpecializationsFailure(
           error: error is AppError ? error : AppError.unknown(),
@@ -34,6 +38,8 @@ Future<void> getAllSpecializations() async {
   }
 
   void getDoctorsBySpecialization({required final int specializationId}) {
+    if (isClosed) return;
+
     final currentState = state;
 
     if (currentState is! SpecializationsSuccess) return;
@@ -42,6 +48,7 @@ Future<void> getAllSpecializations() async {
       (final item) => item.id == specializationId,
     );
 
+    if (isClosed) return;
     emit(currentState.copyWith(doctorsList: specialization.doctors));
   }
 }
