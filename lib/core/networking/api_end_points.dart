@@ -1,4 +1,6 @@
-class ApiConstants {
+class ApiEndPoints {
+  ApiEndPoints._();
+  // Base URL
   static const String apiBaseUrl = 'https://vcare.integration25.com/api/';
 
   // Authentication
