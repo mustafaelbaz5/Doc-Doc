@@ -37,7 +37,6 @@ class AuthRepoImpl implements AuthRepo {
   Future<void> logout() async {
     try {
       await authRemoteApi.logout();
-      await clearToken();
     } catch (e) {
       // Even if API call fails, clear local token
       await clearToken();

@@ -1,13 +1,13 @@
-import 'package:doc_doc/core/di/dependency_injection.dart';
-import 'package:doc_doc/core/extensions/context_extensions.dart';
-import 'package:doc_doc/core/themes/app_colors.dart';
-import 'package:doc_doc/core/utils/app_assets.dart';
-import 'package:doc_doc/core/utils/spacing.dart';
-import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
-import 'package:doc_doc/modules/users/features/home/ui/home_screen.dart';
-import 'package:doc_doc/modules/users/features/inbox/ui/messages_screen.dart';
-import 'package:doc_doc/modules/users/features/profile/ui/profile_screen.dart';
-import 'package:doc_doc/modules/users/features/search/ui/search_screen.dart';
+import '../../../../../core/di/dependency_injection.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/themes/app_colors.dart';
+import '../../../../../core/utils/app_assets.dart';
+import '../../../../../core/utils/spacing.dart';
+import '../../home/logic/cubit/home_cubit.dart';
+import '../../home/ui/home_screen.dart';
+import '../../inbox/ui/messages_screen.dart';
+import '../../profile/ui/profile_screen.dart';
+import '../../search/ui/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -35,7 +35,7 @@ class _MainScaffoldState extends State<MainScaffold> {
     return [
       BlocProvider(
         create: (final context) => getIt<HomeCubit>()
-          ..getAllSpecializations()
+          ..getHomeSpecializations()
           ..getDoctorsBySpecialization(specializationId: 0),
         child: const HomeScreen(),
       ),

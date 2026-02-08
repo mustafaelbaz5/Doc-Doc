@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:doc_doc/core/constants/api_constants.dart';
-import 'package:doc_doc/modules/users/features/home/data/models/specializations_response_body.dart';
+import '../../../../../../core/constants/api_constants.dart';
+import '../../../../../../core/models/specializations_response_body.dart';
 
 class HomeRemoteApi {
   final Dio dio;

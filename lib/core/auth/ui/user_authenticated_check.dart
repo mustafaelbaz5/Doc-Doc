@@ -1,4 +1,4 @@
-import 'package:doc_doc/core/onboarding/ui/on_boarding_screen.dart';
+import '../../onboarding/ui/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

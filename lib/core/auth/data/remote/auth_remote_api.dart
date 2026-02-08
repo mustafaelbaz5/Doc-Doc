@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
-import '../models/sign_up_request_body.dart';
-import '../models/sign_up_response_body.dart';
-import '../../../constants/api_constants.dart';
 
+import '../../../constants/api_constants.dart';
 import '../models/login_request_body.dart';
 import '../models/login_response_body.dart';
+import '../models/sign_up_request_body.dart';
+import '../models/sign_up_response_body.dart';
 
 class AuthRemoteApi {
   final Dio dio;
