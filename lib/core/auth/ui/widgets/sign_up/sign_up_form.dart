@@ -110,7 +110,7 @@ class _SignUpFormState extends State<SignUpForm> {
   Widget build(final BuildContext context) {
     return BlocConsumer<AuthCubit, AuthState>(
       listener: (final context, final state) {
-        if (state is SignUpSuccess) {
+        if (state is AuthAuthenticated) {
           context.pushNamedAndRemoveAll(Routes.mainScaffold);
         } else if (state is AuthFailure) {
           AppDialogs.showError(context, message: state.error.messageKey.tr());
@@ -118,7 +118,7 @@ class _SignUpFormState extends State<SignUpForm> {
       },
       builder: (final context, final state) {
         return OverlayLoader(
-          isLoading: state is AuthLoading,
+          isLoading: state is AuthChecking,
           child: Form(
             key: _formKey,
             child: Column(

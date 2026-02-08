@@ -1,5 +1,4 @@
 import '../../../constants/storage_constants.dart';
-import '../../../error/types/error_handler.dart';
 import '../../../networking/dio_factory.dart';
 import '../../../service/secure_storage.dart';
 import '../models/login_request_body.dart';
@@ -16,31 +15,23 @@ class AuthRepoImpl implements AuthRepo {
   AuthRepoImpl({required this.authRemoteApi, required this.secureStorage});
 
   @override
-  Future<LoginResponseBody> login(final LoginRequestBody body) async {
-    try {
-      return await authRemoteApi.login(body);
-    } catch (e) {
-      ErrorHandler.handle(e);
-    }
+  Future<LoginResponseBody> login(final LoginRequestBody body) {
+    // Let errors bubble up (already AppError)
+    return authRemoteApi.login(body);
   }
 
   @override
-  Future<SignUpResponseBody> signUp(final SignUpRequestBody body) async {
-    try {
-      return await authRemoteApi.signUp(body);
-    } catch (e) {
-      ErrorHandler.handle(e);
-    }
+  Future<SignUpResponseBody> signUp(final SignUpRequestBody body) {
+    return authRemoteApi.signUp(body);
   }
 
   @override
   Future<void> logout() async {
     try {
       await authRemoteApi.logout();
-    } catch (e) {
-      // Even if API call fails, clear local token
+    } finally {
+      // ALWAYS clear local state
       await clearToken();
-      ErrorHandler.handle(e);
     }
   }
 
@@ -51,8 +42,8 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<String?> getToken() async {
-    return await secureStorage.read(key: StorageConstants.userTokenKey);
+  Future<String?> getToken() {
+    return secureStorage.read(key: StorageConstants.userTokenKey);
   }
 
   @override
