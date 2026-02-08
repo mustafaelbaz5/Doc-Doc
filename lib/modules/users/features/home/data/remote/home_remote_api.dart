@@ -1,16 +1,17 @@
-import 'package:dio/dio.dart';
-import '../../../../../../core/constants/api_constants.dart';
-import '../../../../../../core/models/specializations_response_body.dart';
+import 'package:doc_doc/core/models/specializations_response_body.dart';
+import 'package:doc_doc/core/networking/api_end_points.dart';
+
+import 'package:doc_doc/core/networking/api_service.dart';
 
 class HomeRemoteApi {
-  final Dio dio;
-  final String _baseUrl = ApiConstants.apiBaseUrl;
-  HomeRemoteApi({required this.dio});
+  final ApiService apiService;
+
+  HomeRemoteApi({required this.apiService});
 
   Future<SpecializationsResponseBody> getSpecialization() async {
-    final response = await dio.get(
-      "$_baseUrl${ApiConstants.homeSpecializationEndPoint}",
+    final data = await apiService.get<Map<String, dynamic>>(
+      endPoint: ApiEndPoints.homeSpecializationEndPoint,
     );
-    return SpecializationsResponseBody.fromJson(response.data);
+    return SpecializationsResponseBody.fromJson(data);
   }
 }

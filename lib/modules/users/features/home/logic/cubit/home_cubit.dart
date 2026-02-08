@@ -17,10 +17,8 @@ class HomeCubit extends Cubit<HomeState> {
   Future<void> getHomeSpecializations() async {
     if (isClosed) return;
     emit(SpecializationsLoading());
-
     try {
       final response = await homeRepo.getSpecialization();
-
       if (isClosed) return;
       emit(
         SpecializationsSuccess(
@@ -40,15 +38,11 @@ class HomeCubit extends Cubit<HomeState> {
 
   void getDoctorsBySpecialization({required final int specializationId}) {
     if (isClosed) return;
-
     final currentState = state;
-
     if (currentState is! SpecializationsSuccess) return;
-
     final specialization = currentState.specializations.firstWhere(
       (final item) => item.id == specializationId,
     );
-
     if (isClosed) return;
     emit(currentState.copyWith(doctorsList: specialization.doctors));
   }
