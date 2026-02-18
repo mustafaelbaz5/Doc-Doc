@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
+import 'package:doc_doc/core/constants/app_keys.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 import '../auth/logic/cubit/auth_cubit.dart';
-import '../constants/storage_constants.dart';
 import '../di/dependency_injection.dart';
 import '../service/secure_storage.dart';
 
@@ -29,7 +29,7 @@ class DioFactory {
     );
 
     // Add token header
-    final token = await secureStorage.read(key: StorageConstants.userTokenKey);
+    final token = await secureStorage.read(key: AppKeys.userTokenKey);
     if (token != null && token.isNotEmpty) {
       _dio!.options.headers["Authorization"] = "Bearer $token";
     }
@@ -39,7 +39,7 @@ class DioFactory {
       InterceptorsWrapper(
         onRequest: (final options, final handler) async {
           final freshToken = await secureStorage.read(
-            key: StorageConstants.userTokenKey,
+            key: AppKeys.userTokenKey,
           );
           if (freshToken != null && freshToken.isNotEmpty) {
             options.headers["Authorization"] = "Bearer $freshToken";
@@ -58,7 +58,7 @@ class DioFactory {
                   authCubit.handleUnauthorized();
                 }
               }
-              await secureStorage.delete(key: StorageConstants.userTokenKey);
+              await secureStorage.delete(key: AppKeys.userTokenKey);
               clearToken();
             } catch (e) {
               debugPrint('Could not notify AuthCubit: $e');
