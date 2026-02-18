@@ -1,9 +1,11 @@
-import '../../../../extensions/context_extensions.dart';
-import '../../../../router/routes.dart';
-import '../../../../themes/app_text_styles.dart';
+import '../../../../themes/app_colors.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../extensions/context_extensions.dart';
+import '../../../../router/routes.dart';
+import '../../../../themes/app_text_styles.dart';
 
 class DontHaveAccount extends StatelessWidget {
   const DontHaveAccount({super.key});
@@ -23,7 +25,7 @@ class DontHaveAccount extends StatelessWidget {
           TextSpan(
             text: "auth.sign_up".tr(),
             style: AppTextStyles.font14SemiBold.copyWith(
-              color: context.customColors.accentBlue,
+              color: AppColors.primary300,
             ),
             recognizer: TapGestureRecognizer()
               ..onTap = () {

@@ -1,8 +1,9 @@
+import 'package:flutter/material.dart';
+
 import '../../extensions/context_extensions.dart';
 import '../../themes/app_text_styles.dart';
 import '../../utils/spacing.dart';
 import '../../widgets/custom_text_button.dart';
-import 'package:flutter/material.dart';
 
 class CustomDialog extends StatelessWidget {
   final String? title;
@@ -87,7 +88,7 @@ class CustomDialog extends StatelessWidget {
                       style: CustomButtonStyle.outlined,
                       onPressed: () {
                         context.pop();
-                        onSecondaryPressed?.call();
+                        onPrimaryPressed?.call();
                       },
                     ),
                   ),

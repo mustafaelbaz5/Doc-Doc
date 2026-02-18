@@ -79,5 +79,14 @@
       "password_validation_4": "يجب أن تحتوي كلمة المرور على حرف خاص واحد على الأقل،",
       "password_validation_5": "يجب أن تكون كلمة المرور مكونة من 8 أحرف على الأقل."
     }
+  },
+  "home": {
+    "top_bar_title": "مرحبًا، ",
+    "top_bar_subtitle": "كيف حالك؟",
+    "blue_header": "احجز وجدول\nمواعيدك مع\nأقرب طبيب",
+    "blue_header_button": "ابحث عن الأقرب",
+    "see_all": "عرض الكل",
+    "Doctor_specialty": "تخصصات الأطباء",
+    "recommended_doctors": "الأطباء الموصى بهم"
   }
 }

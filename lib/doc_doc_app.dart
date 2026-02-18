@@ -1,12 +1,14 @@
-import 'core/constants/storage_constants.dart';
+import 'package:doc_doc/core/constants/app_keys.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import 'core/auth/logic/cubit/auth_cubit.dart';
+import 'core/auth/ui/user_authenticated_check.dart';
+import 'core/di/dependency_injection.dart';
 import 'core/router/app_router.dart';
-import 'core/router/routes.dart';
 import 'core/themes/cubit/theme_cubit.dart';
 import 'core/themes/theme_data/theme_data_dark.dart';
 import 'core/themes/theme_data/theme_data_light.dart';
@@ -21,23 +23,25 @@ class DocDocApp extends StatelessWidget {
       designSize: const Size(375, 812),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (final BuildContext context, final Widget? child) {
-        return BlocProvider(
-          create: (final BuildContext context) => ThemeCubit(),
+      builder: (final context, final child) {
+        return MultiBlocProvider(
+          providers: [
+            BlocProvider(create: (_) => ThemeCubit()),
+            BlocProvider(create: (_) => getIt<AuthCubit>()..checkAuthStatus()),
+          ],
           child: BlocBuilder<ThemeCubit, ThemeMode>(
-            builder: (final BuildContext context, final ThemeMode mode) {
+            builder: (final context, final mode) {
               FlutterNativeSplash.remove();
               return MaterialApp(
+                navigatorKey: AppKeys.navigatorKey,
                 key: ValueKey(context.locale),
+                debugShowCheckedModeBanner: false,
+                title: 'DocDoc',
+                home: const UserAuthenticatedCheck(),
+                onGenerateRoute: appRouter.generateRoute,
                 localizationsDelegates: context.localizationDelegates,
                 supportedLocales: context.supportedLocales,
                 locale: context.locale,
-                debugShowCheckedModeBanner: false,
-                initialRoute: isLoggedIn
-                    ? Routes.homeScreen
-                    : Routes.onBoardingScreen,
-                onGenerateRoute: appRouter.generateRoute,
-                title: 'DocDoc',
                 theme: getLightTheme(context: context),
                 darkTheme: getDarkTheme(context: context),
                 themeMode: mode,

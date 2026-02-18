@@ -1,7 +1,9 @@
-import '../../../extensions/context_extensions.dart';
-import '../../../themes/app_text_styles.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+
+import '../../../extensions/context_extensions.dart';
+import '../../../themes/app_colors.dart';
+import '../../../themes/app_text_styles.dart';
 
 class TermsAndConditions extends StatelessWidget {
   const TermsAndConditions({super.key});
@@ -21,7 +23,7 @@ class TermsAndConditions extends StatelessWidget {
           TextSpan(
             text: "auth.terms_and_conditions_2".tr(),
             style: AppTextStyles.font14SemiBold.copyWith(
-              color: context.customColors.accentBlue,
+              color: AppColors.primary300,
             ),
           ),
           TextSpan(
@@ -33,7 +35,7 @@ class TermsAndConditions extends StatelessWidget {
           TextSpan(
             text: "auth.terms_and_conditions_4".tr(),
             style: AppTextStyles.font14SemiBold.copyWith(
-              color: context.customColors.accentBlue,
+              color: AppColors.primary300,
             ),
           ),
         ],
