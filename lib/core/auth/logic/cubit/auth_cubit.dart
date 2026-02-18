@@ -13,10 +13,8 @@ class AuthCubit extends Cubit<AuthState> {
 
   final AuthRepo authRepo;
 
-  /// Called ONCE on app start
   Future<void> checkAuthStatus() async {
     emit(AuthChecking());
-
     final token = await authRepo.getToken();
 
     if (token == null || token.isEmpty || token == '') {
@@ -51,13 +49,18 @@ class AuthCubit extends Cubit<AuthState> {
   }
 
   Future<void> logout() async {
-    await authRepo.logout();
-    emit(AuthUnauthenticated());
+    emit(AuthChecking());
+    try {
+      await authRepo.logout();
+    } catch (_) {
+      // ignore — repo already cleared token in finally
+    } finally {
+      emit(AuthUnauthenticated());
+    }
   }
 
-  /// Called from Dio interceptor
-  void handleUnauthorized() {
+  Future<void> handleUnauthorized() async {
+    await authRepo.clearToken();
     emit(AuthSessionExpired());
-    emit(AuthUnauthenticated());
   }
 }
