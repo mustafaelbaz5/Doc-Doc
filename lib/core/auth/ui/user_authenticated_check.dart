@@ -1,8 +1,8 @@
-import '../../onboarding/ui/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../modules/users/features/main_navigation/ui/main_scaffold.dart';
+import '../../onboarding/ui/on_boarding_screen.dart';
 import '../logic/cubit/auth_cubit.dart';
 
 class UserAuthenticatedCheck extends StatelessWidget {
@@ -10,19 +10,18 @@ class UserAuthenticatedCheck extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return BlocBuilder<AuthCubit, AuthState>(
-      buildWhen: (final prev, final curr) => curr is! AuthLoading,
-      builder: (final context, final state) {
-        if (state is AuthAuthenticated) {
-          return const MainScaffold();
-        }
+    final authState = context.watch<AuthCubit>().state;
 
-        if (state is AuthUnauthenticated) {
-          return const OnBoardingScreen();
-        }
+    if (authState is AuthInitial || authState is AuthChecking) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
 
-        return const Scaffold(body: Center(child: CircularProgressIndicator()));
-      },
-    );
+    if (authState is AuthUnauthenticated ||
+        authState is AuthFailure ||
+        authState is AuthSessionExpired) {
+      return const OnBoardingScreen();
+    }
+
+    return const MainScaffold();
   }
 }
