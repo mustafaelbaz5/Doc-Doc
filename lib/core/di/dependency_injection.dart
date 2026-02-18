@@ -1,4 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:doc_doc/core/networking/api_service.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:get_it/get_it.dart';
+
 import '../../modules/users/features/doctor_specialty/data/remote/specialty_remote_api.dart';
 import '../../modules/users/features/doctor_specialty/data/repo/specialty_repo.dart';
 import '../../modules/users/features/doctor_specialty/data/repo/specialty_repo_impl.dart';
@@ -7,9 +11,6 @@ import '../../modules/users/features/home/data/remote/home_remote_api.dart';
 import '../../modules/users/features/home/data/repo/home_repo.dart';
 import '../../modules/users/features/home/data/repo/home_repo_impl.dart';
 import '../../modules/users/features/home/logic/cubit/home_cubit.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:get_it/get_it.dart';
-
 import '../../modules/users/features/main_navigation/cubit/bottom_nav_cubit.dart';
 import '../auth/data/remote/auth_remote_api.dart';
 import '../auth/data/repo/auth_repo.dart';
@@ -32,8 +33,14 @@ Future<void> setUpDependencies() async {
 
   final Dio dio = await DioFactory.getDio();
   // Auth DI
+  if (!getIt.isRegistered<ApiService>()) {
+    getIt.registerLazySingleton<ApiService>(() => ApiService(dio: dio));
+  }
+
   if (!getIt.isRegistered<AuthRemoteApi>()) {
-    getIt.registerLazySingleton<AuthRemoteApi>(() => AuthRemoteApi(dio: dio));
+    getIt.registerLazySingleton<AuthRemoteApi>(
+      () => AuthRemoteApi(apiService: getIt<ApiService>()),
+    );
   }
 
   if (!getIt.isRegistered<AuthRepo>()) {
@@ -53,7 +60,9 @@ Future<void> setUpDependencies() async {
 
   // Home DI
   if (!getIt.isRegistered<HomeRemoteApi>()) {
-    getIt.registerLazySingleton<HomeRemoteApi>(() => HomeRemoteApi(dio: dio));
+    getIt.registerLazySingleton<HomeRemoteApi>(
+      () => HomeRemoteApi(apiService: getIt<ApiService>()),
+    );
   }
 
   if (!getIt.isRegistered<HomeRepo>()) {
@@ -75,7 +84,7 @@ Future<void> setUpDependencies() async {
   // Specialty
   if (!getIt.isRegistered<SpecialtyRemoteApi>()) {
     getIt.registerLazySingleton<SpecialtyRemoteApi>(
-      () => SpecialtyRemoteApi(dio: dio),
+      () => SpecialtyRemoteApi(apiService: getIt<ApiService>()),
     );
   }
 

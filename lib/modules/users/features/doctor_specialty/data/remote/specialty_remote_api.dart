@@ -1,27 +1,27 @@
-import 'package:dio/dio.dart';
-import '../../../../../../core/constants/api_constants.dart';
+import 'package:doc_doc/core/networking/api_service.dart';
+
 import '../../../../../../core/models/specialization_data_model.dart';
 import '../../../../../../core/models/specializations_response_body.dart';
+import '../../../../../../core/networking/api_end_points.dart';
 
 class SpecialtyRemoteApi {
-  final Dio dio;
-  final String _baseUrl = ApiConstants.apiBaseUrl;
+  final ApiService apiService;
 
-  SpecialtyRemoteApi({required this.dio});
+  SpecialtyRemoteApi({required this.apiService});
 
   Future<SpecializationsResponseBody> getAllSpecialization() async {
-    final response = await dio.get(
-      '$_baseUrl${ApiConstants.allSpecializationEndpoint}',
+    final data = await apiService.get<Map<String, dynamic>>(
+      endPoint: ApiEndPoints.allSpecializationEndpoint,
     );
-    return SpecializationsResponseBody.fromJson(response.data);
+    return SpecializationsResponseBody.fromJson(data);
   }
 
   Future<SpecializationDataModel> getSpecialtyById({
     required final int id,
   }) async {
-    final response = await dio.get(
-      '$_baseUrl${ApiConstants.showSpecialtyEndpoint}$id',
+    final data = await apiService.get<Map<String, dynamic>>(
+      endPoint: '${ApiEndPoints.showSpecialtyEndpoint}$id',
     );
-    return SpecializationDataModel.fromJson(response.data['data']);
+    return SpecializationDataModel.fromJson(data['data']);
   }
 }

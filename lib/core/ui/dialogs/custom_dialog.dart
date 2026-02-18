@@ -88,7 +88,7 @@ class CustomDialog extends StatelessWidget {
                       style: CustomButtonStyle.outlined,
                       onPressed: () {
                         context.pop();
-                        onSecondaryPressed?.call();
+                        onPrimaryPressed?.call();
                       },
                     ),
                   ),

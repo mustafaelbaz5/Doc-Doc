@@ -1,19 +1,22 @@
-import '../../../../../core/di/dependency_injection.dart';
-import '../../../../../core/extensions/context_extensions.dart';
-import '../../../../../core/themes/app_colors.dart';
-import '../../../../../core/utils/app_assets.dart';
-import '../../../../../core/utils/spacing.dart';
-import '../../home/logic/cubit/home_cubit.dart';
-import '../../home/ui/home_screen.dart';
-import '../../inbox/ui/messages_screen.dart';
-import '../../profile/ui/profile_screen.dart';
-import '../../search/ui/search_screen.dart';
+import 'package:doc_doc/core/auth/logic/cubit/auth_cubit.dart';
+import 'package:doc_doc/core/constants/app_keys.dart';
+import 'package:doc_doc/core/ui/dialogs/app_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:persistent_bottom_nav_bar/persistent_bottom_nav_bar.dart';
 
+import '../../../../../core/di/dependency_injection.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/themes/app_colors.dart';
+import '../../../../../core/utils/app_assets.dart';
+import '../../../../../core/utils/spacing.dart';
 import '../../appointment/ui/appointment_screen.dart';
+import '../../home/logic/cubit/home_cubit.dart';
+import '../../home/ui/home_screen.dart';
+import '../../inbox/ui/messages_screen.dart';
+import '../../profile/ui/profile_screen.dart';
+import '../../search/ui/search_screen.dart';
 
 class MainScaffold extends StatefulWidget {
   const MainScaffold({super.key});
@@ -24,19 +27,15 @@ class MainScaffold extends StatefulWidget {
 
 class _MainScaffoldState extends State<MainScaffold> {
   late PersistentTabController _controller;
+  late List<Widget> _screens;
 
   @override
   void initState() {
     super.initState();
     _controller = PersistentTabController(initialIndex: 0);
-  }
-
-  List<Widget> _buildScreens() {
-    return [
+    _screens = [
       BlocProvider(
-        create: (final context) => getIt<HomeCubit>()
-          ..getHomeSpecializations()
-          ..getDoctorsBySpecialization(specializationId: 0),
+        create: (_) => getIt<HomeCubit>(),
         child: const HomeScreen(),
       ),
       const AppointmentScreen(),
@@ -127,26 +126,39 @@ class _MainScaffoldState extends State<MainScaffold> {
 
   @override
   Widget build(final BuildContext context) {
-    return PersistentTabView(
-      context,
-      controller: _controller,
-      screens: _buildScreens(),
-      items: _navBarItems(context),
-      navBarStyle: NavBarStyle.style16,
-      backgroundColor: context.customColors.background,
-      navBarHeight: responsiveHeight(58),
-      padding: const EdgeInsets.only(top: 2, bottom: 8),
-      decoration: NavBarDecoration(
-        colorBehindNavBar: context.customColors.background,
-        boxShadow: [
-          BoxShadow(
-            color: context.customColors.border.withValues(alpha: 0.3),
-            blurRadius: 10,
-            offset: const Offset(0, -4),
-          ),
-        ],
+    return BlocListener<AuthCubit, AuthState>(
+      listenWhen: (_, final curr) => curr is AuthSessionExpired,
+      listener: (final context, final state) {
+        if (state is AuthSessionExpired) {
+          AppDialogs.showCustomDialog(
+            AppKeys.navigatorKey.currentContext!,
+            title: 'session_expired',
+            message: 'errors.session_expired',
+            buttonText: 'ok',
+          );
+        }
+      },
+      child: PersistentTabView(
+        context,
+        controller: _controller,
+        screens: _screens,
+        items: _navBarItems(context),
+        navBarStyle: NavBarStyle.style16,
+        backgroundColor: context.customColors.background,
+        navBarHeight: responsiveHeight(58),
+        padding: const EdgeInsets.only(top: 2, bottom: 8),
+        decoration: NavBarDecoration(
+          colorBehindNavBar: context.customColors.background,
+          boxShadow: [
+            BoxShadow(
+              color: context.customColors.border.withValues(alpha: 0.3),
+              blurRadius: 10,
+              offset: const Offset(0, -4),
+            ),
+          ],
+        ),
+        confineToSafeArea: true,
       ),
-      confineToSafeArea: true,
     );
   }
 }

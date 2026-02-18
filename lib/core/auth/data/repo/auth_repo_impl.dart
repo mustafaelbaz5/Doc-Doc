@@ -1,5 +1,5 @@
-import '../../../constants/storage_constants.dart';
-import '../../../error/types/error_handler.dart';
+import 'package:doc_doc/core/constants/app_keys.dart';
+
 import '../../../networking/dio_factory.dart';
 import '../../../service/secure_storage.dart';
 import '../models/login_request_body.dart';
@@ -17,47 +17,38 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<LoginResponseBody> login(final LoginRequestBody body) async {
-    try {
-      return await authRemoteApi.login(body);
-    } catch (e) {
-      ErrorHandler.handle(e);
-    }
+    return await authRemoteApi.login(body);
   }
 
   @override
   Future<SignUpResponseBody> signUp(final SignUpRequestBody body) async {
-    try {
-      return await authRemoteApi.signUp(body);
-    } catch (e) {
-      ErrorHandler.handle(e);
-    }
+    return await authRemoteApi.signUp(body);
   }
 
   @override
   Future<void> logout() async {
     try {
       await authRemoteApi.logout();
-    } catch (e) {
-      // Even if API call fails, clear local token
+    } finally {
       await clearToken();
-      ErrorHandler.handle(e);
     }
   }
 
   @override
   Future<void> saveUserToken({required final String token}) async {
-    await secureStorage.write(key: StorageConstants.userTokenKey, value: token);
+    await secureStorage.write(key: AppKeys.userTokenKey, value: token);
     DioFactory.setTokenAfterAuth(token);
+    await Future.delayed(const Duration(milliseconds: 100));
   }
 
   @override
-  Future<String?> getToken() async {
-    return await secureStorage.read(key: StorageConstants.userTokenKey);
+  Future<String?> getToken() {
+    return secureStorage.read(key: AppKeys.userTokenKey);
   }
 
   @override
   Future<void> clearToken() async {
-    await secureStorage.delete(key: StorageConstants.userTokenKey);
+    await secureStorage.delete(key: AppKeys.userTokenKey);
     DioFactory.clearToken();
   }
 }
