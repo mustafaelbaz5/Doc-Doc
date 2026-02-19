@@ -1,4 +1,4 @@
-import 'package:doc_doc/core/constants/app_keys.dart';
+import '../../../constants/app_keys.dart';
 
 import '../../../networking/dio_factory.dart';
 import '../../../service/secure_storage.dart';

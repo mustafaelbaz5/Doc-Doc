@@ -1,5 +1,4 @@
 import 'package:dio/dio.dart';
-import 'package:doc_doc/core/networking/api_service.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 
@@ -16,6 +15,7 @@ import '../auth/data/remote/auth_remote_api.dart';
 import '../auth/data/repo/auth_repo.dart';
 import '../auth/data/repo/auth_repo_impl.dart';
 import '../auth/logic/cubit/auth_cubit.dart';
+import '../networking/api_service.dart';
 import '../networking/dio_factory.dart';
 import '../service/secure_storage.dart';
 

@@ -124,10 +124,7 @@ class _SignUpFormState extends State<SignUpForm> {
               hintText: 'auth.gender'.tr(),
               value: _selectedGender,
               items: [
-                DropdownMenuItem(
-                  value: 'male',
-                  child: Text('auth.male'.tr()),
-                ),
+                DropdownMenuItem(value: 'male', child: Text('auth.male'.tr())),
                 DropdownMenuItem(
                   value: 'female',
                   child: Text('auth.female'.tr()),

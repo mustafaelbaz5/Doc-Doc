@@ -1,12 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:shimmer/shimmer.dart';
+
 import '../../../../../../core/extensions/context_extensions.dart';
 import '../../../../../../core/models/doctor_data_model.dart';
 import '../../../../../../core/themes/app_colors.dart';
 import '../../../../../../core/themes/app_text_styles.dart';
 import '../../../../../../core/utils/app_assets.dart';
 import '../../../../../../core/utils/spacing.dart';
-import 'package:flutter/material.dart';
-import 'package:shimmer/shimmer.dart';
 
 class SpecialtyDoctorsListViewCard extends StatelessWidget {
   const SpecialtyDoctorsListViewCard({

@@ -1,6 +1,6 @@
-import 'package:doc_doc/core/auth/logic/cubit/auth_cubit.dart';
-import 'package:doc_doc/core/ui/dialogs/app_dialogs.dart';
-import 'package:doc_doc/core/ui/loaders/overlay_loader.dart';
+import '../logic/cubit/auth_cubit.dart';
+import '../../ui/dialogs/app_dialogs.dart';
+import '../../ui/loaders/overlay_loader.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +19,7 @@ class SignUpScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: BlocConsumer<AuthCubit, AuthState>(
-         listener: (final context, final state) {
+          listener: (final context, final state) {
             if (state is AuthAuthenticated) {
               Navigator.of(context).popUntil((final route) => route.isFirst);
             } else if (state is AuthFailure) {

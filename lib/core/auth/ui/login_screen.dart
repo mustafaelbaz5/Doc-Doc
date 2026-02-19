@@ -1,6 +1,6 @@
-import 'package:doc_doc/core/auth/logic/cubit/auth_cubit.dart';
-import 'package:doc_doc/core/ui/dialogs/app_dialogs.dart';
-import 'package:doc_doc/core/ui/loaders/overlay_loader.dart';
+import '../logic/cubit/auth_cubit.dart';
+import '../../ui/dialogs/app_dialogs.dart';
+import '../../ui/loaders/overlay_loader.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

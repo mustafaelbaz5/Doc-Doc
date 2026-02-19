@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:doc_doc/core/error/types/error_handler.dart';
-import 'package:doc_doc/core/networking/api_end_points.dart';
+import '../error/types/error_handler.dart';
+import 'api_end_points.dart';
 
 class ApiService {
   final Dio dio;
