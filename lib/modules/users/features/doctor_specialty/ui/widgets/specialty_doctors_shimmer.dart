@@ -1,7 +1,8 @@
-import '../../../../../../core/extensions/context_extensions.dart';
-import '../../../../../../core/utils/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../../../../../core/extensions/context_extensions.dart';
+import '../../../../../../core/utils/spacing.dart';
 
 class SpecialtyDoctorsShimmer extends StatelessWidget {
   const SpecialtyDoctorsShimmer({super.key});

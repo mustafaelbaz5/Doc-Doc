@@ -14,4 +14,13 @@ class ApiEndPoints {
   // Specialization
   static const String allSpecializationEndpoint = 'specialization/index';
   static const String showSpecialtyEndpoint = 'specialization/show/';
+
+  // Doctors
+  static const String allDoctorsEndPoint = 'doctor/index';
+  static const String showDoctorDetailsEndPoint = 'doctor/show/';
+  static const String filterDoctorsEndPoint = 'doctor/doctor-filter?';
+  static const String searchDoctorsEndPoint = 'doctor/doctor-search?name=';
+
+  // cities
+  static const String citiesEndPoint = 'city/index';
 }

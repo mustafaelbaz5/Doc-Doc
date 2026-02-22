@@ -1,4 +1,4 @@
-import '../../../../../../core/models/specializations_response_body.dart';
+import '../../../../../../core/data/models/specializations_response_body.dart';
 import '../remote/home_remote_api.dart';
 import 'home_repo.dart';
 

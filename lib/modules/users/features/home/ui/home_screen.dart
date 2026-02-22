@@ -1,8 +1,8 @@
-import 'package:doc_doc/modules/users/features/home/logic/cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../core/utils/spacing.dart';
+import '../logic/cubit/home_cubit.dart';
 import 'widgets/doctor_recommendation/home_recommendation_doctor.dart';
 import 'widgets/doctor_specialty/home_doctor_specialty.dart';
 import 'widgets/doctors_blue_container.dart';
@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const DoctorsBlueContainer(),
             verticalSpacing(24),
             const HomeDoctorSpecialty(),
-            verticalSpacing(24),
+            verticalSpacing(12),
             const Expanded(child: HomeRecommendationDoctor()),
           ],
         ),

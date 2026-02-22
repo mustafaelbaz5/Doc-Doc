@@ -1,12 +1,15 @@
+import '../../../../../../../core/extensions/context_extensions.dart';
+import '../../../../../../../core/router/routes.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 import '../../../../../../../core/themes/app_colors.dart';
 import '../../../../../../../core/themes/app_text_styles.dart';
 import '../../../../../../../core/utils/spacing.dart';
 import '../../../logic/cubit/home_cubit.dart';
 import 'doctor_recommendation_list_view.dart';
 import 'doctors_shimmer_loading.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomeRecommendationDoctor extends StatelessWidget {
   const HomeRecommendationDoctor({super.key});
@@ -24,7 +27,9 @@ class HomeRecommendationDoctor extends StatelessWidget {
             ),
             const Spacer(),
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                context.pushNamed(Routes.recommendationDoctorScreen);
+              },
               child: Text(
                 "home.see_all".tr(),
                 style: AppTextStyles.font12Regular.copyWith(

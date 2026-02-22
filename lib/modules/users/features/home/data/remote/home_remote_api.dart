@@ -1,7 +1,7 @@
-import 'package:doc_doc/core/models/specializations_response_body.dart';
-import 'package:doc_doc/core/networking/api_end_points.dart';
+import '../../../../../../core/data/models/specializations_response_body.dart';
+import '../../../../../../core/networking/api_end_points.dart';
 
-import 'package:doc_doc/core/networking/api_service.dart';
+import '../../../../../../core/networking/api_service.dart';
 
 class HomeRemoteApi {
   final ApiService apiService;

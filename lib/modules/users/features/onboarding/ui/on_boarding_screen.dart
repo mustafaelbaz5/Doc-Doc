@@ -1,11 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../extensions/context_extensions.dart';
-import '../../router/routes.dart';
-import '../../themes/app_text_styles.dart';
-import '../../utils/spacing.dart';
-import '../../widgets/custom_text_button.dart';
+import '../../../../../core/extensions/context_extensions.dart';
+import '../../../../../core/router/routes.dart';
+import '../../../../../core/themes/app_text_styles.dart';
+import '../../../../../core/utils/spacing.dart';
+import '../../../../../core/widgets/custom_text_button.dart';
 import 'widgets/on_boarding_image_and_text.dart';
 import 'widgets/on_boarding_top_bar.dart';
 import 'widgets/on_boarding_top_logo.dart';

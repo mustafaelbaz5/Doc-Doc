@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:doc_doc/core/constants/app_keys.dart';
+import '../constants/app_keys.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
@@ -43,8 +43,6 @@ class DioFactory {
           );
           if (freshToken != null && freshToken.isNotEmpty) {
             options.headers["Authorization"] = "Bearer $freshToken";
-          } else {
-            clearToken();
           }
           handler.next(options);
         },

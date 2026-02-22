@@ -1,4 +1,4 @@
-import 'package:doc_doc/core/networking/api_service.dart';
+import '../../../networking/api_service.dart';
 
 import '../../../networking/api_end_points.dart';
 import '../models/login_request_body.dart';

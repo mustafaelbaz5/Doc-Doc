@@ -1,6 +1,6 @@
-import 'package:doc_doc/core/auth/logic/cubit/auth_cubit.dart';
-import 'package:doc_doc/core/constants/app_keys.dart';
-import 'package:doc_doc/core/ui/dialogs/app_dialogs.dart';
+import '../../../../../core/auth/logic/cubit/auth_cubit.dart';
+import '../../../../../core/constants/app_keys.dart';
+import '../../../../../core/widgets/ui/dialogs/app_dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';

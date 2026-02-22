@@ -1,7 +1,7 @@
+import '../../../../../../../core/widgets/doctor_list_view_card.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../../core/models/doctor_data_model.dart';
-import 'doctor_recommendation_card.dart';
+import '../../../../../../../core/data/models/doctor_data_model.dart';
 
 class DoctorRecommendationListView extends StatelessWidget {
   const DoctorRecommendationListView({super.key, required this.doctors});
@@ -20,7 +20,7 @@ class DoctorRecommendationListView extends StatelessWidget {
         final doctor = doctors[index];
         return Padding(
           padding: const EdgeInsets.only(bottom: 16),
-          child: DoctorRecommendationCard(doctor: doctor),
+          child: DoctorListViewCard(doctor: doctor),
         );
       },
     );

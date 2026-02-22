@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../modules/users/features/main_navigation/ui/main_scaffold.dart';
-import '../../onboarding/ui/on_boarding_screen.dart';
+import '../../../modules/users/features/onboarding/ui/on_boarding_screen.dart';
 import '../logic/cubit/auth_cubit.dart';
 
 class UserAuthenticatedCheck extends StatelessWidget {

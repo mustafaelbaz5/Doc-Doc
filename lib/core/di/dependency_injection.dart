@@ -1,5 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:doc_doc/core/networking/api_service.dart';
+import '../data/remote/shared_remote_api.dart';
+import '../../modules/users/features/all_doctors/data/remote/all_doctors_remote_api.dart';
+import '../../modules/users/features/all_doctors/data/repo/all_doctors_repo.dart';
+import '../../modules/users/features/all_doctors/data/repo/all_doctors_repo_impl.dart';
+import '../../modules/users/features/all_doctors/logic/all_doctors/all_doctors_cubit.dart';
+import '../../modules/users/features/all_doctors/logic/filter_data/filter_data_cubit.dart';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 
@@ -16,6 +22,7 @@ import '../auth/data/remote/auth_remote_api.dart';
 import '../auth/data/repo/auth_repo.dart';
 import '../auth/data/repo/auth_repo_impl.dart';
 import '../auth/logic/cubit/auth_cubit.dart';
+import '../networking/api_service.dart';
 import '../networking/dio_factory.dart';
 import '../service/secure_storage.dart';
 
@@ -35,6 +42,12 @@ Future<void> setUpDependencies() async {
   // Auth DI
   if (!getIt.isRegistered<ApiService>()) {
     getIt.registerLazySingleton<ApiService>(() => ApiService(dio: dio));
+  }
+
+  if (!getIt.isRegistered<SharedRemoteApi>()) {
+    getIt.registerLazySingleton<SharedRemoteApi>(
+      () => SharedRemoteApi(apiService: getIt<ApiService>()),
+    );
   }
 
   if (!getIt.isRegistered<AuthRemoteApi>()) {
@@ -90,13 +103,44 @@ Future<void> setUpDependencies() async {
 
   if (!getIt.isRegistered<SpecialtyRepo>()) {
     getIt.registerLazySingleton<SpecialtyRepo>(
-      () => SpecialtyRepoImpl(specialtyRemoteApi: getIt<SpecialtyRemoteApi>()),
+      () => SpecialtyRepoImpl(
+        specialtyRemoteApi: getIt<SpecialtyRemoteApi>(),
+        sharedRemoteApi: getIt<SharedRemoteApi>(),
+      ),
     );
   }
 
   if (!getIt.isRegistered<SpecialtyCubit>()) {
     getIt.registerFactory<SpecialtyCubit>(
       () => SpecialtyCubit(specialtyRepo: getIt<SpecialtyRepo>()),
+    );
+  }
+
+  // All Doctors
+  if (!getIt.isRegistered<AllDoctorsRemoteApi>()) {
+    getIt.registerLazySingleton<AllDoctorsRemoteApi>(
+      () => AllDoctorsRemoteApi(apiService: getIt<ApiService>()),
+    );
+  }
+
+  if (!getIt.isRegistered<AllDoctorsRepo>()) {
+    getIt.registerLazySingleton<AllDoctorsRepo>(
+      () => AllDoctorsRepoImpl(
+        allDoctorsRemoteApi: getIt<AllDoctorsRemoteApi>(),
+        sharedRemoteApi: getIt<SharedRemoteApi>(),
+      ),
+    );
+  }
+
+  if (!getIt.isRegistered<AllDoctorsCubit>()) {
+    getIt.registerFactory<AllDoctorsCubit>(
+      () => AllDoctorsCubit(allDoctorsRepo: getIt<AllDoctorsRepo>()),
+    );
+  }
+
+  if (!getIt.isRegistered<FilterDataCubit>()) {
+    getIt.registerFactory<FilterDataCubit>(
+      () => FilterDataCubit(allDoctorsRepo: getIt<AllDoctorsRepo>()),
     );
   }
 }

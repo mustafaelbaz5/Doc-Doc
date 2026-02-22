@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../../themes/app_text_styles.dart';
-import '../../../utils/app_assets.dart';
-import '../../../utils/spacing.dart';
+import '../../../../../../core/themes/app_text_styles.dart';
+import '../../../../../../core/utils/app_assets.dart';
+import '../../../../../../core/utils/spacing.dart';
 
 class OnBoardingTopLogo extends StatelessWidget {
   const OnBoardingTopLogo({super.key});

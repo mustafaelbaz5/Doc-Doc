@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+
 import '../../../../../core/utils/spacing.dart';
 import '../../../../../core/widgets/custom_app_bar.dart';
 import 'widgets/specialties_grid_view.dart';
-import 'package:flutter/material.dart';
 
 class DoctorSpecialtyScreen extends StatelessWidget {
   const DoctorSpecialtyScreen({super.key});
