@@ -1,14 +1,13 @@
+import 'package:doc_doc/core/extensions/context_extensions.dart';
+import 'package:doc_doc/core/models/doctor_data_model.dart';
+import 'package:doc_doc/core/themes/app_colors.dart';
+import 'package:doc_doc/core/themes/app_text_styles.dart';
+import 'package:doc_doc/core/utils/app_assets.dart';
+import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../../core/extensions/context_extensions.dart';
-import '../../../../../../../core/models/doctor_data_model.dart';
-import '../../../../../../../core/themes/app_colors.dart';
-import '../../../../../../../core/themes/app_text_styles.dart';
-import '../../../../../../../core/utils/app_assets.dart';
-import '../../../../../../../core/utils/spacing.dart';
-
-class DoctorRecommendationCard extends StatelessWidget {
-  const DoctorRecommendationCard({super.key, required this.doctor, this.onTap});
+class DoctorListViewCard extends StatelessWidget {
+  const DoctorListViewCard({super.key, required this.doctor, this.onTap});
 
   final DoctorDataModel doctor;
   final VoidCallback? onTap;
