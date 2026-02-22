@@ -1,9 +1,9 @@
-import 'package:doc_doc/core/extensions/context_extensions.dart';
-import 'package:doc_doc/core/data/models/doctor_data_model.dart';
-import 'package:doc_doc/core/themes/app_colors.dart';
-import 'package:doc_doc/core/themes/app_text_styles.dart';
-import 'package:doc_doc/core/utils/app_assets.dart';
-import 'package:doc_doc/core/utils/spacing.dart';
+import '../extensions/context_extensions.dart';
+import '../data/models/doctor_data_model.dart';
+import '../themes/app_colors.dart';
+import '../themes/app_text_styles.dart';
+import '../utils/app_assets.dart';
+import '../utils/spacing.dart';
 import 'package:flutter/material.dart';
 
 class DoctorListViewCard extends StatelessWidget {

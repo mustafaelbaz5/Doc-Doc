@@ -1,4 +1,4 @@
-import 'package:doc_doc/core/data/remote/shared_remote_api.dart';
+import '../../../../../../core/data/remote/shared_remote_api.dart';
 
 import '../../../../../../core/data/models/specialization_data_model.dart';
 import '../../../../../../core/data/models/specializations_response_body.dart';

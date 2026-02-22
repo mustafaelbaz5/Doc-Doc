@@ -1,9 +1,9 @@
-import 'package:doc_doc/core/utils/spacing.dart';
-import 'package:doc_doc/core/widgets/custom_app_bar.dart';
-import 'package:doc_doc/core/widgets/doctor_list_view_card.dart';
-import 'package:doc_doc/modules/users/features/all_doctors/logic/all_doctors/all_doctors_cubit.dart';
-import 'package:doc_doc/modules/users/features/all_doctors/logic/filter_data/filter_data_cubit.dart';
-import 'package:doc_doc/modules/users/features/all_doctors/ui/widgets/all_doctors_top_bar.dart';
+import '../../../../../core/utils/spacing.dart';
+import '../../../../../core/widgets/custom_app_bar.dart';
+import '../../../../../core/widgets/doctor_list_view_card.dart';
+import '../logic/all_doctors/all_doctors_cubit.dart';
+import '../logic/filter_data/filter_data_cubit.dart';
+import 'widgets/all_doctors_top_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

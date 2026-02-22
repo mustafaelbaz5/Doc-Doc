@@ -1,7 +1,7 @@
-import 'package:doc_doc/core/data/models/city_data_model.dart';
-import 'package:doc_doc/core/data/models/specializations_response_body.dart';
-import 'package:doc_doc/core/networking/api_end_points.dart';
-import 'package:doc_doc/core/networking/api_service.dart';
+import '../models/city_data_model.dart';
+import '../models/specializations_response_body.dart';
+import '../../networking/api_end_points.dart';
+import '../../networking/api_service.dart';
 
 class SharedRemoteApi {
   final ApiService apiService;

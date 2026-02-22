@@ -1,6 +1,6 @@
-import 'package:doc_doc/core/data/models/city_data_model.dart';
-import 'package:doc_doc/core/data/models/doctor_data_model.dart';
-import 'package:doc_doc/core/data/models/specializations_response_body.dart';
+import '../../../../../../core/data/models/city_data_model.dart';
+import '../../../../../../core/data/models/doctor_data_model.dart';
+import '../../../../../../core/data/models/specializations_response_body.dart';
 
 abstract class AllDoctorsRepo {
   Future<List<DoctorDataModel>> getAllDoctors();

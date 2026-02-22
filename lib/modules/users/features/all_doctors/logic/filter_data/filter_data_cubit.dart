@@ -1,7 +1,7 @@
-import 'package:doc_doc/core/error/models/app_error.dart';
-import 'package:doc_doc/core/data/models/city_data_model.dart';
-import 'package:doc_doc/core/data/models/specialization_data_model.dart';
-import 'package:doc_doc/modules/users/features/all_doctors/data/repo/all_doctors_repo.dart';
+import '../../../../../../core/error/models/app_error.dart';
+import '../../../../../../core/data/models/city_data_model.dart';
+import '../../../../../../core/data/models/specialization_data_model.dart';
+import '../../data/repo/all_doctors_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,10 +16,7 @@ class FilterDataCubit extends Cubit<FilterDataState> {
     final specializations = await allDoctorsRepo.getSpecializations();
     final cities = await allDoctorsRepo.getCities();
     emit(
-      FilterDataLoaded(
-        specializations: specializations.data,
-        cities: cities,
-      ),
+      FilterDataLoaded(specializations: specializations.data, cities: cities),
     );
   }
 }

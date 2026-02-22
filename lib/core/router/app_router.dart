@@ -1,6 +1,6 @@
-import 'package:doc_doc/modules/users/features/all_doctors/logic/all_doctors/all_doctors_cubit.dart';
-import 'package:doc_doc/modules/users/features/all_doctors/logic/filter_data/filter_data_cubit.dart';
-import 'package:doc_doc/modules/users/features/all_doctors/ui/all_doctors_screen.dart';
+import '../../modules/users/features/all_doctors/logic/all_doctors/all_doctors_cubit.dart';
+import '../../modules/users/features/all_doctors/logic/filter_data/filter_data_cubit.dart';
+import '../../modules/users/features/all_doctors/ui/all_doctors_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

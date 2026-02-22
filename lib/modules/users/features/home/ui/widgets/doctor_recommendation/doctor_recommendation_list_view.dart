@@ -1,4 +1,4 @@
-import 'package:doc_doc/core/widgets/doctor_list_view_card.dart';
+import '../../../../../../../core/widgets/doctor_list_view_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../../core/data/models/doctor_data_model.dart';

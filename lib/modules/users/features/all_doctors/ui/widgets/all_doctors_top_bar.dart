@@ -1,12 +1,12 @@
-import 'package:doc_doc/core/extensions/context_extensions.dart';
-import 'package:doc_doc/core/themes/app_colors.dart';
-import 'package:doc_doc/core/themes/app_text_styles.dart';
-import 'package:doc_doc/core/utils/app_assets.dart';
-import 'package:doc_doc/core/utils/spacing.dart';
-import 'package:doc_doc/core/widgets/custom_text_form_.dart';
-import 'package:doc_doc/modules/users/features/all_doctors/logic/filter_data/filter_data_cubit.dart';
+import '../../../../../../core/extensions/context_extensions.dart';
+import '../../../../../../core/themes/app_colors.dart';
+import '../../../../../../core/themes/app_text_styles.dart';
+import '../../../../../../core/utils/app_assets.dart';
+import '../../../../../../core/utils/spacing.dart';
+import '../../../../../../core/widgets/custom_text_form_.dart';
+import '../../logic/filter_data/filter_data_cubit.dart';
 
-import 'package:doc_doc/modules/users/features/all_doctors/ui/widgets/doctors_filter_bottom_sheet.dart';
+import 'doctors_filter_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -30,7 +30,7 @@ class AllDoctorsTopBar extends StatelessWidget {
   final String? selectedPrice;
 
   final void Function(String? specialization, String? city, String? price)?
-      onApply;
+  onApply;
 
   bool get _hasActiveFilter =>
       selectedSpecialization != null ||

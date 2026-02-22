@@ -1,6 +1,6 @@
-import 'package:doc_doc/core/extensions/context_extensions.dart';
-import 'package:doc_doc/core/themes/app_text_styles.dart';
-import 'package:doc_doc/core/utils/spacing.dart';
+import '../../../../../../core/extensions/context_extensions.dart';
+import '../../../../../../core/themes/app_text_styles.dart';
+import '../../../../../../core/utils/spacing.dart';
 import 'package:flutter/material.dart';
 
 class FilterSection extends StatelessWidget {

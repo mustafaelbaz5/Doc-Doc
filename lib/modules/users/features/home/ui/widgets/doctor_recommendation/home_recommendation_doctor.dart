@@ -1,5 +1,5 @@
-import 'package:doc_doc/core/extensions/context_extensions.dart';
-import 'package:doc_doc/core/router/routes.dart';
+import '../../../../../../../core/extensions/context_extensions.dart';
+import '../../../../../../../core/router/routes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

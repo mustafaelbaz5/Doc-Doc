@@ -1,6 +1,6 @@
-import 'package:doc_doc/core/data/models/doctor_data_model.dart';
-import 'package:doc_doc/core/networking/api_end_points.dart';
-import 'package:doc_doc/core/networking/api_service.dart';
+import '../../../../../../core/data/models/doctor_data_model.dart';
+import '../../../../../../core/networking/api_end_points.dart';
+import '../../../../../../core/networking/api_service.dart';
 
 class AllDoctorsRemoteApi {
   final ApiService apiService;
