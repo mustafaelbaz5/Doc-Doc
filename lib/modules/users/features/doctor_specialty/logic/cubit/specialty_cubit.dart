@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../../../core/error/models/app_error.dart';
-import '../../../../../../core/models/doctor_data_model.dart';
-import '../../../../../../core/models/specialization_data_model.dart';
+import '../../../../../../core/data/models/doctor_data_model.dart';
+import '../../../../../../core/data/models/specialization_data_model.dart';
 import '../../data/repo/specialty_repo.dart';
 
 part 'specialty_state.dart';

@@ -1,8 +1,8 @@
-import '../../../extensions/context_extensions.dart';
-import '../../../themes/app_colors.dart';
-import '../../../themes/app_text_styles.dart';
-import '../../../utils/app_assets.dart';
-import '../../../utils/spacing.dart';
+import '../../../../../../core/extensions/context_extensions.dart';
+import '../../../../../../core/themes/app_colors.dart';
+import '../../../../../../core/themes/app_text_styles.dart';
+import '../../../../../../core/utils/app_assets.dart';
+import '../../../../../../core/utils/spacing.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';

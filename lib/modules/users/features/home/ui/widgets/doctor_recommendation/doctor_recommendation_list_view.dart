@@ -1,7 +1,7 @@
 import 'package:doc_doc/core/widgets/doctor_list_view_card.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../../core/models/doctor_data_model.dart';
+import '../../../../../../../core/data/models/doctor_data_model.dart';
 
 class DoctorRecommendationListView extends StatelessWidget {
   const DoctorRecommendationListView({super.key, required this.doctors});

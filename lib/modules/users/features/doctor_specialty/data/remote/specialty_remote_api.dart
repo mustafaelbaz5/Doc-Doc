@@ -1,6 +1,6 @@
 import '../../../../../../core/networking/api_service.dart';
 
-import '../../../../../../core/models/specialization_data_model.dart';
+import '../../../../../../core/data/models/specialization_data_model.dart';
 import '../../../../../../core/networking/api_end_points.dart';
 
 class SpecialtyRemoteApi {

@@ -1,6 +1,6 @@
 import 'package:doc_doc/core/error/models/app_error.dart';
-import 'package:doc_doc/core/models/city_data_model.dart';
-import 'package:doc_doc/core/models/specialization_data_model.dart';
+import 'package:doc_doc/core/data/models/city_data_model.dart';
+import 'package:doc_doc/core/data/models/specialization_data_model.dart';
 import 'package:doc_doc/modules/users/features/all_doctors/data/repo/all_doctors_repo.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

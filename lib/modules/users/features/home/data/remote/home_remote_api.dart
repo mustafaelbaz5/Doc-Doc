@@ -1,4 +1,4 @@
-import '../../../../../../core/models/specializations_response_body.dart';
+import '../../../../../../core/data/models/specializations_response_body.dart';
 import '../../../../../../core/networking/api_end_points.dart';
 
 import '../../../../../../core/networking/api_service.dart';

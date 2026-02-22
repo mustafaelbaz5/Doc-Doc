@@ -1,5 +1,5 @@
 import '../../../../../../core/extensions/context_extensions.dart';
-import '../../../../../../core/models/specialization_data_model.dart';
+import '../../../../../../core/data/models/specialization_data_model.dart';
 import '../../../../../../core/router/routes.dart';
 import '../../logic/cubit/specialty_cubit.dart';
 import 'specialty_grid_view_item.dart';

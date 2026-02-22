@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../themes/app_colors.dart';
+import '../../../themes/app_colors.dart';
 import 'custom_dialog.dart';
 
 class AppDialogs {

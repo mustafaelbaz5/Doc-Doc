@@ -1,5 +1,5 @@
-import 'package:doc_doc/core/models/city_data_model.dart';
-import 'package:doc_doc/core/models/specializations_response_body.dart';
+import 'package:doc_doc/core/data/models/city_data_model.dart';
+import 'package:doc_doc/core/data/models/specializations_response_body.dart';
 import 'package:doc_doc/core/networking/api_end_points.dart';
 import 'package:doc_doc/core/networking/api_service.dart';
 

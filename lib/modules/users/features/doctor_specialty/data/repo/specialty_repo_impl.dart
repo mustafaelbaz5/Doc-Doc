@@ -1,7 +1,7 @@
 import 'package:doc_doc/core/data/remote/shared_remote_api.dart';
 
-import '../../../../../../core/models/specialization_data_model.dart';
-import '../../../../../../core/models/specializations_response_body.dart';
+import '../../../../../../core/data/models/specialization_data_model.dart';
+import '../../../../../../core/data/models/specializations_response_body.dart';
 import '../remote/specialty_remote_api.dart';
 import 'specialty_repo.dart';
 

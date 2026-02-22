@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../../../core/models/specialization_data_model.dart';
+import '../../../../../../../core/data/models/specialization_data_model.dart';
 import '../../../../../../../core/utils/spacing.dart';
 import '../../../logic/cubit/home_cubit.dart';
 import 'home_specialty_list_view_item.dart';

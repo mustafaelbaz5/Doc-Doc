@@ -11,7 +11,7 @@ import '../../modules/users/features/main_navigation/ui/main_scaffold.dart';
 import '../auth/ui/login_screen.dart';
 import '../auth/ui/sign_up_screen.dart';
 import '../di/dependency_injection.dart';
-import '../onboarding/ui/on_boarding_screen.dart';
+import '../../modules/users/features/onboarding/ui/on_boarding_screen.dart';
 import 'routes.dart';
 
 class AppRouter {
