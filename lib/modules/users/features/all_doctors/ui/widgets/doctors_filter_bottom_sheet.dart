@@ -13,9 +13,7 @@ class DoctorsFilterBottomSheet extends StatefulWidget {
     this.selectedSpecialization,
     this.selectedCity,
     this.selectedPrice,
-    this.onSpecializationChanged,
-    this.onCityChanged,
-    this.onPriceChanged,
+    this.onApply,
   });
 
   final List<String> specializations;
@@ -26,9 +24,8 @@ class DoctorsFilterBottomSheet extends StatefulWidget {
   final String? selectedCity;
   final String? selectedPrice;
 
-  final ValueChanged<String?>? onSpecializationChanged;
-  final ValueChanged<String?>? onCityChanged;
-  final ValueChanged<String?>? onPriceChanged;
+  final void Function(String? specialization, String? city, String? price)?
+  onApply;
 
   @override
   State<DoctorsFilterBottomSheet> createState() =>
@@ -49,9 +46,11 @@ class _DoctorsFilterBottomSheetState extends State<DoctorsFilterBottomSheet> {
   }
 
   void _applyFilters() {
-    widget.onSpecializationChanged?.call(_selectedSpecialization);
-    widget.onCityChanged?.call(_selectedCity);
-    widget.onPriceChanged?.call(_selectedPrice);
+    widget.onApply?.call(
+      _selectedSpecialization,
+      _selectedCity,
+      _selectedPrice,
+    );
     Navigator.pop(context);
   }
 

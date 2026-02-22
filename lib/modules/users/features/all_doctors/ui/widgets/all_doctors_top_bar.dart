@@ -18,9 +18,7 @@ class AllDoctorsTopBar extends StatelessWidget {
     this.selectedSpecialization,
     this.selectedCity,
     this.selectedPrice,
-    this.onSpecializationChanged,
-    this.onCityChanged,
-    this.onPriceChanged,
+    this.onApply,
   });
 
   final TextEditingController? controller;
@@ -30,9 +28,8 @@ class AllDoctorsTopBar extends StatelessWidget {
   final String? selectedCity;
   final String? selectedPrice;
 
-  final ValueChanged<String?>? onSpecializationChanged;
-  final ValueChanged<String?>? onCityChanged;
-  final ValueChanged<String?>? onPriceChanged;
+  final void Function(String? specialization, String? city, String? price)?
+      onApply;
 
   bool get _hasActiveFilter =>
       selectedSpecialization != null ||
@@ -66,9 +63,7 @@ class AllDoctorsTopBar extends StatelessWidget {
               selectedSpecialization: selectedSpecialization,
               selectedCity: selectedCity,
               selectedPrice: selectedPrice,
-              onSpecializationChanged: onSpecializationChanged,
-              onCityChanged: onCityChanged,
-              onPriceChanged: onPriceChanged,
+              onApply: onApply,
             );
           },
         ),
@@ -134,7 +129,7 @@ class AllDoctorsTopBar extends StatelessWidget {
               child: Icon(
                 Icons.tune_rounded,
                 color: _hasActiveFilter
-                    ? AppColors.green0
+                    ? AppColors.grey0
                     : context.customColors.border,
                 size: responsiveWidth(22),
               ),

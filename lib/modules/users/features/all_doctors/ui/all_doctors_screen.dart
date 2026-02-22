@@ -23,13 +23,6 @@ class _AllDoctorsScreenState extends State<AllDoctorsScreen> {
   String? _selectedCityName;
   String? _selectedPrice;
 
-  void _applyFilter() {
-    context.read<AllDoctorsCubit>().filterDoctors(
-      specializationId: _selectedSpecializationId,
-      cityId: _selectedCityId,
-    );
-  }
-
   @override
   Widget build(final BuildContext context) {
     return Scaffold(
@@ -40,52 +33,41 @@ class _AllDoctorsScreenState extends State<AllDoctorsScreen> {
             verticalSpacing(16),
             BlocBuilder<FilterDataCubit, FilterDataState>(
               builder: (final context, final state) {
+                final allDoctorsCubit = context.read<AllDoctorsCubit>();
                 return AllDoctorsTopBar(
                   controller: _searchController,
                   onSearchChanged: (final query) =>
-                      context.read<AllDoctorsCubit>().searchDoctors(query),
+                      allDoctorsCubit.searchDoctors(query),
                   selectedSpecialization: _selectedSpecializationName,
                   selectedCity: _selectedCityName,
                   selectedPrice: _selectedPrice,
-                  onSpecializationChanged: (final val) {
+                  onApply: (final spec, final city, final price) {
                     final state = context.read<FilterDataCubit>().state;
-                    if (state is FilterDataLoaded && val != null) {
-                      final match = state.specializations.firstWhere(
-                        (final e) => e.name == val,
-                      );
+                    if (state is FilterDataLoaded) {
+                      final specMatch = spec != null
+                          ? state.specializations.firstWhere(
+                              (final e) => e.name == spec,
+                            )
+                          : null;
+                      final cityMatch = city != null
+                          ? state.cities.firstWhere((final e) => e.name == city)
+                          : null;
                       setState(() {
-                        _selectedSpecializationName = match.name;
-                        _selectedSpecializationId = match.id.toString();
-                      });
-                    } else {
-                      setState(() {
-                        _selectedSpecializationName = null;
-                        _selectedSpecializationId = null;
+                        _selectedSpecializationName = specMatch?.name;
+                        _selectedSpecializationId = specMatch?.id.toString();
+                        _selectedCityName = cityMatch?.name;
+                        _selectedCityId = cityMatch?.id.toString();
+                        _selectedPrice = price;
                       });
                     }
-                    _applyFilter();
-                  },
-                  onCityChanged: (final val) {
-                    final state = context.read<FilterDataCubit>().state;
-                    if (state is FilterDataLoaded && val != null) {
-                      final match = state.cities.firstWhere(
-                        (final e) => e.name == val,
-                      );
-                      setState(() {
-                        _selectedCityName = match.name;
-                        _selectedCityId = match.id.toString();
-                      });
-                    } else {
-                      setState(() {
-                        _selectedCityName = null;
-                        _selectedCityId = null;
-                      });
-                    }
-                    _applyFilter();
-                  },
-                  onPriceChanged: (final val) {
-                    setState(() => _selectedPrice = val);
-                    context.read<AllDoctorsCubit>().filterByPrice(val);
+                    allDoctorsCubit
+                        .filterDoctors(
+                          specializationId: _selectedSpecializationId,
+                          cityId: _selectedCityId,
+                        )
+                        .then((final _) {
+                          allDoctorsCubit.filterByPrice(price);
+                        });
                   },
                 );
               },

@@ -13,12 +13,14 @@ class AllDoctorsCubit extends Cubit<AllDoctorsState> {
   AllDoctorsCubit({required this.allDoctorsRepo}) : super(AllDoctorsInitial());
 
   List<DoctorDataModel> _allDoctors = [];
+  List<DoctorDataModel> _apiFilteredDoctors = []; // after API filter
 
   Future<void> getAllDoctors() async {
     emit(AllDoctorsLoading());
     try {
       final response = await allDoctorsRepo.getAllDoctors();
       _allDoctors = response;
+      _apiFilteredDoctors = response;
       emit(AllDoctorsLoaded(doctors: _allDoctors));
     } catch (error) {
       emit(
@@ -31,14 +33,15 @@ class AllDoctorsCubit extends Cubit<AllDoctorsState> {
     final String? specializationId,
     final String? cityId,
   }) async {
+    debugPrint('🔴 filterDoctors called');
     emit(AllDoctorsLoading());
     try {
       final response = await allDoctorsRepo.filterDoctors(
         specializationId: specializationId,
         cityId: cityId,
       );
-      _allDoctors = response;
-      emit(AllDoctorsLoaded(doctors: _allDoctors));
+      _apiFilteredDoctors = response;
+      emit(AllDoctorsLoaded(doctors: _apiFilteredDoctors));
     } catch (error) {
       emit(
         AllDoctorsError(error: error is AppError ? error : AppError.unknown()),
@@ -60,11 +63,12 @@ class AllDoctorsCubit extends Cubit<AllDoctorsState> {
   }
 
   void filterByPrice(final String? priceRange) {
+      debugPrint('🟢 filterByPrice called: $priceRange');
     if (priceRange == null) {
-      emit(AllDoctorsLoaded(doctors: _allDoctors));
+      emit(AllDoctorsLoaded(doctors: _apiFilteredDoctors));
       return;
     }
-    final filtered = _allDoctors.where((final doctor) {
+    final filtered = _apiFilteredDoctors.where((final doctor) {
       final price = doctor.appointPrice;
       switch (priceRange) {
         case '< 100':
