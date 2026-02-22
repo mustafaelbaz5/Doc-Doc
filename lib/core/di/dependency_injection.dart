@@ -3,8 +3,9 @@ import 'package:doc_doc/core/data/remote/shared_remote_api.dart';
 import 'package:doc_doc/modules/users/features/all_doctors/data/remote/all_doctors_remote_api.dart';
 import 'package:doc_doc/modules/users/features/all_doctors/data/repo/all_doctors_repo.dart';
 import 'package:doc_doc/modules/users/features/all_doctors/data/repo/all_doctors_repo_impl.dart';
-import 'package:doc_doc/modules/users/features/all_doctors/logic/cubit/all_doctors/all_doctors_cubit.dart';
-import 'package:doc_doc/modules/users/features/all_doctors/logic/cubit/filter_data/filter_data_cubit.dart';
+import 'package:doc_doc/modules/users/features/all_doctors/logic/all_doctors/all_doctors_cubit.dart';
+import 'package:doc_doc/modules/users/features/all_doctors/logic/filter_data/filter_data_cubit.dart';
+
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 

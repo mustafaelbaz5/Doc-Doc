@@ -4,7 +4,8 @@ import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/app_assets.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:doc_doc/core/widgets/custom_text_form_.dart';
-import 'package:doc_doc/modules/users/features/all_doctors/logic/cubit/filter_data/filter_data_cubit.dart';
+import 'package:doc_doc/modules/users/features/all_doctors/logic/filter_data/filter_data_cubit.dart';
+
 import 'package:doc_doc/modules/users/features/all_doctors/ui/widgets/doctors_filter_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

@@ -3,7 +3,7 @@ import 'package:doc_doc/core/data/models/doctor_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../data/repo/all_doctors_repo.dart';
+import '../../data/repo/all_doctors_repo.dart';
 
 part 'all_doctors_state.dart';
 
@@ -13,7 +13,7 @@ class AllDoctorsCubit extends Cubit<AllDoctorsState> {
   AllDoctorsCubit({required this.allDoctorsRepo}) : super(AllDoctorsInitial());
 
   List<DoctorDataModel> _allDoctors = [];
-  List<DoctorDataModel> _apiFilteredDoctors = []; // after API filter
+  List<DoctorDataModel> _apiFilteredDoctors = [];
 
   Future<void> getAllDoctors() async {
     emit(AllDoctorsLoading());
@@ -22,26 +22,6 @@ class AllDoctorsCubit extends Cubit<AllDoctorsState> {
       _allDoctors = response;
       _apiFilteredDoctors = response;
       emit(AllDoctorsLoaded(doctors: _allDoctors));
-    } catch (error) {
-      emit(
-        AllDoctorsError(error: error is AppError ? error : AppError.unknown()),
-      );
-    }
-  }
-
-  Future<void> filterDoctors({
-    final String? specializationId,
-    final String? cityId,
-  }) async {
-    debugPrint('🔴 filterDoctors called');
-    emit(AllDoctorsLoading());
-    try {
-      final response = await allDoctorsRepo.filterDoctors(
-        specializationId: specializationId,
-        cityId: cityId,
-      );
-      _apiFilteredDoctors = response;
-      emit(AllDoctorsLoaded(doctors: _apiFilteredDoctors));
     } catch (error) {
       emit(
         AllDoctorsError(error: error is AppError ? error : AppError.unknown()),
@@ -62,8 +42,26 @@ class AllDoctorsCubit extends Cubit<AllDoctorsState> {
     }
   }
 
+  Future<void> filterDoctors({
+    final String? specializationId,
+    final String? cityId,
+  }) async {
+    emit(AllDoctorsLoading());
+    try {
+      final response = await allDoctorsRepo.filterDoctors(
+        specializationId: specializationId,
+        cityId: cityId,
+      );
+      _apiFilteredDoctors = response;
+      emit(AllDoctorsLoaded(doctors: _apiFilteredDoctors));
+    } catch (error) {
+      emit(
+        AllDoctorsError(error: error is AppError ? error : AppError.unknown()),
+      );
+    }
+  }
+
   void filterByPrice(final String? priceRange) {
-      debugPrint('🟢 filterByPrice called: $priceRange');
     if (priceRange == null) {
       emit(AllDoctorsLoaded(doctors: _apiFilteredDoctors));
       return;
