@@ -43,8 +43,6 @@ class DioFactory {
           );
           if (freshToken != null && freshToken.isNotEmpty) {
             options.headers["Authorization"] = "Bearer $freshToken";
-          } else {
-            clearToken();
           }
           handler.next(options);
         },
