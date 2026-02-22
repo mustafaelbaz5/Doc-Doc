@@ -38,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const DoctorsBlueContainer(),
             verticalSpacing(24),
             const HomeDoctorSpecialty(),
-            verticalSpacing(24),
+            verticalSpacing(12),
             const Expanded(child: HomeRecommendationDoctor()),
           ],
         ),
