@@ -23,13 +23,6 @@ class _AllDoctorsScreenState extends State<AllDoctorsScreen> {
   String? _selectedCityName;
   String? _selectedPrice;
 
-  @override
-  void initState() {
-    super.initState();
-    context.read<AllDoctorsCubit>().getAllDoctors();
-    context.read<FilterDataCubit>().loadFilterData();
-  }
-
   void _applyFilter() {
     context.read<AllDoctorsCubit>().filterDoctors(
       specializationId: _selectedSpecializationId,
@@ -45,27 +38,17 @@ class _AllDoctorsScreenState extends State<AllDoctorsScreen> {
           children: [
             const CustomAppBar(title: 'Recommended Doctors'),
             verticalSpacing(16),
-
             BlocBuilder<FilterDataCubit, FilterDataState>(
               builder: (final context, final state) {
-                final specializations = state is FilterDataLoaded
-                    ? state.specializations.map((final e) => e.name).toList()
-                    : <String>[];
-                final cities = state is FilterDataLoaded
-                    ? state.cities.map((final e) => e.name).toList()
-                    : <String>[];
-
                 return AllDoctorsTopBar(
                   controller: _searchController,
                   onSearchChanged: (final query) =>
                       context.read<AllDoctorsCubit>().searchDoctors(query),
-                  specializations: specializations,
-                  cities: cities,
-                  prices: const ['< 100', '100 - 200', '200 - 300', '> 300'],
                   selectedSpecialization: _selectedSpecializationName,
                   selectedCity: _selectedCityName,
                   selectedPrice: _selectedPrice,
                   onSpecializationChanged: (final val) {
+                    final state = context.read<FilterDataCubit>().state;
                     if (state is FilterDataLoaded && val != null) {
                       final match = state.specializations.firstWhere(
                         (final e) => e.name == val,
@@ -83,6 +66,7 @@ class _AllDoctorsScreenState extends State<AllDoctorsScreen> {
                     _applyFilter();
                   },
                   onCityChanged: (final val) {
+                    final state = context.read<FilterDataCubit>().state;
                     if (state is FilterDataLoaded && val != null) {
                       final match = state.cities.firstWhere(
                         (final e) => e.name == val,
@@ -106,9 +90,7 @@ class _AllDoctorsScreenState extends State<AllDoctorsScreen> {
                 );
               },
             ),
-
             verticalSpacing(16),
-
             Expanded(
               child: BlocBuilder<AllDoctorsCubit, AllDoctorsState>(
                 builder: (final context, final state) {

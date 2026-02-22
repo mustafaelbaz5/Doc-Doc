@@ -1,10 +1,13 @@
 import 'package:doc_doc/core/extensions/context_extensions.dart';
+import 'package:doc_doc/core/themes/app_colors.dart';
 import 'package:doc_doc/core/themes/app_text_styles.dart';
 import 'package:doc_doc/core/utils/app_assets.dart';
 import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:doc_doc/core/widgets/custom_text_form_.dart';
+import 'package:doc_doc/modules/users/features/all_doctors/logic/cubit/filter_data/filter_data_cubit.dart';
 import 'package:doc_doc/modules/users/features/all_doctors/ui/widgets/doctors_filter_bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class AllDoctorsTopBar extends StatelessWidget {
@@ -12,9 +15,6 @@ class AllDoctorsTopBar extends StatelessWidget {
     super.key,
     this.controller,
     this.onSearchChanged,
-    this.specializations = const [],
-    this.cities = const [],
-    this.prices = const [],
     this.selectedSpecialization,
     this.selectedCity,
     this.selectedPrice,
@@ -25,10 +25,6 @@ class AllDoctorsTopBar extends StatelessWidget {
 
   final TextEditingController? controller;
   final void Function(String)? onSearchChanged;
-
-  final List<String> specializations;
-  final List<String> cities;
-  final List<String> prices;
 
   final String? selectedSpecialization;
   final String? selectedCity;
@@ -52,16 +48,30 @@ class AllDoctorsTopBar extends StatelessWidget {
           top: Radius.circular(responsiveRadius(24)),
         ),
       ),
-      builder: (final context) => DoctorsFilterBottomSheet(
-        specializations: specializations,
-        cities: cities,
-        prices: prices,
-        selectedSpecialization: selectedSpecialization,
-        selectedCity: selectedCity,
-        selectedPrice: selectedPrice,
-        onSpecializationChanged: onSpecializationChanged,
-        onCityChanged: onCityChanged,
-        onPriceChanged: onPriceChanged,
+      builder: (final _) => BlocProvider.value(
+        value: context.read<FilterDataCubit>(),
+        child: BlocBuilder<FilterDataCubit, FilterDataState>(
+          builder: (final context, final state) {
+            final specializations = state is FilterDataLoaded
+                ? state.specializations.map((final e) => e.name).toList()
+                : <String>[];
+            final cities = state is FilterDataLoaded
+                ? state.cities.map((final e) => e.name).toList()
+                : <String>[];
+            const prices = <String>['< 100', '100 - 200', '200 - 300', '> 300'];
+            return DoctorsFilterBottomSheet(
+              specializations: specializations,
+              cities: cities,
+              prices: prices,
+              selectedSpecialization: selectedSpecialization,
+              selectedCity: selectedCity,
+              selectedPrice: selectedPrice,
+              onSpecializationChanged: onSpecializationChanged,
+              onCityChanged: onCityChanged,
+              onPriceChanged: onPriceChanged,
+            );
+          },
+        ),
       ),
     );
   }
@@ -109,7 +119,9 @@ class AllDoctorsTopBar extends StatelessWidget {
           ),
           horizontalSpacing(10),
           GestureDetector(
-            onTap: () => _openFilterSheet(context),
+            onTap: () {
+              _openFilterSheet(context);
+            },
             child: Container(
               padding: EdgeInsets.all(responsiveWidth(10)),
               decoration: BoxDecoration(
@@ -122,7 +134,7 @@ class AllDoctorsTopBar extends StatelessWidget {
               child: Icon(
                 Icons.tune_rounded,
                 color: _hasActiveFilter
-                    ? Colors.white
+                    ? AppColors.green0
                     : context.customColors.border,
                 size: responsiveWidth(22),
               ),
