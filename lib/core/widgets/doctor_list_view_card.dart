@@ -1,10 +1,11 @@
-import '../extensions/context_extensions.dart';
+import 'package:flutter/material.dart';
+
 import '../data/models/doctor_data_model.dart';
+import '../extensions/context_extensions.dart';
 import '../themes/app_colors.dart';
 import '../themes/app_text_styles.dart';
 import '../utils/app_assets.dart';
 import '../utils/spacing.dart';
-import 'package:flutter/material.dart';
 
 class DoctorListViewCard extends StatelessWidget {
   const DoctorListViewCard({super.key, required this.doctor, this.onTap});
@@ -48,7 +49,7 @@ class DoctorListViewCard extends StatelessWidget {
                 // Name
                 Text(
                   doctor.name,
-                  style: AppTextStyles.font18SemiBold,
+                  style: AppTextStyles.font16SemiBold,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
