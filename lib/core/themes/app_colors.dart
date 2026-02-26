@@ -42,6 +42,7 @@ class AppColors {
   static const Color yellow0 = Color(0xfffff6e0);
 
   // green Scale
+  static const Color lightGreen = Color(0xFF1EBF39);
   static const Color green300 = Color(0xff184e44);
   static const Color green200 = Color(0xff28806f);
   static const Color green100 = Color(0xff40c4aa);

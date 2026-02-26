@@ -59,7 +59,7 @@ class AppDialogs {
         message: message,
         primaryButtonText: buttonText ?? 'app_dialogs.ok'.tr(),
         icon: Icons.check_circle_outline,
-        iconColor: AppColors.green300,
+        iconColor: AppColors.lightGreen,
         onPrimaryPressed: onPressed,
       ),
     );
