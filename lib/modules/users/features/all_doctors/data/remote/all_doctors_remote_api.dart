@@ -15,13 +15,6 @@ class AllDoctorsRemoteApi {
         .toList();
   }
 
-  Future<DoctorDataModel> showDoctorDetails(final int doctorId) async {
-    final response = await apiService.get<Map<String, dynamic>>(
-      endPoint: '${ApiEndPoints.showDoctorDetailsEndPoint}$doctorId',
-    );
-    return DoctorDataModel.fromJson(response['data']);
-  }
-
   Future<List<DoctorDataModel>> filterDoctors({
     final String? specializationId,
     final String? cityId,

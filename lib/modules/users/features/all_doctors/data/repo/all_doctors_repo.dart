@@ -4,7 +4,6 @@ import '../../../../../../core/data/models/specializations_response_body.dart';
 
 abstract class AllDoctorsRepo {
   Future<List<DoctorDataModel>> getAllDoctors();
-  Future<DoctorDataModel> showDoctorDetails(final int doctorId);
   Future<List<DoctorDataModel>> filterDoctors({
     final String? specializationId,
     final String? cityId,

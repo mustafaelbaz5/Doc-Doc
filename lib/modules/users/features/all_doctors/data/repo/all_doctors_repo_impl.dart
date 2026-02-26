@@ -36,11 +36,6 @@ class AllDoctorsRepoImpl implements AllDoctorsRepo {
   }
 
   @override
-  Future<DoctorDataModel> showDoctorDetails(final int doctorId) {
-    return allDoctorsRemoteApi.showDoctorDetails(doctorId);
-  }
-
-  @override
   Future<SpecializationsResponseBody> getSpecializations() {
     return sharedRemoteApi.getSpecializations();
   }
