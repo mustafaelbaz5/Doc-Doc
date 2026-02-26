@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:doc_doc/core/router/routes.dart';
 import 'package:flutter/material.dart';
 
 import '../data/models/doctor_data_model.dart';
@@ -8,17 +10,19 @@ import '../utils/app_assets.dart';
 import '../utils/spacing.dart';
 
 class DoctorListViewCard extends StatelessWidget {
-  const DoctorListViewCard({super.key, required this.doctor, this.onTap});
+  const DoctorListViewCard({super.key, required this.doctor});
 
   final DoctorDataModel doctor;
-  final VoidCallback? onTap;
 
   @override
   Widget build(final BuildContext context) {
     final isMale = doctor.gender.toLowerCase() == 'male';
 
     return GestureDetector(
-      onTap: onTap,
+      onTap: () => context.pushNamed(
+        Routes.doctorDetailsScreen,
+        arguments: {'doctorId': doctor.id},
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -28,19 +32,24 @@ class DoctorListViewCard extends StatelessWidget {
             height: responsiveHeight(80),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(responsiveRadius(12)),
-              color: context.customColors.border,
+              color: context.customColors.border.withValues(alpha: 0.3),
             ),
             clipBehavior: Clip.hardEdge,
-            child: Image.asset(
-              isMale
-                  ? AppAssets.defaultMaleDoctorPng
-                  : AppAssets.defaultFemaleDoctorPng,
+            child: CachedNetworkImage(
+              imageUrl: doctor.photo,
               fit: BoxFit.cover,
+              placeholder: (final context, final url) =>
+                  const Center(child: CircularProgressIndicator()),
+              errorWidget: (final context, final url, final error) =>
+                  Image.asset(
+                    isMale
+                        ? AppAssets.defaultMaleDoctorPng
+                        : AppAssets.defaultFemaleDoctorPng,
+                    fit: BoxFit.cover,
+                  ),
             ),
           ),
-
           horizontalSpacing(16),
-
           // Doctor information
           Expanded(
             child: Column(
@@ -117,7 +126,6 @@ class DoctorListViewCard extends StatelessWidget {
                     ),
                   ],
                 ),
-
                 verticalSpacing(10),
               ],
             ),
