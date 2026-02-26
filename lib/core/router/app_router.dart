@@ -1,3 +1,4 @@
+import 'package:doc_doc/modules/users/features/appointment/ui/appointment_screen.dart';
 import 'package:doc_doc/modules/users/features/doctor_details/logic/cubit/doctor_details_cubit.dart';
 import 'package:doc_doc/modules/users/features/doctor_details/ui/doctor_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -79,6 +80,9 @@ class AppRouter {
             child: const DoctorDetailsScreen(),
           ),
         );
+
+      case Routes.appointmentScreen:
+        return MaterialPageRoute(builder: (_) => const AppointmentScreen());
 
       default:
         return null;
