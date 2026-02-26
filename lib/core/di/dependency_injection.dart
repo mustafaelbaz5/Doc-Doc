@@ -1,4 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:doc_doc/modules/users/features/doctor_details/data/remote/doctor_details_remote_api.dart';
+import 'package:doc_doc/modules/users/features/doctor_details/data/repo/doctor_details_repo.dart';
+import 'package:doc_doc/modules/users/features/doctor_details/data/repo/doctor_details_repo_impls.dart';
+import 'package:doc_doc/modules/users/features/doctor_details/logic/cubit/doctor_details_cubit.dart';
 import '../data/remote/shared_remote_api.dart';
 import '../../modules/users/features/all_doctors/data/remote/all_doctors_remote_api.dart';
 import '../../modules/users/features/all_doctors/data/repo/all_doctors_repo.dart';
@@ -141,6 +145,27 @@ Future<void> setUpDependencies() async {
   if (!getIt.isRegistered<FilterDataCubit>()) {
     getIt.registerFactory<FilterDataCubit>(
       () => FilterDataCubit(allDoctorsRepo: getIt<AllDoctorsRepo>()),
+    );
+  }
+
+  // Doctor Details
+  if (!getIt.isRegistered<DoctorDetailsRemoteApi>()) {
+    getIt.registerLazySingleton<DoctorDetailsRemoteApi>(
+      () => DoctorDetailsRemoteApi(apiService: getIt<ApiService>()),
+    );
+  }
+
+  if (!getIt.isRegistered<DoctorDetailsRepo>()) {
+    getIt.registerLazySingleton<DoctorDetailsRepo>(
+      () => DoctorDetailsRepoImpls(
+        doctorDetailsRemoteApi: getIt<DoctorDetailsRemoteApi>(),
+      ),
+    );
+  }
+
+  if (!getIt.isRegistered<DoctorDetailsCubit>()) {
+    getIt.registerFactory<DoctorDetailsCubit>(
+      () => DoctorDetailsCubit(doctorDetailsRepo: getIt<DoctorDetailsRepo>()),
     );
   }
 }

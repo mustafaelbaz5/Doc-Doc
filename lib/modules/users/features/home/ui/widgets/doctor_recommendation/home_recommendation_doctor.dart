@@ -1,9 +1,9 @@
-import '../../../../../../../core/extensions/context_extensions.dart';
-import '../../../../../../../core/router/routes.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../../../core/extensions/context_extensions.dart';
+import '../../../../../../../core/router/routes.dart';
 import '../../../../../../../core/themes/app_colors.dart';
 import '../../../../../../../core/themes/app_text_styles.dart';
 import '../../../../../../../core/utils/spacing.dart';
@@ -28,7 +28,7 @@ class HomeRecommendationDoctor extends StatelessWidget {
             const Spacer(),
             GestureDetector(
               onTap: () {
-                context.pushNamed(Routes.recommendationDoctorScreen);
+                context.pushNamed(Routes.allDoctorsScreen);
               },
               child: Text(
                 "home.see_all".tr(),

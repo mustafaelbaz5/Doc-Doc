@@ -1,21 +1,22 @@
+import 'package:doc_doc/core/extensions/context_extensions.dart';
+import 'package:doc_doc/core/themes/app_text_styles.dart';
+import 'package:doc_doc/core/utils/spacing.dart';
 import 'package:flutter/material.dart';
 
-import '../extensions/context_extensions.dart';
-import '../themes/app_text_styles.dart';
-import '../utils/spacing.dart';
-
-class CustomIconBottom extends StatelessWidget {
+class CustomIconButton extends StatelessWidget {
   final IconData icon;
   final VoidCallback onPressed;
   final String? label;
   final String? tooltip;
+  final double? iconSize;
 
-  const CustomIconBottom({
+  const CustomIconButton({
     super.key,
     required this.icon,
     required this.onPressed,
     this.label,
     this.tooltip,
+    this.iconSize,
   });
 
   bool get _hasLabel => label != null;
@@ -44,7 +45,7 @@ class CustomIconBottom extends StatelessWidget {
             children: [
               Icon(
                 icon,
-                size: responsiveFontSize(20),
+                size: iconSize ?? responsiveFontSize(20),
                 color: context.customColors.textSecondary,
               ),
               if (_hasLabel) ...[
